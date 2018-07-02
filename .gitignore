@@ -1,0 +1,16 @@
+# Django Related Files
+*.py[cod]
+__pycache__
+
+# Logs
+logs
+*.log
+pip-log.txt
+npm-debug.log*
+
+# Local Media
+portfolio/media/
+.cache/
+
+# Environment
+.env
