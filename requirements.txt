@@ -1,0 +1,22 @@
+# Need Wheel
+wheel==0.30.0
+
+# Latest Django Package
+django==2.0.6
+
+# Project Specific Apps
+Pillow==4.2.1
+easy-thumbnails==2.5
+django-sslify==0.2.7
+
+# Database Adapter and Management
+psycopg2==2.7.1
+dj-database-url==0.4.2
+
+# WSGI Handling
+gunicorn==19.7.1
+
+# Static File Storage and Management
+django-storages==1.6.5
+boto==2.48.0
+boto3==1.5.14
