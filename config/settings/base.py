@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom applications:
+    'portfolio.about.apps.AboutConfig',
     'portfolio.news.apps.NewsConfig',
 
     # Third party applications:
