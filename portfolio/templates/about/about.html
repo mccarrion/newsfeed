@@ -21,7 +21,7 @@
         <div class="row" style="padding-top:15px">
             {% for page in about_page %}
                 <div class="col-md-4  text-center">
-                    <h3><a href="/about/{{page.id}}"> {{ page.title }}</a></h3>
+                    <h3><a href="/about/{{page.slug}}"> {{ page.title }}</a></h3>
                     <p>{{ page.sub_title }}</p>
                 </div>
             {% endfor %}

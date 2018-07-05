@@ -1,6 +1,8 @@
 from django.db import models
 from easy_thumbnails.fields import ThumbnailerImageField
 
+from .utils import create_unique_slug
+
 
 class Article(models.Model):
     """
@@ -16,6 +18,12 @@ class Article(models.Model):
         null=True, max_length=255)
     body = models.TextField()
     date = models.DateTimeField()
+    slug = models.SlugField(max_length=128, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = create_unique_slug(self, 'title', 'slug')
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
