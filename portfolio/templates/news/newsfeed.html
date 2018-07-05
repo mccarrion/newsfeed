@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block content %}
+
+<div class="container" style="padding-bottom:15px">
+    <div class="row" style:"padding-bottom:10px">
+        <div class="col-md-8 offset-md-2" style="border-bottom:1px solid #d3d3d3">
+            <p><h2 class="text-center">The Daily</h2></p>
+        </div>
+    </div>
+</div>
+
+{% for post in article_list %}
+
+<div class="container" style="padding-bottom: 15px">
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <a href="{{post.id}}">
+                <img src="{{ post.thumbnail.url }}" alt=""/>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <p><h3><a href="{{post.id}}"> {{post.title}}</a></h3>
+            <h5>{{post.subtitle}}</h5></p>
+            <p>By {{post.author}} on {{post.date}}</p>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
