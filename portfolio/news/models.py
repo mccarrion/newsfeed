@@ -20,6 +20,38 @@ class Article(models.Model):
     date = models.DateTimeField()
     slug = models.SlugField(max_length=128, unique=True, blank=True)
 
+    # This list will be used to break up the news website into subsections
+    # based on what subjects the publisher decides to include
+    BUSINESS = 'BUSINESS'
+    ARTS = 'ARTS'
+    TECH = 'TECH'
+    SPORTS = 'SPORTS'
+    LIFESTYLE = 'LIFESTYLE'
+    CULTURE = 'CULTURE'
+    TRAVEL = 'TRAVEL'
+    OPINION = 'OPINION'
+    POLITICS = 'POLITICS'
+    NATIONAL = 'NATIONAL'
+    WORLD = 'WORLD'
+    SUBJECT_CHOICES = (
+        (BUSINESS, 'Business'),
+        (ARTS, 'Arts'),
+        (TECH, 'Tech'),
+        (SPORTS, 'Sports'),
+        (LIFESTYLE, 'Lifestyle'),
+        (CULTURE, 'Culture'),
+        (TRAVEL, 'Travel'),
+        (OPINION, 'Opinion'),
+        (POLITICS, 'Politics'),
+        (NATIONAL, 'National'),
+        (WORLD, 'World'),
+    )
+    subject = models.CharField(
+        max_length=9,
+        choices=SUBJECT_CHOICES,
+        default='ARTS'
+    )
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = create_unique_slug(self, 'title', 'slug')
