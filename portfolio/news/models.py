@@ -4,6 +4,20 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from .utils import create_unique_slug
 
 
+class Author(models.Model):
+    """
+    This class will create an author that will be tied to each article.
+    """
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    photo = models.ImageField(upload_to='news', blank=True,
+        null=True, max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Article(models.Model):
     """
     This is the model for all of the articles that will be written in the news
@@ -59,14 +73,3 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Author(models.model):
-    """
-    This class will create an author that will be tied to each article.
-    """
-    name = models.Charfield(max_length=255)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    photo = models.ImageField(upload_to='news', blank=True,
-        null=True, max_length=255)

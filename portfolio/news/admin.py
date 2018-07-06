@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import ModelForm
 
-from .models import Article
+from .models import Article, Author
 
 class SubjectForm(ModelForm):
     BUSINESS = 'business'
@@ -43,3 +43,4 @@ class NewsAdmin(admin.ModelAdmin):
     form = SubjectForm
 
 admin.site.register(Article)
+admin.site.register(Author)
