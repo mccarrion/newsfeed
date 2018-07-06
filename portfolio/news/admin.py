@@ -33,7 +33,8 @@ class SubjectForm(ModelForm):
         super(SubjectForm, self).__init__(*args, **kwargs)
         if self.instance.id:
             CHOICES_INCLUDING_DB_VALUE = [(
-                self.instance.field,)*2] + self.SUBJECT_CHOICES
+                self.instance.field,
+                )*2] + self.SUBJECT_CHOICES
             self.fields['subject_field'] = forms.ChoiceField(
                 choices=CHOICES_INCLUDING_DB_VALUE)
 
