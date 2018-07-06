@@ -17,12 +17,12 @@
 <div class="container" style="padding-bottom: 15px">
     <div class="row">
         <div class="col-md-2 offset-md-2">
-            <a href="{{post.id}}">
+            <a href="{{post.subject}}/{{post.slug}}">
                 <img src="{{ post.thumbnail.url }}" alt=""/>
             </a>
         </div>
         <div class="col-md-6">
-            <p><h3><a href="{{post.slug}}"> {{post.title}}</a></h3>
+            <p><h3><a href="{{post.subject}}/{{post.slug}}"> {{post.title}}</a></h3>
             <h5>{{post.subtitle}}</h5></p>
             <p>By {{post.author}} on {{post.date}}</p>
         </div>

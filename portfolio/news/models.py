@@ -13,7 +13,7 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=128)
     thumbnail = ThumbnailerImageField(upload_to='thumbnail', blank=True,
         null=True, resize_source=dict(size=(150, 150), crop="True"), max_length=255)
-    author = models.CharField(max_length=128)
+    author = models.ManyToManyField(Author)
     image = models.ImageField(upload_to='news', blank=True,
         null=True, max_length=255)
     body = models.TextField()
@@ -22,17 +22,17 @@ class Article(models.Model):
 
     # This list will be used to break up the news website into subsections
     # based on what subjects the publisher decides to include
-    BUSINESS = 'BUSINESS'
-    ARTS = 'ARTS'
-    TECH = 'TECH'
-    SPORTS = 'SPORTS'
-    LIFESTYLE = 'LIFESTYLE'
-    CULTURE = 'CULTURE'
-    TRAVEL = 'TRAVEL'
-    OPINION = 'OPINION'
-    POLITICS = 'POLITICS'
-    NATIONAL = 'NATIONAL'
-    WORLD = 'WORLD'
+    BUSINESS = 'business'
+    ARTS = 'arts'
+    TECH = 'tech'
+    SPORTS = 'sports'
+    LIFESTYLE = 'lifestyle'
+    CULTURE = 'culture'
+    TRAVEL = 'travel'
+    OPINION = 'opinion'
+    POLITICS = 'politics'
+    NATIONAL = 'national'
+    WORLD = 'world'
     SUBJECT_CHOICES = (
         (BUSINESS, 'Business'),
         (ARTS, 'Arts'),
@@ -49,7 +49,7 @@ class Article(models.Model):
     subject = models.CharField(
         max_length=9,
         choices=SUBJECT_CHOICES,
-        default='ARTS'
+        default='arts'
     )
 
     def save(self, *args, **kwargs):
@@ -59,3 +59,14 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Author(models.model):
+    """
+    This class will create an author that will be tied to each article.
+    """
+    name = models.Charfield(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    photo = models.ImageField(upload_to='news', blank=True,
+        null=True, max_length=255)

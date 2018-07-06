@@ -4,17 +4,17 @@ from django.forms import ModelForm
 from .models import Article
 
 class SubjectForm(ModelForm):
-    BUSINESS = 'BUSINESS'
-    ARTS = 'ARTS'
-    TECH = 'TECH'
-    SPORTS = 'SPORTS'
-    LIFESTYLE = 'LIFESTYLE'
-    CULTURE = 'CULTURE'
-    TRAVEL = 'TRAVEL'
-    OPINION = 'OPINION'
-    POLITICS = 'POLITICS'
-    NATIONAL = 'NATIONAL'
-    WORLD = 'WORLD'
+    BUSINESS = 'business'
+    ARTS = 'arts'
+    TECH = 'tech'
+    SPORTS = 'sports'
+    LIFESTYLE = 'lifestyle'
+    CULTURE = 'culture'
+    TRAVEL = 'travel'
+    OPINION = 'opinion'
+    POLITICS = 'politics'
+    NATIONAL = 'national'
+    WORLD = 'world'
     SUBJECT_CHOICES = (
         (BUSINESS, 'Business'),
         (ARTS, 'Arts'),
