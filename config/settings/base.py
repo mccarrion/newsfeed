@@ -37,16 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
     # Custom applications:
     'portfolio.about.apps.AboutConfig',
     'portfolio.news.apps.NewsConfig',
+    'portfolio.users.apps.UsersConfig',
 
     # Third party applications:
     'easy_thumbnails',
-
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -108,11 +113,18 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+SITE_ID = 1
+
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+# Setting the User model
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_URL = 'account_login'
 
 
 # Static files (CSS, JavaScript, Images)

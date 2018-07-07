@@ -23,8 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portfolio.news.urls')),
     path('about/', include('portfolio.about.urls')),
+    path('accounts/', include('allauth.urls')),
     path('privacy/', TemplateView.as_view(template_name='privacy.html')),
     path('terms/', TemplateView.as_view(template_name='terms.html')),
+    path('users/', include('portfolio.users.urls')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
-        content_type="text/plain"), name="robots.txt"),
+         content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
