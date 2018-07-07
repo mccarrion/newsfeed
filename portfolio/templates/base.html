@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles i18n %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -22,9 +22,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbar">
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-left">
 						<li class="nav-item">
 							<a class="nav-link" href="/about/">About</a>
 						</li>
@@ -34,6 +32,25 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/art/">Art</span></a>
 						</li>
+					</ul>
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						{% if request.user.is_authenticated %}
+						  <li class="nav-item">
+							{# URL provided by django-allauth/account/urls.py #}
+							<a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+						  </li>
+						  <li class="nav-item">
+							{# URL provided by django-allauth/account/urls.py #}
+							<a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+						  </li>
+						{% else %}
+						  <li class="nav-item">
+							{# URL provided by django-allauth/account/urls.py #}
+							<a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+						  </li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
