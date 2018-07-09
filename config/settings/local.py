@@ -17,6 +17,9 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'portfolio/temp/email')
+
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
