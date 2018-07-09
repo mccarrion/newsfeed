@@ -6,6 +6,12 @@ licensing for this code will be a standard MIT license. Anyone who comes across
 this code and likes the functionality implemented in this codebase is free to
 clone the code and use it for personal or commercial purposes.
 
+## For more information go to the Wiki:
+
+If you are looking for more information related to this project not brought up
+in this README, look to the wiki for answers. Currently the wiki is pretty
+barren, but it will be updated overtime with more information.
+
 ## Settings for this project
 
 This project only has two sets of settings at this current time. The local
