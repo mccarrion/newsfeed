@@ -10,7 +10,7 @@ class ArticleListView(ListView):
     """
     queryset = Article.objects.all().order_by("-date")
     context_object_name = 'article_list'
-    paginate_by = 20
+    paginate_by = 10
     template_name = 'news/newsfeed.html'
 
 
