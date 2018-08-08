@@ -1,7 +1,9 @@
 from django.db import models
+from django.utils import timezone
 from easy_thumbnails.fields import ThumbnailerImageField
 
 from .utils import create_unique_slug
+from portfolio.users.models import User
 
 
 class Author(models.Model):
@@ -31,7 +33,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='news', blank=True,
         null=True, max_length=255)
     body = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
 
     # This list will be used to break up the news website into subsections
