@@ -15,6 +15,7 @@ class Author(models.Model):
     description = models.TextField()
     photo = models.ImageField(upload_to='news', blank=True,
         null=True, max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
