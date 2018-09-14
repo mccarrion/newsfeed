@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom applications:
-    'portfolio.about.apps.AboutConfig',
-    'portfolio.news.apps.NewsConfig',
-    'portfolio.users.apps.UsersConfig',
+    'portfolio.backend.about.apps.AboutConfig',
+    'portfolio.backend.news.apps.NewsConfig',
+    'portfolio.backend.users.apps.UsersConfig',
 
     # Third party applications:
     'rest_framework',
@@ -71,7 +71,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'portfolio/templates'),
+            os.path.join(BASE_DIR, 'portfolio/frontend/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -144,10 +144,10 @@ LOGIN_URL = 'account_login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio/staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'portfolio/media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio/frontend/staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'portfolio/frontend/media')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'portfolio/static'),
+    os.path.join(BASE_DIR, 'portfolio/frontend/static'),
 )
