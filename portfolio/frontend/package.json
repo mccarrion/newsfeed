@@ -1,0 +1,15 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Vue.js Frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Hello world!\""
+  },
+  "keywords": [
+    "vue",
+    "vuejs"
+  ],
+  "author": "Matthew",
+  "license": "MIT"
+}

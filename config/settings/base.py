@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'portfolio.users.apps.UsersConfig',
 
     # Third party applications:
+    'rest_framework',
     'easy_thumbnails',
     'crispy_forms',
     'allauth',
@@ -104,6 +105,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Settings for Rest Framework APIs
+# http://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 # Internationalization

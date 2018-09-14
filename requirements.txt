@@ -10,6 +10,7 @@ easy-thumbnails==2.5
 django-sslify==0.2.7
 django-crispy-forms==1.7.2
 django-allauth==0.32.0
+djangorestframework==3.8.2
 
 # Database Adapter and Management
 psycopg2==2.7.1
