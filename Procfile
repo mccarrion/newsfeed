@@ -1,1 +1,1 @@
-web: gunicorn portfolio.config.wsgi --log-file -
+web: gunicorn newsfeed.config.wsgi --log-file -

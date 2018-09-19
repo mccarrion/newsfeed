@@ -3,7 +3,7 @@ from django.utils import timezone
 from easy_thumbnails.fields import ThumbnailerImageField
 
 from .utils import create_unique_slug
-from portfolio.users.models import User
+from newsfeed.users.models import User
 
 
 class Author(models.Model):

@@ -9,7 +9,7 @@ pip-log.txt
 npm-debug.log*
 
 # Local Media
-portfolio/media/
+newsfeed/media/
 .cache/
 temp
 

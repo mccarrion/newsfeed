@@ -1,5 +1,5 @@
 """
-WSGI config for portfolio project.
+WSGI config for newsfeed project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -1,4 +1,4 @@
-"""portfolio URL Configuration
+"""newsfeed URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -21,12 +21,12 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('portfolio.backend.news.urls')),
-    path('about/', include('portfolio.backend.about.urls')),
+    path('', include('newsfeed.backend.news.urls')),
+    path('about/', include('newsfeed.backend.about.urls')),
     path('accounts/', include('allauth.urls')),
     path('privacy/', TemplateView.as_view(template_name='privacy.html')),
     path('terms/', TemplateView.as_view(template_name='terms.html')),
-    path('users/', include('portfolio.backend.users.urls', namespace='users')),
+    path('users/', include('newsfeed.backend.users.urls', namespace='users')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
          content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
