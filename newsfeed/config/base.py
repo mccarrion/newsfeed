@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom applications:
-    'newsfeed.backend.about.apps.AboutConfig',
-    'newsfeed.backend.news.apps.NewsConfig',
-    'newsfeed.backend.users.apps.UsersConfig',
+    'newsfeed.about.apps.AboutConfig',
+    'newsfeed.news.apps.NewsConfig',
+    'newsfeed.users.apps.UsersConfig',
 
     # Third party applications:
     'rest_framework',
@@ -65,13 +65,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'newsfeed.config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'newsfeed/frontend/templates'),
+            os.path.join(BASE_DIR, 'newsfeed/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'newsfeed.config.wsgi.application'
 
 
 # Password validation
@@ -144,10 +144,10 @@ LOGIN_URL = 'account_login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'newsfeed/frontend/staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'newsfeed/frontend/media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'newsfeed/staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'newsfeed/media')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'newsfeed/frontend/static'),
+    os.path.join(BASE_DIR, 'newsfeed/static'),
 )
