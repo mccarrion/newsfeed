@@ -6,6 +6,7 @@ from .views import ArticleViewSet
 router = DefaultRouter()
 router.register(r'articles', ArticleViewSet)
 
+#TODO: May need to make custom urls
 urlpatterns = [
     path(r'', include(router.urls)),
 ]

@@ -1,8 +1,11 @@
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
-from . import views
+from .views import PageViewSet
+
+router = DefaultRouter()
+rout.register(r'about', PageViewSet)
 
 urlpatterns = [
-    path(r'', views.AboutIndexView.as_view()),
-    path(r'<slug:slug>', views.PageDetailView.as_view()),
+    path(r'', include(router.urls)),
 ]
