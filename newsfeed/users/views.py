@@ -1,36 +1,19 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from rest_framework import viewsets
+from rest_framework.permissions import (IsAuthenticatedOrReadOnly,
+                                        IsOwnerOrReadOnly)
 
 from .models import User
-
-class UserDetailView(LoginRequiredMixin, DetailView):
-    model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+from .serializers import UserSerializer
 
 
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    This is an API endpoint that provides 'list', 'create', 'retrieve',
+    'update' and 'destroy' actions for the model.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
-    def get_redirect_url(self):
-        return reverse('users:detail',
-                       kwargs={'username': self.request.user.username})
-
-
-class UserUpdateView(LoginRequiredMixin, UpdateView):
-    fields = ['name', ]
-    model = User
-
-    def get_success_url(self):
-        return reverse('users:detail',
-                       kwargs={'username': self.request.user.username})
-
-    def get_object(self):
-        return User.objects.get(username=self.request.user.username)
-
-
-class UserListView(LoginRequiredMixin, ListView):
-    model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
