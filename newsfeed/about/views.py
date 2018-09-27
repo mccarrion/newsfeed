@@ -1,9 +1,9 @@
 from rest_framework import viewsets
-from rest_framework.permissions import (IsAuthenticatedOrReadOnly,
-                                        IsOwnerOrReadOnly)
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Page
 from .serializers import PageSerializer
+from newsfeed.core.permissions import IsOwnerOrReadOnly
 
 
 class PageViewSet(viewsets.ModelViewSet):
