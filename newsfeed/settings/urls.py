@@ -21,12 +21,15 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('newsfeed.news.urls')),
-    path('about/', include('newsfeed.about.urls')),
     path('accounts/', include('allauth.urls')),
+
+    path('api/', include('newsfeed.news.urls')),
+    path('api/', include('newsfeed.about.urls')),
+    path('api/', include('newsfeed.users.urls')),
+
+    #TODO: May need to move this to the frontend
     path('privacy/', TemplateView.as_view(template_name='privacy.html')),
     path('terms/', TemplateView.as_view(template_name='terms.html')),
-    path('users/', include('newsfeed.users.urls', namespace='users')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
          content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
