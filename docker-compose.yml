@@ -1,8 +1,11 @@
-version: '2'
+version: '3.6'
 
 services:
   postgres:
+    hostname: postgres
     image: postgres
+    ports:
+      - "5432:5432"
 
   django:
     build: .
@@ -13,3 +16,6 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+
+volumes:
+  postgres_data:

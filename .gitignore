@@ -1,17 +1,39 @@
-# Django Related Files
+# Byte-compiled / optimized / DLL files
 *.py[cod]
 __pycache__
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+node_modules/
 
 # Logs
 logs
 *.log
 pip-log.txt
-npm-debug.log*
 
-# Local Media
-newsfeed/media/
+# Local development files
+/media/
 .cache/
 temp
+
+# Mac
+.DS_Store
+._*
 
 # Environment
 .env

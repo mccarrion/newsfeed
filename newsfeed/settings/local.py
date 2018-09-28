@@ -1,6 +1,7 @@
 """
 These are the local settings for this Django project.
 """
+import os
 
 from .base import *
 
@@ -9,11 +10,12 @@ from .base import *
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
         'HOST': 'postgres',
-        'PORT': 5432,
+        'PORT': 5432
     }
 }
 
