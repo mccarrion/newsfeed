@@ -29,6 +29,7 @@ pip-log.txt
 # Local development files
 /media/
 .cache/
+.pytest_cache
 temp
 
 # Mac
