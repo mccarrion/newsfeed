@@ -69,6 +69,14 @@ class Article(models.Model):
         default='arts'
     )
 
+    def get_absolute_url(self):
+        kwargs = {
+            'year': self.date.year,
+            'month': self.date.strftime('%b').lower(),
+            'day': self.date.strftime('%d').lower(),
+            'slug': self.slug,
+        }
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = create_unique_slug(self, 'title', 'slug')

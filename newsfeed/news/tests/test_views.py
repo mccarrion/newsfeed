@@ -9,15 +9,15 @@ class ArticleViewTests(TestCase):
         self.article = Article.objects.create(title="some title")
 
     def test_article_view(self):
-        Article.objects.create(title="title", description="description")
+        Article.objects.create(title="title", body="body")
         response = self.client.get('/')
         self.assertContains(response, "title")
-        self.assertContains(response, "description")
+        self.assertContains(response, "body")
 
     def test_article_list(self):
-        Article.objects.create(title="title_one", description="description_one")
-        Article.objects.create(title="title_two", description="description_two")
+        Article.objects.create(title="title_one", body="body_one")
+        Article.objects.create(title="title_two", body="body_two")
         response = self.client.get('/')
         self.assertContains(response, "title_one")
-        self.assertContains(response, "description_one")
+        self.assertContains(response, "body_one")
         self.assertContains(response, "title_two")
