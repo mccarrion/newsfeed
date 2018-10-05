@@ -1,28 +1,17 @@
-import pytest
-from django.conf import settings
-from django.urls import reverse, resolve
-
-pytestmark = pytest.mark.django_db
+from django.urls import include, path, reverse
+from rest_framework.test import APITestCase, URLPatternsTestCase
 
 
-def test_detail(user: settings.AUTH_USER_MODEL):
-    assert (
-        reverse("users:detail", kwargs={"username": user.username})
-        == f"/users/{user.username}/"
-    )
-    assert resolve(f"/users/{user.username}/").view_name == "users:detail"
+class ArticleUrlTests(APITestCase, URLPatternsTestCase):
+    urlpatterns = [
+        path('api/', include('api.urls')),
+    ]
 
-
-def test_list():
-    assert reverse("users:list") == "/users/"
-    assert resolve("/users/").view_name == "users:list"
-
-
-def test_update():
-    assert reverse("users:update") == "/users/~update/"
-    assert resolve("/users/~update/").view_name == "users:update"
-
-
-def test_redirect():
-    assert reverse("users:redirect") == "/users/~redirect/"
-    assert resolve("/users/~redirect/").view_name == "users:redirect"
+    def test_create_account(self):
+        """
+        Ensure we can create new object.
+        """
+        url = reverse('')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)

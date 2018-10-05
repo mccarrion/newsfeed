@@ -1,17 +1,17 @@
-from django.test import TestCase
+from django.urls import include, path, reverse
+from rest_framework.test import APITestCase, URLPatternsTestCase
 
-from newsfeed.about.models import Page
 
+class ArticleUrlTests(APITestCase, URLPatternsTestCase):
+    urlpatterns = [
+        path('api/', include('api.urls')),
+    ]
 
-class PageUrlTests(TestCase):
-
-    def setUp(self):
-        self.page = Page.objects.create(title="some title")
-
-    def test_title_in_page(self):
-        response = self.page.get(self.page.get_absolute_url())
-        self.assertContains(response, self.page.title)
-
-    def test_description_in_page(self):
-        response = self.page.get(self.page.get_absolute_url())
-        self.assertContains(response, self.page.title)
+    def test_create_account(self):
+        """
+        Ensure we can create new object.
+        """
+        url = reverse('')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
