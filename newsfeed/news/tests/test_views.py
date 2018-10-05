@@ -1,23 +1,18 @@
 from django.test import TestCase
+from django.urls import reverse
+from rest_framework.test import APIRequestFactory
 
 from newsfeed.news.models import Article
+from newsfeed.news.views import ArticleViewSet
 
 
 class ArticleViewTests(TestCase):
 
-    def setUp(self):
-        self.article = Article.objects.create(title="some title")
+    def test_viewset(self):
+        factory = APIRequestFactory()
+        view = ArticleViewSet.as_view(actions={'get': 'retrieve'})
+        article = Article(title="test title")
+        article.save()
 
-    def test_article_view(self):
-        Article.objects.create(title="title", body="body")
-        response = self.client.get('/')
-        self.assertContains(response, "title")
-        self.assertContains(response, "body")
-
-    def test_article_list(self):
-        Article.objects.create(title="title_one", body="body_one")
-        Article.objects.create(title="title_two", body="body_two")
-        response = self.client.get('/')
-        self.assertContains(response, "title_one")
-        self.assertContains(response, "body_one")
-        self.assertContains(response, "title_two")
+        request = factory.get(reverse('article-detail', args=(article.pk,)))
+        response = view(request)

@@ -1,23 +1,18 @@
 from django.test import TestCase
+from django.urls import reverse
+from rest_framework.test import APIRequestFactory
 
 from newsfeed.about.models import Page
+from newsfeed.about.views import PageViewSet
 
 
 class PageViewTests(TestCase):
 
-    def setUp(self):
-        self.page = Page.objects.create(title="some title")
+    def test_viewset(self):
+        factory = APIRequestFactory()
+        view = PageViewSet.as_view(actions={'get': 'retrieve'})
+        page = Page(title="test title")
+        page.save()
 
-    def test_first_page(self):
-        Page.objects.create(title="title", description="description")
-        response = self.client.get('/')
-        self.assertContains(response, "title")
-        self.assertContains(response, "description")
-
-    def test_two_pages(self):
-        Page.objects.create(title="title_one", description="description_one")
-        Page.objects.create(title="title_two", description="description_two")
-        response = self.client.get('/')
-        self.assertContains(response, "title_one")
-        self.assertContains(response, "description_one")
-        self.assertContains(response, "title_two")
+        request = factory.get(reverse('page-detail', args=(page.pk,)))
+        response = view(request)
