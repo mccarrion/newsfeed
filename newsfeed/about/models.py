@@ -1,6 +1,5 @@
 from django.db import models
-
-from .utils import create_unique_slug
+from django.utils.text import slugify
 
 
 class Page(models.Model):
@@ -11,11 +10,3 @@ class Page(models.Model):
     body = models.TextField()
     date = models.DateTimeField()
     slug = models.SlugField(max_length=128, unique=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = create_unique_slug(self, 'title', 'slug')
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title

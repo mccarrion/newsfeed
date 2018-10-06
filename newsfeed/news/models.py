@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from easy_thumbnails.fields import ThumbnailerImageField
 
-from .utils import create_unique_slug
 from newsfeed.users.models import User
 
 
@@ -77,9 +77,9 @@ class Article(models.Model):
             'slug': self.slug,
         }
 
+    #TODO: Add a check for uniqueness
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = create_unique_slug(self, 'title', 'slug')
+        self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
     def __str__(self):
