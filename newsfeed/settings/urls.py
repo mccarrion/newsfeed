@@ -23,9 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 
-    path('api/', include('newsfeed.news.urls')),
-    path('api/', include('newsfeed.about.urls')),
-    path('api/', include('newsfeed.users.urls')),
+    path('api/', include('newsfeed.news.urls', namespace='news')),
+    path('api/', include('newsfeed.about.urls', namespace='about')),
+    path('api/', include('newsfeed.users.urls', namespace='users')),
 
     #TODO: May need to move this to the frontend
     path('privacy/', TemplateView.as_view(template_name='privacy.html')),

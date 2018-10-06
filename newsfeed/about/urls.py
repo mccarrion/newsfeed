@@ -6,6 +6,7 @@ from .views import PageViewSet
 router = DefaultRouter()
 router.register(r'about', PageViewSet)
 
+app_name = "about"
 urlpatterns = [
     path(r'', include(router.urls)),
 ]
