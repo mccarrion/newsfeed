@@ -14,5 +14,5 @@ class ArticleViewTests(TestCase):
         article = Article(title="test title")
         article.save()
 
-        request = factory.get(reverse('article-detail', args=(article.pk,)))
+        request = factory.get(reverse('articles', args=(article.pk,)))
         response = view(request)
