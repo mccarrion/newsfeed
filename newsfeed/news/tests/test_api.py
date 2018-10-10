@@ -5,31 +5,31 @@ from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APITestCase, URLPatternsTestCase
 
-from newsfeed.about.models import Page
+from newsfeed.news.models import Article
 
 
-class PageAPITests(APITestCase, URLPatternsTestCase):
+class ArticleAPITests(APITestCase, URLPatternsTestCase):
     urlpatterns = [
-        path('api/', include('newsfeed.about.urls')),
+        path('api/', include('newsfeed.news.urls')),
     ]
 
     def setUp(self):
-        Page.objects.create(
+        Article.objects.create(
             title='test title',
-            sub_title='test subtitle',
+            subtitle='test subtitle',
             body='test body',
             date=timezone.now()
         )
 
-    def test_create_page(self):
+    def test_create_account(self):
         """
-        Ensure that we can create a new page.
+        Ensure we can create new object.
         """
-        url = reverse('about:page-list')
+        url = reverse('news:article-list')
         data = {
-            'title':'AboutUs',
-            'sub_title':'OurJourney',
-            'body':'WhoWeAre',
+            'title':'NewStory',
+            'subtitle':'AmazingNews',
+            'body':'GreatStory',
             'date':"2012-04-23T18:25:43.511Z"
         }
         response = self.client.post(url, data, format='json')
@@ -41,8 +41,8 @@ class PageAPITests(APITestCase, URLPatternsTestCase):
         """
         Ensure that the views exist at the url pattern provided.
         """
-        page = Page.objects.get(title='test title')
-        url = reverse('about:page-list')
+        article = Article.objects.get(title='test title')
+        url = reverse('news:article-list')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
