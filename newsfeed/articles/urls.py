@@ -7,7 +7,7 @@ router = DefaultRouter()
 router.register(r'articles', ArticleViewSet)
 
 #TODO: May need to make custom urls
-app_name = "news"
+app_name = "articles"
 urlpatterns = [
     path(r'', include(router.urls)),
 ]

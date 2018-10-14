@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from newsfeed.news.models import Article
+from newsfeed.articles.models import Article
 
 
 class ArticleModelTest(TestCase):

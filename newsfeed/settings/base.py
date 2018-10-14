@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # Custom applications:
     'newsfeed.about.apps.AboutConfig',
-    'newsfeed.news.apps.NewsConfig',
+    'newsfeed.articles.apps.ArticlesConfig',
     'newsfeed.users.apps.UsersConfig',
 
     # Third party applications:

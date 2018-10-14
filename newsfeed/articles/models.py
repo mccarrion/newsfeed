@@ -6,6 +6,9 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from newsfeed.users.models import User
 
 
+# TODO: This model will be rolled into the User model and then differing levels
+# of authentication will be developed to differentiate between Authors of news
+# articles and Users who comment on articles.
 class Author(models.Model):
     """
     This class will create an author that will be tied to each article.
@@ -13,7 +16,7 @@ class Author(models.Model):
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    photo = models.ImageField(upload_to='news', blank=True,
+    photo = models.ImageField(upload_to='articles', blank=True,
         null=True, max_length=255)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -31,7 +34,7 @@ class Article(models.Model):
     thumbnail = ThumbnailerImageField(upload_to='thumbnail', blank=True,
         null=True, resize_source=dict(size=(150, 150), crop="True"), max_length=255)
     author = models.ManyToManyField(Author)
-    image = models.ImageField(upload_to='news', blank=True,
+    image = models.ImageField(upload_to='articles', blank=True,
         null=True, max_length=255)
     body = models.TextField()
     date = models.DateTimeField(default=timezone.now)

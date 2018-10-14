@@ -39,7 +39,7 @@ class SubjectForm(ModelForm):
                 choices=CHOICES_INCLUDING_DB_VALUE)
 
 
-class NewsAdmin(admin.ModelAdmin):
+class ArticlesAdmin(admin.ModelAdmin):
     form = SubjectForm
 
 admin.site.register(Article)
