@@ -1,3 +1,7 @@
+<!--
+TODO: Will need to create a way to fetch articles based on the subject that was
+selected for the article. 
+-->
 <template>
   <div>
     <div v-if="isLoading" class="article-preview">

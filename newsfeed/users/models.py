@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db import models
 
 
+# TODO: Work on defining varying levels of authentication.
 class User(AbstractUser):
     """
     This is an extendable model that will represent users across the website.
