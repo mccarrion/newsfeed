@@ -21,6 +21,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # TODO: allauth will have to be replaced with django-rest-auth
+    # link to repo: https://github.com/Tivix/django-rest-auth
     path('accounts/', include('allauth.urls')),
 
     path('api/', include('newsfeed.articles.urls', namespace='articles')),
