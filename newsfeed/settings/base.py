@@ -48,11 +48,14 @@ INSTALLED_APPS = [
 
     # Third party applications:
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'easy_thumbnails',
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_auth.registration',
 ]
 
 MIDDLEWARE = [

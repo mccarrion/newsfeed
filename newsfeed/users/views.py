@@ -6,6 +6,8 @@ from .serializers import UserSerializer
 from newsfeed.core.permissions import IsOwnerOrReadOnly
 
 
+# TODO: Update views to match REST-Auth
+# Link to repo: https://github.com/Tivix/django-rest-auth
 class UserViewSet(viewsets.ModelViewSet):
     """
     This is an API endpoint that provides 'list', 'create', 'retrieve',
