@@ -1,16 +1,18 @@
+// Need to add a way to fetch articles based on subject
+
 import React, from 'react';
 
-const FetchArticles = props => {
+const Fetch = props => {
   return (
     <div>
       {
         props.articles.map(article => {
           return (
-            <Article article={article} />
+            <Article key={slug} article={article} />
           );
         })
       }
     </div>
-  )
+  );
 
 }
