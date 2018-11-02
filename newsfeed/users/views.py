@@ -9,7 +9,7 @@ from newsfeed.core.permissions import IsOwnerOrReadOnly
 
 # TODO: Update views to match REST-Auth
 # Link to repo: https://github.com/Tivix/django-rest-auth
-class UserDetailView(RetrieveUpdateAPIView):
+class UserProfileView(RetrieveUpdateAPIView):
     """
     This is an API endpoint that provides 'list', 'create', 'retrieve',
     'update' and 'destroy' actions for the model.
