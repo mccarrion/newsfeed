@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 class Login extends React.Component{
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    this.submitForm = (email, password) => e => {
+      e.preventDefault();
+      this.props.onSubmit(email, password);
+    };
   }
 
   render() {
