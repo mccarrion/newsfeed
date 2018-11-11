@@ -18,3 +18,11 @@ const getArticles = async () => {
     console.error(e)
   }
 }
+
+const getProfile = async () => {
+  try {
+    return await axios.get('http://localhost:8000/api/profile/:username')
+  } catch (e) {
+    console.error(e)
+  }
+}
