@@ -1,13 +1,15 @@
 import axios from 'axios';
-const URL = 'http://localhost:8000/api/'
+const API_URL = 'http://localhost:8000/api/';
 
-const getArticles = async () => {
-  try {
-    return await axios.get(':subject/articles')
-  } catch (e) {
-    console.error(e)
-  }
-}
+export const fetchArticles = async () => {
+  axios
+    .get(
+      API_URL + 'articles'
+    )
+    .catch(err => {
+      console.log('Error while fetching!', err);
+    });
+};
 
 const getProfile = async () => {
   try {
