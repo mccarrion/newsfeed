@@ -1,19 +1,9 @@
 import axios from 'axios';
-
-// This was written out in order to visualize how axios works as a starting
-// point on how to refactor and expand this file going forward
-// axios.get('http://localhost:8000/api')
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-
+const URL = 'http://localhost:8000/api/'
 
 const getArticles = async () => {
   try {
-    return await axios.get('http://localhost:8000/api/:subject/articles')
+    return await axios.get(':subject/articles')
   } catch (e) {
     console.error(e)
   }
@@ -21,7 +11,7 @@ const getArticles = async () => {
 
 const getProfile = async () => {
   try {
-    return await axios.get('http://localhost:8000/api/profile/:username')
+    return await axios.get('profile/:username')
   } catch (e) {
     console.error(e)
   }
