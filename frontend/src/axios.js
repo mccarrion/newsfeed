@@ -13,7 +13,6 @@ export function fetchArticles(subject) {
         console.log('Error while fetching!', error);
       });
   }
-
 };
 
 export function getProfile(username) {
