@@ -2,13 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Profile extends React.Component {
+  componentWillMount() {
+
+  }
+
   render() {
     return (
-      <div>
-        <Profile
-          username="props.article.username"
-          email="props.article.email"
-        />
+      <div className="profile">
+        <img src={user.image} />
+        <h5>{user.username}</h5>
       </div>
     );
   }
