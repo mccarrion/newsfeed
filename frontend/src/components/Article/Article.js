@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Article extends React.Component {
+  componentWillMount() {
+
+  }
+
   render() {
     return (
       <div className="display-article">
