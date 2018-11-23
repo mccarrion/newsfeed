@@ -11,7 +11,11 @@ class PasswordChange extends React.Component {
 
   render() {
     return (
-
+      <div className="PasswordChange">
+        <form onSubmit={this.handleSubmit}>
+          
+        </form>
+      </div>
     );
   }
 }
