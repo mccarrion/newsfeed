@@ -13,7 +13,10 @@ class PasswordChange extends React.Component {
     return (
       <div className="PasswordChange">
         <form onSubmit={this.handleSubmit}>
-          
+          <Field type="password" name="existingPassword" required="required" />
+          <Field type="password" name="newPassword" required="required" />
+          <Field type="password" name="newPasswordCheck" required="required" />
+          <button type="submit" name="action">Change Password</button>
         </form>
       </div>
     );
