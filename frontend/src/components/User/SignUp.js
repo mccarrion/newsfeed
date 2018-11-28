@@ -32,7 +32,24 @@ class SignUp extends React.Component {
     return (
       <div className="SignUp">
         <form onSubmit={this.handleSubmit}>
-
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Full Name"
+            value={this.fullName}
+            onChange={this.handleChange} />
+          <input
+            className="form-control"
+            type="email"
+            placeholder="Email"
+            value={this.email}
+            onChange={this.handleChange} />
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Password"
+            value={this.password}
+            onChange={this.handleChange} />
         </form>
       </div>
     )
