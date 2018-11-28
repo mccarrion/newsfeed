@@ -36,6 +36,11 @@ class Login extends React.Component{
             placeholder="Email"
             value={this.email}
             onChange={this.handleChange} />
+          <input
+            className="form-control"
+            type="password"
+            value={this.password}
+            onChange={this.handleChange} />
         </form>
       </div>
     )
