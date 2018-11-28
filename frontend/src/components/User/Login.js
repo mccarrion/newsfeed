@@ -30,7 +30,12 @@ class Login extends React.Component{
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-
+          <input
+            className="form-control"
+            type="email"
+            placeholder="Email"
+            value={this.email}
+            onChange={this.handleChange} />
         </form>
       </div>
     )
