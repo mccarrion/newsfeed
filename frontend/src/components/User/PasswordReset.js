@@ -5,7 +5,7 @@ class PasswordReset extends React.Component {
     super(props);
     this.state = {
       password: '',
-      passwordAgain: '',
+      passwordConfirm: '',
       submitted: False
     };
   }
@@ -14,7 +14,7 @@ class PasswordReset extends React.Component {
     return (
       <div className="PasswordReset">
         <form onSubmit={this.handleSubmit}>
-          
+
         </form>
       </div>
     );

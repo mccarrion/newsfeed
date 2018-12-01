@@ -8,6 +8,7 @@ class SignUp extends React.Component {
       fullName: '',
       email: '',
       password: '',
+      passwordConfirm: '',
       submitted: False
     };
 
@@ -49,6 +50,12 @@ class SignUp extends React.Component {
             type="password"
             placeholder="Password"
             value={this.password}
+            onChange={this.handleChange} />
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Confirm Password"
+            value={this.passwordConfirm}
             onChange={this.handleChange} />
         </form>
       </div>
