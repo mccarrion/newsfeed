@@ -42,6 +42,12 @@ class Login extends React.Component{
             value={this.password}
             onChange={this.handleChange} />
         </form>
+
+        <button
+          className="btn"
+          type="submit">
+          Log In
+        </button>
       </div>
     )
   }

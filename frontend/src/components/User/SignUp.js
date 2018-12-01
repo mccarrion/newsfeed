@@ -58,6 +58,12 @@ class SignUp extends React.Component {
             value={this.passwordConfirm}
             onChange={this.handleChange} />
         </form>
+
+        <button
+          className="btn"
+          type="submit">
+          Sign Up
+        </button>
       </div>
     )
   }
