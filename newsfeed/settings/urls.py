@@ -23,14 +23,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
-
-    path('api/', include('newsfeed.articles.urls', namespace='articles')),
-    path('api/', include('newsfeed.about.urls', namespace='about')),
-    path('api/', include('newsfeed.users.urls', namespace='users')),
+    path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
+    path('api/about/', include('newsfeed.about.urls', namespace='about')),
+    path('api/users/', include('newsfeed.users.urls', namespace='users')),
 
     #TODO: May need to move this to the frontend
-    path('privacy/', TemplateView.as_view(template_name='privacy.html')),
-    path('terms/', TemplateView.as_view(template_name='terms.html')),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt",
-         content_type="text/plain"), name="robots.txt"),
+    # path('privacy/', TemplateView.as_view(template_name='privacy.html')),
+    # path('terms/', TemplateView.as_view(template_name='terms.html')),
+    # path('robots.txt', TemplateView.as_view(template_name="robots.txt",
+    #      content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
