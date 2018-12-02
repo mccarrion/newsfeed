@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { App } from './components';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import createHistory from 'history/createBrowserHistory';
 
+import { Router, Route, Switch } from 'react-router-dom';
+
 export const history = createHistory();
 
-ReactDom.render(
+ReactDOM.render((
   <Router history={history}>
     <Switch>
       <Route path="/" component={App} />
     </Switch>
   </Router>
-), document.getElementById('root');
+), document.getElementById('root'));
