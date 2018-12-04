@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class SignUp extends React.Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullName: '',
+      username: '',
       email: '',
       password: '',
-      passwordConfirm: '',
       submitted: False
     };
 
@@ -18,7 +17,7 @@ class SignUp extends React.Component {
 
   handleChange(event) {
     this.setState({
-      fullName: event.target.fullName,
+      username: event.target.username,
       email: event.target.email,
       password: event.target.password
     });
@@ -36,8 +35,8 @@ class SignUp extends React.Component {
           <input
             className="form-control"
             type="text"
-            placeholder="Full Name"
-            value={this.fullName}
+            placeholder="Username"
+            value={this.username}
             onChange={this.handleChange} />
           <input
             className="form-control"
@@ -51,12 +50,6 @@ class SignUp extends React.Component {
             placeholder="Password"
             value={this.password}
             onChange={this.handleChange} />
-          <input
-            className="form-control"
-            type="password"
-            placeholder="Confirm Password"
-            value={this.passwordConfirm}
-            onChange={this.handleChange} />
         </form>
 
         <button
@@ -68,3 +61,5 @@ class SignUp extends React.Component {
     )
   }
 }
+
+export default SignUp;
