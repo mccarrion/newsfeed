@@ -12,7 +12,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`TODO`}>
+            to={`/@${this.props.profile.username}`}>
             Profile
           </Link>
         </li>
@@ -20,16 +20,16 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`TODO`}>
-            Favorites
+            to={`/@${this.props.profile.username}/comments`}>
+            Comments
           </Link>
         </li>
 
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`TODO`}>
-            Comments
+            to={`/@${this.props.profile.username}/favorites`}>
+            Favorites
           </Link>
         </li>
       </ul>

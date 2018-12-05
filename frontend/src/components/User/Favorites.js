@@ -12,13 +12,17 @@ class Favorites extends Profile {
             to={`/@${this.props.profile.username}`}>
             Profile
           </Link>
+        </li>
 
+        <li className="nav-item">
           <Link
             className="link"
             to={`/@${this.props.profile.username}/comments`}>
             Comments
           </Link>
+        </li>
 
+        <li className="nav-item">
           <Link
             className="link"
             to={`/@${this.props.profile.username}/favorites`}>
