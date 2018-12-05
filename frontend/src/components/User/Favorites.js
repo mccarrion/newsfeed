@@ -6,12 +6,28 @@ class Favorites extends Profile {
   render() {
     return (
       <ul className="nav">
-        <Link
-          className="link"
-          to={`/@${this.props.profile.username}/favorites`}>
-          My Favorites
-        </Link>
+        <li className="nav-item">
+          <Link
+            className="link"
+            to={`/@${this.props.profile.username}`}>
+            Profile
+          </Link>
+
+          <Link
+            className="link"
+            to={`/@${this.props.profile.username}/comments`}>
+            Comments
+          </Link>
+
+          <Link
+            className="link"
+            to={`/@${this.props.profile.username}/favorites`}>
+            Favorites
+          </Link>
+        </li>
       </ul>
     );
   }
 }
+
+export default Favorites;
