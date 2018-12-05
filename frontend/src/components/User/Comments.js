@@ -2,7 +2,7 @@ import { Profile } from './Profile';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Favorites extends Profile {
+class Comments extends Profile {
   renderTabs() {
     return (
       <ul className="nav">
@@ -34,4 +34,4 @@ class Favorites extends Profile {
   }
 }
 
-export default Favorites;
+export default Comments;
