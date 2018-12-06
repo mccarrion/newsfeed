@@ -21,3 +21,30 @@ export function getProfile(username) {
       console.log('Error while fetching!', error);
     });
 }
+
+export function postLogin(username) {
+  return axios.post(`${API_URL}/login`, {
+      email: '',
+      password: ''
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => {
+      console.log('Error posting credentials!', error);
+    });
+}
+
+export function postSignUp(username) {
+  return axios.post(`${API_URL}/signup`, {
+    username: '',
+    email: '',
+    password: ''
+  })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(error => {
+    console.log('Error posting credentials!', error);
+  });
+}
