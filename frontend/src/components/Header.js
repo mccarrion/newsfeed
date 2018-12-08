@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Header extends React.Component {
+class Header extends Component {
   render() {
     return (
       <nav className="navbar">
@@ -30,3 +30,5 @@ class Header extends React.Component {
     );
   }
 }
+
+export default Header;

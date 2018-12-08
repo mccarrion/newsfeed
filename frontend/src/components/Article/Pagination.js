@@ -5,3 +5,5 @@ const Pagination = props => {
 
   );
 };
+
+export const Pagination;

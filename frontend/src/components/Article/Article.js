@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Article extends React.Component {
+class Article extends Component {
   componentWillMount() {
 
   }
@@ -22,3 +22,5 @@ class Article extends React.Component {
     );
   }
 }
+
+export default Article;

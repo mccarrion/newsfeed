@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Footer extends React.Component {
+// Footer will start on the sidebar for this app.
+class Footer extends Component {
   render() {
     return (
 
     );
   }
 }
+
+export default Footer;

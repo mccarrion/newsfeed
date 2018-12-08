@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class PasswordReset extends React.Component {
+class PasswordReset extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,3 +20,5 @@ class PasswordReset extends React.Component {
     );
   }
 }
+
+export default PasswordReset;
