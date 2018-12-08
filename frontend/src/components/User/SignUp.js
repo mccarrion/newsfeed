@@ -36,19 +36,19 @@ class SignUp extends Component {
             className="form-control"
             type="text"
             placeholder="Username"
-            value={this.username}
+            value={this.state.username}
             onChange={this.handleChange} />
           <input
             className="form-control"
             type="email"
             placeholder="Email"
-            value={this.email}
+            value={this.state.email}
             onChange={this.handleChange} />
           <input
             className="form-control"
             type="password"
             placeholder="Password"
-            value={this.password}
+            value={this.state.password}
             onChange={this.handleChange} />
         </form>
 

@@ -34,12 +34,12 @@ class Login extends React.Component{
             className="form-control"
             type="email"
             placeholder="Email"
-            value={this.email}
+            value={this.state.email}
             onChange={this.handleChange} />
           <input
             className="form-control"
             type="password"
-            value={this.password}
+            value={this.state.password}
             onChange={this.handleChange} />
         </form>
 
