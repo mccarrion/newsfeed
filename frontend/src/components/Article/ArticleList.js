@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetchArticles from '../../axios';
 
 class ArticleList extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-
+    fetchArticles(subject);
   }
 
   render() {
