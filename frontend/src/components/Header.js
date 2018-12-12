@@ -6,7 +6,6 @@ class Header extends Component {
     return (
       <nav className="navbar">
         <div>
-
           <li className="nav-item">
             <Link to="/" className="nav-link">
               NewsFeed

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import getArticle from '../../axios';
 
 class Article extends Component {
   componentWillMount() {
-
+    getArticle();
   }
 
   render() {

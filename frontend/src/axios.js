@@ -15,12 +15,19 @@ export function fetchArticles(subject) {
   }
 };
 
+export function getArticle(subject, slug) {
+  return axios.get(`${API_URL}/articles/${subject}/${slug}`)
+    .catch(error => {
+      console.log('Error while fetching!', error);
+    });
+};
+
 export function getProfile(username) {
   return axios.get(`${API_URL}/profile/${username}`)
     .catch(error => {
       console.log('Error while fetching!', error);
     });
-}
+};
 
 export function postLogin(username) {
   return axios.post(`${API_URL}/login`, {
@@ -33,7 +40,7 @@ export function postLogin(username) {
     .catch(error => {
       console.log('Error posting credentials!', error);
     });
-}
+};
 
 export function postSignUp(username) {
   return axios.post(`${API_URL}/signup`, {
@@ -47,4 +54,4 @@ export function postSignUp(username) {
   .catch(error => {
     console.log('Error posting credentials!', error);
   });
-}
+};
