@@ -12,12 +12,6 @@ class Header extends Component {
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </li>
-
           {/* Need to have for loops to create links. */}
           <li className="nav-item">
             <Link to="/:subject" className="nav-link">
