@@ -7,7 +7,7 @@ class Login extends Component{
     this.state = {
       email: '',
       password: '',
-      submitted: False
+      submitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,7 +22,7 @@ class Login extends Component{
   }
 
   handleSubmit(event) {
-    this.setState({ submitted: True });
+    this.setState({ submitted: true });
     event.preventDefault();
   }
 

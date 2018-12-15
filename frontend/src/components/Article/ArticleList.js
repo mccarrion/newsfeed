@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fetchArticles from '../../axios';
+import { fetchArticles } from '../../axios';
 
 class ArticleList extends Component {
   constructor(props) {

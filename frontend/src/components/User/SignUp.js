@@ -8,7 +8,7 @@ class SignUp extends Component {
       username: '',
       email: '',
       password: '',
-      submitted: False
+      submitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,7 @@ class SignUp extends Component {
   }
 
   handleSubmit(event) {
-    this.setState({ submitted: True });
+    this.setState({ submitted: true });
     event.preventDefault();
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import getProfile from '../../axios';
+import { getProfile } from '../../axios';
 
 class Profile extends Component {
   componentWillMount() {

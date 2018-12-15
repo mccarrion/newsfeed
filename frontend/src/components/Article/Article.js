@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getArticle from '../../axios';
+import { getArticle } from '../../axios';
 
 class Article extends Component {
   componentWillMount() {
@@ -16,7 +16,7 @@ class Article extends Component {
             <h3>{this.props.article.subtitle}</h3>
             <b>By {this.props.article.author}</b>
             <p>{this.props.article.date}</p>
-            <p>{this.props.article.body|safe|linebreaks}</p>
+            <p>{this.props.article.body}</p>
           </div>
         </div>
       </div>
