@@ -18,4 +18,4 @@ const Preview = props => {
   );
 }
 
-export const Preview;
+export default Preview;

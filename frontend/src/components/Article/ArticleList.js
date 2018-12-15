@@ -1,3 +1,4 @@
+import Preview from './Preview';
 import React, { Component } from 'react';
 import { fetchArticles } from '../../axios';
 
@@ -20,7 +21,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    fetchArticles(subject);
+    fetchArticles();
   }
 
   render() {
@@ -28,8 +29,10 @@ class ArticleList extends Component {
       <div>
           {
             this.state.articles.map(article => {
-              <Preview article={article} key={article.slug} />
-            });
+              return (
+                <Preview article={article} key={article.slug} />
+              );
+            })
           }
       </div>
     )

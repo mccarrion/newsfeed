@@ -4,7 +4,7 @@ import { getProfile } from '../../axios';
 
 class Profile extends Component {
   componentWillMount() {
-    getProfile(username);
+    getProfile();
   }
 
   renderTabs() {
@@ -40,8 +40,8 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <img src={user.image} />
-        <h5>{user.username}</h5>
+        <img src={this.props.profile.image} />
+        <h5>{this.props.profile.username}</h5>
       </div>
     );
   }
