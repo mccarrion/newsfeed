@@ -12,7 +12,7 @@ class Article extends Component {
         <div className="container">
           <div className="col-md-8 offset-md-2">
             <h1>{this.props.article.title}</h1>
-            <img className="img-fluid" src="{this.props.image.url}" />
+            <img className="img-fluid" src="{this.props.image.url}" alt="headline" />
             <h3>{this.props.article.subtitle}</h3>
             <b>By {this.props.article.author}</b>
             <p>{this.props.article.date}</p>

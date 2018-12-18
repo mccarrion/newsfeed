@@ -7,7 +7,7 @@ const Preview = props => {
   return (
     <div className="preview">
       <Link to={`/${article.subject}/${article.slug}`} className="link">
-        <img src="{article.thumbnail.url}" />
+        <img src="{article.thumbnail.url}" alt="thumbnail" />
       </Link>
       <Link to={`/${article.subject}/${article.slug}`} className="link">
         <h3>{article.title}</h3>
