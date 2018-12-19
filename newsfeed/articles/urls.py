@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import ArticleViewSet
 
 router = DefaultRouter()
-router.register(r'articles', ArticleViewSet)
+router.register(r'', ArticleViewSet)
 
 #TODO: May need to make custom urls
 app_name = "articles"
