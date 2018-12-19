@@ -2,16 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-import createHistory from 'history/createBrowserHistory';
 
-import { Router, Route, Switch } from 'react-router-dom';
-
-export const history = createHistory();
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 ReactDOM.render((
-  <Router history={history}>
+  <BrowserRouter>
     <Switch>
       <Route path="/" component={App} />
     </Switch>
-  </Router>
+  </BrowserRouter>
 ), document.getElementById('root'));

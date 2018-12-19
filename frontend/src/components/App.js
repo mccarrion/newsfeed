@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Article from './Article/Article';
 import ArticleList from './Article/ArticleList';
 import Login from './User/Login';
@@ -14,7 +14,7 @@ class App extends Component {
           {/* <Route exact path="/" component={Home} /> */}
           <Route path="/login"  component={Login} />
           <Route path="/signup" component={SignUp} />
-          <Router exact path="/@:username" component={Profile} />
+          <BrowserRouter exact path="/@:username" component={Profile} />
           {/* <Router path="/@:username/comments" component={Comments} /> */}
           {/* <Router path="/@:username/favorites" component={Favorites} /> */}
           <Route exact path="/:subject" component={ArticleList} />
