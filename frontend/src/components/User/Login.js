@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class Login extends Component{
   constructor(props) {
@@ -38,15 +39,16 @@ class Login extends Component{
           <input
             className="form-control"
             type="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={this.handleChange} />
         </form>
 
-        <button
+        <Button
           className="btn"
           type="submit">
           Log In
-        </button>
+        </Button>
       </div>
     )
   }

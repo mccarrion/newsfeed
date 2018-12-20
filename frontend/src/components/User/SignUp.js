@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class SignUp extends Component {
   constructor(props) {
@@ -51,11 +52,11 @@ class SignUp extends Component {
             onChange={this.handleChange} />
         </form>
 
-        <button
+        <Button
           className="btn"
           type="submit">
           Sign Up
-        </button>
+        </Button>
       </div>
     )
   }
