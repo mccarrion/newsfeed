@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+const UserProfileView = props => {
+  if (props.currentUser) {
+    return (
+      <li className="nav-item">
+        <Link
+          to={`/@${props.currentUser.username}`}>
+          {props.currentUser.username}
+        </Link>
+      </li>
+    );
+  } else {
+    return (
+      <ul>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">
+            Log In
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/signup" className="nav-link">
+            Sign Up
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+}
+
 class Header extends Component {
   render() {
     return (
       <nav className="navbar">
         <div>
-          <li className="nav-item">
-            <Link to="/" className="nav-link">
-              NewsFeed
-            </Link>
-          </li>
+          <Link to="/" className="navbar-brand">
+            NewsFeed
+          </Link>
 
           {/* Need to have for loops to create links. */}
           <li className="nav-item">
@@ -18,6 +45,8 @@ class Header extends Component {
               Subject
             </Link>
           </li>
+
+          <UserProfileView currentUser={this.props.currentUser} />
         </div>
       </nav>
     );
