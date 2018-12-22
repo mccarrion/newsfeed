@@ -35,8 +35,21 @@ const Subjects = props => {
   return (
     <div className="subject-list">
     {
-      subjects.map( subject => {
+      subjects.map(subject => {
+        const handleClick = event => {
+          event.preventDefault();
+          props.onClickSubject(subject, list)
+        };
 
+        return (
+          <a
+            href=""
+            className="subject-default"
+            key={subject}
+            onClick={handleClick}>
+            {subject}
+          </a>
+        );
       })
     }
     </div>
