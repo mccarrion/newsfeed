@@ -30,6 +30,19 @@ const UserProfileView = props => {
   }
 }
 
+const Subjects = props => {
+  const subjects = props.subjects;
+  return (
+    <div className="subject-list">
+    {
+      subjects.map( subject => {
+
+      })
+    }
+    </div>
+  )
+}
+
 class Header extends Component {
   render() {
     return (
