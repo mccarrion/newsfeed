@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Article from './Article/Article';
-import ArticleList from './Article/ArticleList';
-import Login from './User/Login';
-import Profile from './User/Profile';
-import SignUp from './User/SignUp';
+import Article from './article/Article';
+import ArticleList from './article/ArticleList';
+import Login from './user/Login';
+import Profile from './user/Profile';
+import SignUp from './user/SignUp';
 
 class App extends Component {
   render() {
