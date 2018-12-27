@@ -7,17 +7,18 @@ class ArticleList extends Component {
     super(props);
     this.state = {
       articles: [],
+      current: 1,
       list: 10,
       error: false
     };
 
-    this.loadMore = this.loadMore.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  loadMore() {
-    this.setState((prev) => {
-      return {list: prev.list + 10};
-    })
+  handleClick(event) {
+    this.setState({
+      current: Number(event.target.id)
+    });
   }
 
   componentDidMount() {
@@ -25,6 +26,17 @@ class ArticleList extends Component {
   }
 
   render() {
+    const { articles, current, list } = this.state;
+
+    const indexLastArticle = current * list;
+    const indexFirstArticle = indexLastArticle - list;
+    const currentArticle = articles.slice(indexFirstArticle, indexLastArticle);
+
+    const pages = [];
+    for (let i = 1; i <= Math.ceil(articles.length / 10); i++) {
+      pages.push(i);
+    }
+
     return (
       <div>
           {
