@@ -30,12 +30,28 @@ class ArticleList extends Component {
 
     const indexLastArticle = current * list;
     const indexFirstArticle = indexLastArticle - list;
-    const currentArticle = articles.slice(indexFirstArticle, indexLastArticle);
+    const currentArticles = articles.slice(indexFirstArticle, indexLastArticle);
+
+    const renderArticles = currentArticles.map((article, index) => {
+      return (
+        <li key={index}>
+          {article}
+        </li>
+      );
+    });
 
     const pages = [];
     for (let i = 1; i <= Math.ceil(articles.length / 10); i++) {
       pages.push(i);
     }
+
+    const renderPages = pages.map(number => {
+      return (
+        <li key={number} id={number} onClick={this.handleClick}>
+          {number}
+        </li>
+      );
+    });
 
     return (
       <div>
