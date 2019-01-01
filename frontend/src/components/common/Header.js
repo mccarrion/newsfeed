@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchArticles } from '../../axios';
 
 const UserProfileView = props => {
   if (props.currentUser) {
@@ -38,7 +39,7 @@ const Subjects = props => {
       subjects.map(subject => {
         const handleClick = event => {
           event.preventDefault();
-          props.onClickSubject(subject, list)
+          props.onClickSubject(subject, list => fetchArticles(subject))
         };
 
         return (
@@ -67,9 +68,7 @@ class Header extends Component {
 
           {/* Need to have for loops to create links. */}
           <li className="nav-item">
-            <Link to="/:subject" className="nav-link">
-              Subject
-            </Link>
+            <Subjects />
           </li>
 
           <UserProfileView currentUser={this.props.currentUser} />
