@@ -35,27 +35,27 @@ const Subjects = props => {
   const subjects = props.subjects;
   return (
     <div className="subject-list">
-    {
-      subjects.map(subject => {
-        const handleClick = event => {
-          event.preventDefault();
-          props.onClickSubject(subject, list => fetchArticles(subject))
-        };
+      {
+        subjects.map(subject => {
+          const handleClick = event => {
+            event.preventDefault();
+            props.onClickSubject(subject, list => fetchArticles(subject));
+          };
 
-        return (
-          <a
-            href=""
-            className="subject-default"
-            key={subject}
-            onClick={handleClick}>
-            {subject}
-          </a>
-        );
-      })
-    }
+          return (
+            <a
+              href=""
+              className="subject-default"
+              key={subject}
+              onClick={handleClick}>
+              {subject}
+            </a>
+          );
+        })
+      }
     </div>
-  )
-}
+  );
+};
 
 class Header extends Component {
   render() {
