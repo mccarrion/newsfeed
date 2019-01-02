@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 import { fetchArticles } from '../../axios';
 
 const UserProfileView = props => {
@@ -14,66 +20,79 @@ const UserProfileView = props => {
     );
   } else {
     return (
-      <ul>
-        <li className="nav-item">
+      <Nav>
+        <NavItem>
           <Link to="/login" className="nav-link">
             Log In
           </Link>
-        </li>
+        </NavItem>
 
-        <li className="nav-item">
+        <NavItem>
           <Link to="/signup" className="nav-link">
             Sign Up
           </Link>
-        </li>
-      </ul>
+        </NavItem>
+      </Nav>
     );
   }
 }
 
 const Subjects = props => {
   const subjects = props.subjects;
-  return (
-    <div className="subject-list">
-      {
-        subjects.map(subject => {
-          const handleClick = event => {
-            event.preventDefault();
-            props.onClickSubject(subject, list => fetchArticles(subject));
-          };
+  if (subjects) {
+    return (
+      <div className="subject-list">
+        {
+          subjects.map(subject => {
+            const handleClick = event => {
+              event.preventDefault();
+              props.onClickSubject(subject, list => fetchArticles(subject));
+            };
 
-          return (
-            <a
-              href=""
-              className="subject-default"
-              key={subject}
-              onClick={handleClick}>
-              {subject}
-            </a>
-          );
-        })
-      }
-    </div>
-  );
+            return (
+              <a
+                href="$"
+                className="subject-default subject-pill"
+                key={subject}
+                onClick={handleClick}>
+                {subject}
+              </a>
+            );
+          })
+        }
+      </div>
+    );
+  } else {
+    return (
+      <Nav>
+        <NavItem><NavLink>Tech</NavLink></NavItem>
+        <NavItem><NavLink>Business</NavLink></NavItem>
+        <NavItem><NavLink>World</NavLink></NavItem>
+        <NavItem><NavLink>Science</NavLink></NavItem>
+      </Nav>
+    );
+  }
 };
 
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar">
-        <div>
-          <Link to="/" className="navbar-brand">
-            NewsFeed
-          </Link>
-
-          {/* Need to have for loops to create links. */}
-          <li className="nav-item">
-            <Subjects />
-          </li>
-
-          <UserProfileView currentUser={this.props.currentUser} />
-        </div>
-      </nav>
+      <div>
+        <Navbar color="faded" light>
+          <NavbarBrand>
+            <Link to="/" className="navbar-brand">
+              NewsFeed
+            </Link>
+          </NavbarBrand>
+          <Nav>
+            {/* Need to have for loops to create links. */}
+            <Subjects
+              subjects={this.props.subjects}
+              onClickSubject={this.props.onClickSubject} />
+            <UserProfileView currentUser={this.props.currentUser} />
+          </Nav>
+        </Navbar>
+      </div>
     );
   }
 }
