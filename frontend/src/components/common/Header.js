@@ -37,43 +37,6 @@ const UserProfileView = props => {
   }
 }
 
-const Subjects = props => {
-  const subjects = props.subjects;
-  if (subjects) {
-    return (
-      <div className="subject-list">
-        {
-          subjects.map(subject => {
-            const handleClick = event => {
-              event.preventDefault();
-              props.onClickSubject(subject, list => fetchArticles(subject));
-            };
-
-            return (
-              <a
-                href="$"
-                className="subject-default subject-pill"
-                key={subject}
-                onClick={handleClick}>
-                {subject}
-              </a>
-            );
-          })
-        }
-      </div>
-    );
-  } else {
-    return (
-      <Nav>
-        <NavItem><NavLink>Tech</NavLink></NavItem>
-        <NavItem><NavLink>Business</NavLink></NavItem>
-        <NavItem><NavLink>World</NavLink></NavItem>
-        <NavItem><NavLink>Science</NavLink></NavItem>
-      </Nav>
-    );
-  }
-};
-
 class Header extends Component {
   render() {
     return (
@@ -85,10 +48,18 @@ class Header extends Component {
             </Link>
           </NavbarBrand>
           <Nav>
-            {/* Need to have for loops to create links. */}
-            <Subjects
-              subjects={this.props.subjects}
-              onClickSubject={this.props.onClickSubject} />
+            <NavItem>
+              <NavLink href="/tech">Tech</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/business">Business</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/world">World</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/science">Science</NavLink>
+            </NavItem>
             <UserProfileView currentUser={this.props.currentUser} />
           </Nav>
         </Navbar>
