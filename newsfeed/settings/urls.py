@@ -24,7 +24,6 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
-    path('api/about/', include('newsfeed.about.urls', namespace='about')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
 
     #TODO: May need to move this to the frontend

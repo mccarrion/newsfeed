@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom applications:
-    'newsfeed.about.apps.AboutConfig',
     'newsfeed.articles.apps.ArticlesConfig',
     'newsfeed.users.apps.UsersConfig',
 
