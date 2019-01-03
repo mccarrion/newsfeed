@@ -6,24 +6,6 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from newsfeed.users.models import User
 
 
-# TODO: This model will be rolled into the User model and then differing levels
-# of authentication will be developed to differentiate between Authors of news
-# articles and Users who comment on articles.
-class Author(models.Model):
-    """
-    This class will create an author that will be tied to each article.
-    """
-    name = models.CharField(max_length=255)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    photo = models.ImageField(upload_to='articles', blank=True,
-        null=True, max_length=255)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
 class Article(models.Model):
     """
     This is the model for all of the articles that will be written in the news
@@ -42,34 +24,24 @@ class Article(models.Model):
 
     # This list will be used to break up the news website into subsections
     # based on what subjects the publisher decides to include
-    BUSINESS = 'business'
-    ARTS = 'arts'
     TECH = 'tech'
-    SPORTS = 'sports'
-    LIFESTYLE = 'lifestyle'
-    CULTURE = 'culture'
-    TRAVEL = 'travel'
-    OPINION = 'opinion'
-    POLITICS = 'politics'
-    NATIONAL = 'national'
+    BUSINESS = 'business'
     WORLD = 'world'
-    SUBJECT_CHOICES = (
-        (BUSINESS, 'Business'),
-        (ARTS, 'Arts'),
+    SCIENCE = 'science'
+
+    # Using an array of tuples to allow publisher to define subjects
+    # to include in their news website.
+    SUBJECT_CHOICES = [
         (TECH, 'Tech'),
-        (SPORTS, 'Sports'),
-        (LIFESTYLE, 'Lifestyle'),
-        (CULTURE, 'Culture'),
-        (TRAVEL, 'Travel'),
-        (OPINION, 'Opinion'),
-        (POLITICS, 'Politics'),
-        (NATIONAL, 'National'),
+        (BUSINESS, 'Business'),
         (WORLD, 'World'),
-    )
+        (SCIENCE, 'Science'),
+    ]
+
     subject = models.CharField(
         max_length=9,
         choices=SUBJECT_CHOICES,
-        default='arts'
+        default='science'
     )
 
     def get_absolute_url(self):
