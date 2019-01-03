@@ -21,20 +21,3 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
-
-# TODO: This model will be rolled into the User model and then differing levels
-# of authentication will be developed to differentiate between Authors of news
-# articles and Users who comment on articles.
-# class Author(models.Model):
-#     """
-#     This class will create an author that will be tied to each article.
-#     """
-#     name = models.CharField(max_length=255)
-#     title = models.CharField(max_length=255)
-#     description = models.TextField()
-#     photo = models.ImageField(upload_to='articles', blank=True,
-#         null=True, max_length=255)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.name

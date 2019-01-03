@@ -15,7 +15,7 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=128)
     thumbnail = ThumbnailerImageField(upload_to='thumbnail', blank=True,
         null=True, resize_source=dict(size=(150, 150), crop="True"), max_length=255)
-    author = models.ManyToManyField(Author)
+    author = models.ManyToManyField(User)
     image = models.ImageField(upload_to='articles', blank=True,
         null=True, max_length=255)
     body = models.TextField()

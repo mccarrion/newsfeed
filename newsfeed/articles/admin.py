@@ -1,33 +1,20 @@
 from django.contrib import admin
 from django.forms import ModelForm
 
-from .models import Article, Author
+from .models import Article
 
 class SubjectForm(ModelForm):
-    BUSINESS = 'business'
-    ARTS = 'arts'
     TECH = 'tech'
-    SPORTS = 'sports'
-    LIFESTYLE = 'lifestyle'
-    CULTURE = 'culture'
-    TRAVEL = 'travel'
-    OPINION = 'opinion'
-    POLITICS = 'politics'
-    NATIONAL = 'national'
+    BUSINESS = 'business'
     WORLD = 'world'
-    SUBJECT_CHOICES = (
-        (BUSINESS, 'Business'),
-        (ARTS, 'Arts'),
+    SCIENCE = 'science'
+
+    SUBJECT_CHOICES = [
         (TECH, 'Tech'),
-        (SPORTS, 'Sports'),
-        (LIFESTYLE, 'Lifestyle'),
-        (CULTURE, 'Culture'),
-        (TRAVEL, 'Travel'),
-        (OPINION, 'Opinion'),
-        (POLITICS, 'Politics'),
-        (NATIONAL, 'National'),
+        (BUSINESS, 'Business'),
         (WORLD, 'World'),
-    )
+        (SCIENCE, 'Science'),
+    ]
 
     def __init__(self, *args, **kwargs):
         super(SubjectForm, self).__init__(*args, **kwargs)
@@ -43,4 +30,3 @@ class ArticlesAdmin(admin.ModelAdmin):
     form = SubjectForm
 
 admin.site.register(Article)
-admin.site.register(Author)
