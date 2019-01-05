@@ -22,7 +22,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    fetchArticles();
+    fetchArticles(subject);
   }
 
   render() {

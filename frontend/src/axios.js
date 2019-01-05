@@ -8,7 +8,7 @@ export function fetchArticles(subject) {
         console.log('Error while fetching!', error);
       });
   } else {
-    return axios.get(`${API_URL}/articles`)
+    return axios.get(`${API_URL}/articles/article-views`)
       .catch(error => {
         console.log('Error while fetching!', error);
       });
