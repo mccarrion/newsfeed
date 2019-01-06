@@ -1,4 +1,4 @@
-// import Preview from './Preview';
+import Preview from './Preview';
 import React, { Component } from 'react';
 import { fetchArticles } from '../../axios';
 
@@ -55,22 +55,18 @@ class ArticleList extends Component {
 
     return (
       <div>
-        <ul>
-          { renderArticles }
-        </ul>
+        {
+          this.state.articles.map(article => {
+            return (
+              <Preview article={article} key={article.slug} />
+            );
+          })
+        }
         <ul>
           { renderPages }
         </ul>
       </div>
-      // <div>
-      //     {
-      //       this.state.articles.map(article => {
-      //         return (
-      //           <Preview article={article} key={article.slug} />
-      //         );
-      //       })
-      //     }
-      // </div>
+
     )
   }
 }
