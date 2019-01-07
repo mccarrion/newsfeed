@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Article from './article/Article';
 import ArticleList from './article/ArticleList';
 import Header from './common/Header';
+import Home from './common/Home';
 import Login from './user/Login';
 import Profile from './user/Profile';
 import SignUp from './user/SignUp';
@@ -15,7 +16,7 @@ class App extends Component {
           appName={this.props.appName}
           currentUser={this.props.currentUser} />
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/" component={ArticleList} />
             <Route path="/login"  component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route exact path="/@:username" component={Profile} />

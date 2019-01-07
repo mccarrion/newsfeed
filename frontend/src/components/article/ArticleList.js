@@ -1,5 +1,6 @@
 import Preview from './Preview';
 import React, { Component } from 'react';
+import axios from 'axios';
 import { fetchArticles } from '../../axios';
 
 class ArticleList extends Component {
@@ -22,7 +23,13 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    fetchArticles(subject);
+    return axios.get(`http://localhost:8000/api/articles/article-views/`)
+      .then(response => {
+        this.setState({ articles: response.data });
+      })
+      .catch(error => {
+        console.log('Error while fetching!', error);
+    });
   }
 
   render() {
@@ -55,13 +62,17 @@ class ArticleList extends Component {
 
     return (
       <div>
-        {
-          this.state.articles.map(article => {
-            return (
-              <Preview article={article} key={article.slug} />
-            );
-          })
-        }
+        <ul>
+          { 
+            this.state.articles.map((article, index) => 
+              <li key={index}>
+                {article.title}
+              </li>)
+          }
+        </ul>
+        <ul>
+          { renderArticles }
+        </ul>
         <ul>
           { renderPages }
         </ul>
