@@ -21,6 +21,8 @@ DATABASES = {
 
 # This is a whitelist of who is allowed to make HTTP
 # requests on the backend
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000'
 )

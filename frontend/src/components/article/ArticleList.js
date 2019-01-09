@@ -31,7 +31,6 @@ class ArticleList extends Component {
         console.log('Error while fetching!', error);
     });
   }
-
   render() {
     const { articles, current, list } = this.state;
 
@@ -64,15 +63,15 @@ class ArticleList extends Component {
       <div>
         <ul>
           { 
-            this.state.articles.map((article, index) => 
+            articles.map((article, index) => 
               <li key={index}>
                 {article.title}
               </li>)
           }
         </ul>
-        <ul>
+        {/* <ul>
           { renderArticles }
-        </ul>
+        </ul> */}
         <ul>
           { renderPages }
         </ul>
