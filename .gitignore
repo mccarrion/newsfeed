@@ -27,7 +27,7 @@ logs
 pip-log.txt
 
 # Local development files
-/media/
+media/
 .cache/
 .idea
 .pytest_cache

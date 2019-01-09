@@ -1,5 +1,5 @@
-import Preview from './Preview';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { fetchArticles } from '../../axios';
 
@@ -64,9 +64,17 @@ class ArticleList extends Component {
         <ul>
           { 
             articles.map((article, index) => 
-              <li key={index}>
-                {article.title}
-              </li>)
+              <row key={index}>
+                <Link to={`/${article.subject}/${article.slug}`} className="link">
+                  <img src="{article.thumbnail}" alt="thumbnail" />
+                </Link>
+                <Link to={`/${article.subject}/${article.slug}`} className="link">
+                  <h3>{article.title}</h3>
+                </Link>
+                <h5>{article.subtitle}</h5>
+                <p>By {article.author} on {article.date}</p>
+              </row>
+              )
           }
         </ul>
         {/* <ul>
