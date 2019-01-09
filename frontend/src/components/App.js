@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Article from './article/Article';
 import ArticleList from './article/ArticleList';
 import Header from './common/Header';
-import Home from './common/Home';
+// import Home from './common/Home';
 import Login from './user/Login';
 import Profile from './user/Profile';
 import SignUp from './user/SignUp';

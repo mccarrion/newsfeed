@@ -6,7 +6,6 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
-import { fetchArticles } from '../../axios';
 
 const UserProfileView = props => {
   if (props.currentUser) {
