@@ -19,6 +19,12 @@ DATABASES = {
     }
 }
 
+# This is a whitelist of who is allowed to make HTTP
+# requests on the backend
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000'
+)
+
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'newsfeed/temp/email')
 

@@ -13,6 +13,7 @@ django-crispy-forms==1.7.2
 django-allauth==0.32.0
 django-rest-auth==0.9.3
 djangorestframework==3.8.2
+django-cors-headers==2.4.0
 
 # Database Adapter and Management
 psycopg2==2.7.1
