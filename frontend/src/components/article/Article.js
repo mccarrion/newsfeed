@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getArticle } from '../../axios';
+import axios from 'axios';
 
 class Article extends Component {
   constructor(props) {
@@ -11,13 +11,12 @@ class Article extends Component {
   }
 
   componentWillMount() {
-    return axios.get(`${API_URL}/articles/${subject}/${slug}`)
-      .then(res => {
-        this.setState({ article: res.data });
-      })
-      .catch(error => {
-        console.log('Error while fetching!', error);
-      });
+    const { match: { params } } = this.props;
+    console.log(params.subject);
+    const article = axios.get(`http://localhost:8000/api/articles/${params.subject}/${params.title}`).data
+    this.setState({
+      article,
+    });
   }
 
   render() {
@@ -27,12 +26,12 @@ class Article extends Component {
       <div className="display-article">
         <div className="container">
           <div className="col-md-8 offset-md-2">
-            <h1>{this.article.title}</h1>
+            <h1>{article.title}</h1>
             <img className="img-fluid" src="{this.props.image.url}" alt="headline" />
-            <h3>{this.article.subtitle}</h3>
-            <b>By {this.article.author}</b>
-            <p>{this.article.date}</p>
-            <p>{this.article.body}</p>
+            <h3>{article.subtitle}</h3>
+            <b>By {article.author}</b>
+            <p>{article.date}</p>
+            <p>{article.body}</p>
           </div>
         </div>
       </div>
