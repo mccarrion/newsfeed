@@ -2,11 +2,27 @@ import React, { Component } from 'react';
 import { getArticle } from '../../axios';
 
 class Article extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      article: null,
+      error: false
+    };
+  }
+
   componentWillMount() {
-    getArticle();
+    return axios.get(`${API_URL}/articles/${subject}/${slug}`)
+      .then(res => {
+        this.setState({ article: res.data });
+      })
+      .catch(error => {
+        console.log('Error while fetching!', error);
+      });
   }
 
   render() {
+    const { article } = this.state;
+
     return (
       <div className="display-article">
         <div className="container">

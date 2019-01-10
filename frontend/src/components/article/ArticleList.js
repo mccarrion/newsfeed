@@ -23,13 +23,14 @@ class ArticleList extends Component {
 
   componentDidMount() {
     return axios.get(`http://localhost:8000/api/articles/article-views/`)
-      .then(response => {
-        this.setState({ articles: response.data });
+      .then(res => {
+        this.setState({ articles: res.data });
       })
       .catch(error => {
         console.log('Error while fetching!', error);
     });
   }
+
   render() {
     const { articles } = this.state;
 
@@ -61,7 +62,7 @@ class ArticleList extends Component {
                 <h5>{article.subtitle}</h5>
                 <p>By {article.author} on {article.date}</p>
               </li>
-              )
+            )
           }
         </ul>
         <ul>
