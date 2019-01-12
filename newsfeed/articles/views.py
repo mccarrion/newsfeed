@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from .models import Article
-from .serializers import ArticleSerializer, SubjectSerializer
+from .serializers import ArticleSerializer
 from newsfeed.core.permissions import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
 
