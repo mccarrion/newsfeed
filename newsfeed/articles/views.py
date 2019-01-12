@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from .models import Article
 from .serializers import ArticleSerializer, SubjectSerializer
-from newsfeed.core.permissions import IsOwnerOrReadOnly
+from newsfeed.core.permissions import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -20,8 +20,15 @@ class ArticleViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
+class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+    lookup_fields = ('subject', 'slug')
+
+
 class SubjectListView(generics.ListAPIView):
-    serializer_class = SubjectSerializer
+    serializer_class = ArticleSerializer
 
     def get_queryset(self):
         subject = self.kwargs['subject']
