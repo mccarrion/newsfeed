@@ -8,7 +8,7 @@ const API_URL = 'http://localhost:8000/api';
 //         console.log('Error while fetching!', error);
 //       });
 //   } else {
-//     return axios.get(`${API_URL}/articles/article-views`)
+//     return axios.get(`${API_URL}/articles/viewset`)
 //       .catch(error => {
 //         console.log('Error while fetching!', error);
 //       });
@@ -16,7 +16,7 @@ const API_URL = 'http://localhost:8000/api';
 // };
 
 export function fetchArticles() {
-  return axios.get(`http://localhost:8000/api/articles/article-views/`)
+  return axios.get(`http://localhost:8000/api/articles/viewset/`)
     .catch(error => {
       console.log('Error while fetching!', error);
   });
