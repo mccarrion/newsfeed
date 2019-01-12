@@ -24,6 +24,8 @@ class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+    # TODO: needing multiple lookup fields supposedly does not follow
+    # RESTful design principles. May need to find a better way of doing things
     lookup_fields = ('subject', 'slug')
 
 

@@ -6,7 +6,9 @@ from .views import ArticleDetailView, ArticleViewSet, SubjectListView
 router = DefaultRouter()
 router.register(r'viewset', ArticleViewSet)
 
-#TODO: May need to make custom urls
+#TODO: The detail url has to be on top or else it will be
+# overwritten by the list view. This may need to be corrected
+# so order is not as important
 app_name = "articles"
 urlpatterns = [
     path(r'', include(router.urls)),
