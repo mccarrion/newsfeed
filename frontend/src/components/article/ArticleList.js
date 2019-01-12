@@ -49,25 +49,35 @@ class ArticleList extends Component {
 
     return (
       <div>
-        <ul>
+        <div className="container">
           { 
             articles.map((article, index) => 
-              <li key={index}>
-                <Link to={`/${article.subject}/${article.slug}`} className="link">
-                  <img src={`${article.thumbnail}`} alt="thumbnail" />
-                </Link>
-                <Link to={`/${article.subject}/${article.slug}`} className="link">
-                  <h3>{article.title}</h3>
-                </Link>
-                <h5>{article.subtitle}</h5>
-                <p>By {article.author} on {article.date}</p>
-              </li>
+              <div key={index}>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-2 offset-md-2">
+                      <Link to={`/${article.subject}/${article.slug}`} className="link">
+                        <img src={`${article.thumbnail}`} alt="thumbnail" />
+                      </Link>
+                    </div>
+                    <div class="col-md-6">
+                      <Link to={`/${article.subject}/${article.slug}`} className="link">
+                        <h3>{article.title}</h3>
+                      </Link>
+                      <h5>{article.subtitle}</h5>
+                      <p>By {article.author} on {article.date}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )
           }
-        </ul>
-        <ul>
-          { renderPages }
-        </ul>
+        </div>
+        <div className="container">
+          <ul>
+            { renderPages }
+          </ul>
+        </div>
       </div>
 
     )
