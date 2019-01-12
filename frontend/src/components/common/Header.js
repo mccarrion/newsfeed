@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink } from 'reactstrap';
 
 const UserProfileView = props => {
   if (props.currentUser) {
@@ -19,19 +13,19 @@ const UserProfileView = props => {
     );
   } else {
     return (
-      <Nav>
-        <NavItem>
+      <ul className="nav navbar-nav navbar-toggleable-md pull-md-right">
+        <li className="nav-item">
           <Link to="/login" className="nav-link">
             Log In
           </Link>
-        </NavItem>
+        </li>
 
-        <NavItem>
+        <li className="nav-item">
           <Link to="/signup" className="nav-link">
             Sign Up
           </Link>
-        </NavItem>
-      </Nav>
+        </li>
+      </ul>
     );
   }
 }
@@ -40,28 +34,29 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light>
-          <NavbarBrand>
+        <nav className="navbar navbar-expand-md navbar-light">
+          <div className="container">
             <Link to="/" className="navbar-brand">
               NewsFeed
             </Link>
-          </NavbarBrand>
-          <Nav>
-            <NavItem>
-              <NavLink href="/tech">Tech</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/business">Business</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/world">World</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/science">Science</NavLink>
-            </NavItem>
+            <ul className="nav navbar-nav navbar-toggleable-md pull-md-left">
+              <li className="nav-item">
+                <a class="nav-link" href="/tech">Tech</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/business">Business</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/world">World</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/science">Science</a>
+              </li>
+            </ul>
             <UserProfileView currentUser={this.props.currentUser} />
-          </Nav>
-        </Navbar>
+          </div>
+
+        </nav>
       </div>
     );
   }
