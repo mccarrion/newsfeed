@@ -2,7 +2,7 @@
 wheel==0.30.0
 
 # Latest Django Package
-django==2.1.2
+django==2.1.5
 
 # Project Specific Apps
 Pillow==4.2.1
