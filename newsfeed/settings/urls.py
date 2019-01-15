@@ -25,10 +25,6 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
-
-    #TODO: May need to move this to the frontend
-    # path('privacy/', TemplateView.as_view(template_name='privacy.html')),
-    # path('terms/', TemplateView.as_view(template_name='terms.html')),
-    # path('robots.txt', TemplateView.as_view(template_name="robots.txt",
-    #      content_type="text/plain"), name="robots.txt"),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt",
+         content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
