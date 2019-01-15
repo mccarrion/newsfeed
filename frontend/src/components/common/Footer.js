@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// Footer will start on the sidebar for this app.
+// Footer can be on the very bottom or bottom of sidebar.
+// Will be at the very bottom for this webapp.
 class Footer extends Component {
   render() {
     return (
       <nav className="navbar">
         <div>
-          {/* TODO: Also would be nice to have help center */}
-          <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </li>
-
+          {/* TODO: Add a Help center and About section */}
           <li className="nav-item">
             <Link to="/privacy" className="nav-link">
               Privacy
