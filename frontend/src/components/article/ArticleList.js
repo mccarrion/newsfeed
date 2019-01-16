@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 class ArticleList extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class ArticleList extends Component {
                         <h3>{article.title}</h3>
                       </Link>
                       <h5>{article.subtitle}</h5>
-                      <p>By {article.author} on {article.date}</p>
+                      <p>By {article.author} on {moment(article.date).format('MMM D')}</p>
                     </div>
                     <div class="col-md-2">
                       <Link to={`/${article.subject}/${article.slug}`} className="link">

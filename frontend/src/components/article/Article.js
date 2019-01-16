@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 class Article extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Article extends Component {
             <img className="img-fluid" src={`${article.image}`} alt="headline" />
             <h3>{article.subtitle}</h3>
             <b>By {article.author}</b>
-            <p>{article.date}</p>
+            <p>{moment(article.date).format('MMM D')}</p>
             <p>{article.body}</p>
           </div>
         </div>
