@@ -51,11 +51,11 @@ class SignUp extends Component {
             onChange={this.handleChange} />
         </form>
 
-        <div
-          className="btn"
-          type="submit">
+        <button
+          type="button submit"
+          className="btn">
           Sign Up
-        </div>
+        </button>
       </div>
     )
   }

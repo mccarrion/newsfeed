@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {PersonIcon} from 'react-octicons'
 
 const UserProfileView = props => {
   if (props.currentUser) {
@@ -13,18 +14,16 @@ const UserProfileView = props => {
     );
   } else {
     return (
-      <ul className="nav navbar-nav navbar-toggleable-md pull-md-right">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Log In
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/signup" className="nav-link">
-            Sign Up
-          </Link>
-        </li>
+      <ul class="navbar-nav">
+        <div class="btn-group">
+          <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <PersonIcon />
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="/login">Log In</a>
+            <a class="dropdown-item" href="/signup">Sign Up</a>
+          </div>
+        </div>
       </ul>
     );
   }
@@ -36,24 +35,28 @@ class Header extends Component {
       <div>
         <nav className="navbar navbar-expand-md navbar-light">
           <div className="container">
-            <Link to="/" className="navbar-brand">
+            <Link to="/" className="navbar-brand text-dark">
               NewsFeed
             </Link>
-            <ul className="nav navbar-nav navbar-toggleable-md pull-md-left">
-              <li className="nav-item">
-                <a class="nav-link" href="/tech">Tech</a>
-              </li>
-              <li className="nav-item">
-                <a class="nav-link" href="/business">Business</a>
-              </li>
-              <li className="nav-item">
-                <a class="nav-link" href="/world">World</a>
-              </li>
-              <li className="nav-item">
-                <a class="nav-link" href="/science">Science</a>
-              </li>
-            </ul>
-            <UserProfileView currentUser={this.props.currentUser} />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <div className="btn-group">
+                  <button type="button" class="btn bg-white text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Topics
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/tech">Tech</a>
+                    <a class="dropdown-item" href="/business">Business</a>
+                    <a class="dropdown-item" href="/world">World</a>
+                    <a class="dropdown-item" href="/science">Science</a>
+                  </div>
+                </div>
+              </ul>
+              <UserProfileView currentUser={this.props.currentUser} />
+            </div>
           </div>
 
         </nav>
