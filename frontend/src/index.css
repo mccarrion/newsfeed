@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.articlePreview {
+  padding: 15px;
+}
+
+.navbarBrand {
+  border-color: rgba(0, 0, 0, 1);
+}
