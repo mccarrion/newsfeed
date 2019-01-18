@@ -24,7 +24,7 @@ class Article extends Component {
 
   render() {
     const { article } = this.state;
-    if (article === null) return <div className="container"><p>Loading ...</p></div>;
+    if (article === null) return <div className="container"><p></p></div>;
     return (
       <div className="display-article">
         <div className="container">

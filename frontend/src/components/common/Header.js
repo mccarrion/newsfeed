@@ -19,7 +19,7 @@ const UserProfileView = props => {
       return (
         <ul className="navbar-nav">
           <li className="nav-item">
-            <h5>Profile</h5>
+            <b>Profile</b>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/login">Log In</a>
@@ -63,7 +63,7 @@ const Subjects = props => {
     return (
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <h5>Topics</h5>
+          <b>Topics</b>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/tech">Tech</a>
