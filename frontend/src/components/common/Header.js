@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {PersonIcon} from 'react-octicons'
+import { PersonIcon } from 'react-octicons';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize

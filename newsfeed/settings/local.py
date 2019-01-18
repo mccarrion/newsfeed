@@ -5,6 +5,12 @@ import os
 
 from .base import *
 
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# NOTE: This will need to be moved to a .env file or something of that
+# nature in the near future. Also, key needs to be changed
+SECRET_KEY = os.envrion.get('SECRET_KEY', default='7x*9_#61df+4xe2_%dz0k3*7!e&!3b20ql0s2y5607ow@5ichy')
+
 DEBUG = True
 
 # Database
