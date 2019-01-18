@@ -22,7 +22,7 @@ const UserProfileView = props => {
             <b>Profile</b>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/login">Log In</a>
+            <a className="nav-link" href="/signin">Sign In</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/signup">Sign Up</a>
@@ -48,7 +48,7 @@ const UserProfileView = props => {
               <PersonIcon />
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="/login">Log In</a>
+              <a class="dropdown-item" href="/signin">Sign In</a>
               <a class="dropdown-item" href="/signup">Sign Up</a>
             </div>
           </div>

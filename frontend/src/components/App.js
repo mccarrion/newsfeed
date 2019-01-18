@@ -4,7 +4,7 @@ import Article from './article/Article';
 import ArticleList from './article/ArticleList';
 import Header from './common/Header';
 // import Home from './common/Home';
-import Login from './user/Login';
+import SignIn from './user/SignIn';
 import Profile from './user/Profile';
 import SignUp from './user/SignUp';
 
@@ -17,7 +17,7 @@ class App extends Component {
           currentUser={this.props.currentUser} />
           <Switch>
             <Route exact path="/" component={ArticleList} />
-            <Route path="/login"  component={Login} />
+            <Route path="/signin"  component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route exact path="/@:username" component={Profile} />
             {/* <Router path="/@:username/comments" component={Comments} /> */}

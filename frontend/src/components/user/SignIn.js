@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
-class SignUp extends Component {
+class Login extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
       email: '',
       password: '',
       submitted: false
@@ -17,7 +16,6 @@ class SignUp extends Component {
 
   handleChange(event) {
     this.setState({
-      username: event.target.username,
       email: event.target.email,
       password: event.target.password
     });
@@ -31,19 +29,10 @@ class SignUp extends Component {
   render() {
     return (
       <div className="container">
-        <div className="col-md-4 offset-md-4">
-          <p><h2 className="text-md-center">Sign Up</h2></p>
+        <div className="col-md-4 offset-4">
+          <p><h2 className="text-md-center">Sign In</h2></p>
           <form onSubmit={this.handleSubmit}>
             <fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Username"
-                  value={this.state.username}
-                  onChange={this.handleChange} />
-              </fieldset>
-
               <fieldset className="form-group">
                 <input
                   className="form-control"
@@ -65,13 +54,14 @@ class SignUp extends Component {
               <button
                 type="button submit"
                 className="btn btn-block">
-                Sign Up
+                Sign In
               </button>
             </fieldset>
           </form>
+          {/* TODO: Handle padding through a CSS class. */}
           <p></p>
           <p>
-            Have an account? <Link to="/signin">Sign In</Link>
+            Need an account? <Link to="/signup">Sign Up</Link>
           </p>
         </div>
       </div>
@@ -79,4 +69,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Login;
