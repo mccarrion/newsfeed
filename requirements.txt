@@ -16,7 +16,7 @@ djangorestframework==3.8.2
 django-cors-headers==2.4.0
 
 # Database Adapter and Management
-psycopg2==2.7.1
+psycopg2==2.7.6
 dj-database-url==0.4.2
 
 # WSGI Handling

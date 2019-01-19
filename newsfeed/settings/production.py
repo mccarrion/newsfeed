@@ -43,8 +43,8 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_REGION = os.environ.get('AWS_REGION')
 
-DEFAULT_FILE_STORAGE = 'settings.utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'settings.utils.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'newsfeed.settings.utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'newsfeed.settings.utils.StaticRootS3BotoStorage'
 
 STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % os.environ.get('AWS_STORAGE_BUCKET_NAME')
 MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % os.environ.get('AWS_STORAGE_BUCKET_NAME')
