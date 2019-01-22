@@ -29,40 +29,42 @@ class Login extends Component{
   render() {
     return (
       <div className="container">
-        <div className="col-md-4 offset-4">
-          <p><h2 className="text-md-center">Sign In</h2></p>
-          <form onSubmit={this.handleSubmit}>
-            <fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control"
-                  type="email"
-                  placeholder="Email"
-                  value={this.state.email}
-                  onChange={this.handleChange} />
-              </fieldset>
+        <div className="row justify-content-md-center">
+          <div className="col-md-4">
+            <p><h2 className="text-md-center">Sign In</h2></p>
+            <form onSubmit={this.handleSubmit}>
+              <fieldset>
+                <fieldset className="form-group">
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange} />
+                </fieldset>
 
-              <fieldset className="form-group">
-                <input
-                  className="form-control"
-                  type="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.handleChange} />
-              </fieldset>
+                <fieldset className="form-group">
+                  <input
+                    className="form-control"
+                    type="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange} />
+                </fieldset>
 
-              <button
-                type="button submit"
-                className="btn btn-block">
-                Sign In
-              </button>
-            </fieldset>
-          </form>
-          {/* TODO: Handle padding through a CSS class. */}
-          <p></p>
-          <p>
-            Need an account? <Link to="/signup">Sign Up</Link>
-          </p>
+                <button
+                  type="button submit"
+                  className="btn btn-block">
+                  Sign In
+                </button>
+              </fieldset>
+            </form>
+            {/* TODO: Handle padding through a CSS class. */}
+            <p></p>
+            <p>
+              Need an account? <Link to="/signup">Sign Up</Link>
+            </p>
+          </div> 
         </div>
       </div>
     )
