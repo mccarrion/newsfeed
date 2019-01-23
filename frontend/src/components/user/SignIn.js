@@ -5,7 +5,7 @@ class Login extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
       submitted: false
     };
@@ -16,7 +16,7 @@ class Login extends Component{
 
   handleChange(event) {
     this.setState({
-      email: event.target.email,
+      username: event.target.username,
       password: event.target.password
     });
   }
@@ -24,6 +24,11 @@ class Login extends Component{
   handleSubmit(event) {
     this.setState({ submitted: true });
     event.preventDefault();
+    axios.post('http://localhost:8000/rest-auth/login/',
+    {
+      username: this.state.username,
+      password: this.state.password
+    })
   }
 
   render() {

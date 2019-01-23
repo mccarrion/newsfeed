@@ -28,12 +28,12 @@ class SignUp extends Component {
   handleSubmit(event) {
     this.setState({ submitted: true });
     event.preventDefault();
-    axios.post('http://localhost:8000/authapi',
+    axios.post('http://localhost:8000/rest-auth/registration/',
       {
-        username: event.target.username,
-        email: event.target.email,
-        password: event.target.password,
-        passwordAgain: event.target.password
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        passwordConfirm: this.state.password
       })
   }
 
