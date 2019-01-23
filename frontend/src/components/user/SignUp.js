@@ -28,6 +28,13 @@ class SignUp extends Component {
   handleSubmit(event) {
     this.setState({ submitted: true });
     event.preventDefault();
+    axios.post('http://localhost:8000/authapi',
+      {
+        username: event.target.username,
+        email: event.target.email,
+        password: event.target.password,
+        passwordAgain: event.target.password
+      })
   }
 
   render() {
