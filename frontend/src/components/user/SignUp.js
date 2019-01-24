@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SignUp extends Component {
   constructor(props) {
@@ -7,9 +8,7 @@ class SignUp extends Component {
     this.state = {
       username: '',
       email: '',
-      password: '',
-      passwordAgain: '',
-      submitted: false
+      password: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,24 +16,23 @@ class SignUp extends Component {
   }
 
   handleChange(event) {
+    const value = event.target.value;
+    const name = event.target.name;
     this.setState({
-      username: event.target.username,
-      email: event.target.email,
-      password: event.target.password,
-      passwordAgain: event.target.password
+      [name]: value
     });
   }
 
   handleSubmit(event) {
-    this.setState({ submitted: true });
     event.preventDefault();
-    axios.post('http://localhost:8000/rest-auth/registration/',
-      {
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
-        passwordConfirm: this.state.password
-      })
+
+    // Django 2.1 may be incompatible with django-allauth
+    axios.post('http://localhost:8000/rest-auth/registration/', {
+      username: this.state.username,
+      email: this.state.email,
+      password1: this.state.password,
+      password2: this.state.password
+    })
   }
 
   render() {
@@ -42,12 +40,13 @@ class SignUp extends Component {
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-md-4">
-            <p><h2 className="text-md-center">Sign Up</h2></p>
+            <h2 className="text-md-center">Sign Up</h2>
             <form onSubmit={this.handleSubmit}>
               <fieldset>
                 <fieldset className="form-group">
                   <input
                     className="form-control"
+                    name="username"
                     type="text"
                     placeholder="Username"
                     value={this.state.username}
@@ -57,6 +56,7 @@ class SignUp extends Component {
                 <fieldset className="form-group">
                   <input
                     className="form-control"
+                    name="email"
                     type="email"
                     placeholder="Email"
                     value={this.state.email}
@@ -66,6 +66,7 @@ class SignUp extends Component {
                 <fieldset className="form-group">
                   <input
                     className="form-control"
+                    name="password"
                     type="password"
                     placeholder="Password"
                     value={this.state.password}
