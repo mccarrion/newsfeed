@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import axios from 'axios';
 
-class Login extends Component{
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: '',
-      submitted: false
+      email: '',
+      password: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,18 +16,19 @@ class Login extends Component{
   }
 
   handleChange(event) {
+    const value = event.target.value;
+    const name = event.target.name;
     this.setState({
-      username: event.target.username,
-      password: event.target.password
+      [name]: value
     });
   }
 
   handleSubmit(event) {
-    this.setState({ submitted: true });
     event.preventDefault();
-    axios.post('http://localhost:8000/rest-auth/login/',
-    {
+
+    axios.post('http://localhost:8000/rest-auth/login/', {
       username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     })
   }
@@ -36,21 +38,23 @@ class Login extends Component{
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-md-4">
-            <p><h2 className="text-md-center">Sign In</h2></p>
+            <h2 className="text-md-center">Sign In</h2>
             <form onSubmit={this.handleSubmit}>
               <fieldset>
                 <fieldset className="form-group">
                   <input
                     className="form-control"
-                    type="email"
-                    placeholder="Email"
-                    value={this.state.email}
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    value={this.state.username}
                     onChange={this.handleChange} />
                 </fieldset>
 
                 <fieldset className="form-group">
                   <input
                     className="form-control"
+                    name="password"
                     type="password"
                     placeholder="Password"
                     value={this.state.password}
@@ -72,7 +76,7 @@ class Login extends Component{
           </div> 
         </div>
       </div>
-    )
+    );
   }
 }
 
