@@ -16,13 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic import TemplateView
+from allauth.account.views import confirm_email
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    re_path(r'^rest-auth/', include('rest_auth.urls')),
+    re_path(r'^rest-auth/registration/account-confirm-email/(?P<key>\w+)/$',confirm_email, name='confirm_email'),
+    re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    re_path(r'^accounts/', include('allauth.urls')),
+    # re_path(r'^', include('django.contrib.auth.urls')),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
