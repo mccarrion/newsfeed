@@ -25,7 +25,6 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
     axios.post('http://localhost:8000/rest-auth/login/', {
       username: this.state.username,
       email: this.state.email,

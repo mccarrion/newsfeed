@@ -25,8 +25,6 @@ class SignUp extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    // Django 2.1 may be incompatible with django-allauth
     axios.post('http://localhost:8000/rest-auth/registration/', {
       username: this.state.username,
       email: this.state.email,
