@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from .models import Article
 from .serializers import ArticleSerializer
-from newsfeed.core.permissions import IsOwnerOrReadOnly, MultipleFieldLookupMixin
+from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
 
 class ArticleViewSet(viewsets.ModelViewSet):

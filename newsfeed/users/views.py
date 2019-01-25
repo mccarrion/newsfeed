@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .models import User
 from .serializers import UserSerializer
-from newsfeed.core.permissions import IsOwnerOrReadOnly
+from newsfeed.core.helpers import IsOwnerOrReadOnly
 
 
 # TODO: Update views to match REST-Auth

@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import permissions
 
 
+# This file will be called helpers.py until it becomes large
+# enough that it has to be broken up
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Custom permission to only allow owners of an object to edit it.
