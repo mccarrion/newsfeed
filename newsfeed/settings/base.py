@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Custom applications:
     'newsfeed.articles.apps.ArticlesConfig',
     'newsfeed.users.apps.UsersConfig',
+    'newsfeed.accounts.apps.AccountsConfig',
 
     # Third party applications:
     'corsheaders',
