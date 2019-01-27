@@ -38,6 +38,9 @@ CORS_ORIGIN_WHITELIST = (
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'newsfeed/temp/email')
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'

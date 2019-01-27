@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
-    path('api/accounts/', include('newsfeed.accounts.urls', namespace='accounts')),
+    re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
          content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
