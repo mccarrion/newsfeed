@@ -16,15 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    re_path(r'^accounts/login/$', auth_views.LoginView.as_view(template_name='registration/login.html')),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
-    re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",
          content_type="text/plain"), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

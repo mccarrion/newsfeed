@@ -36,12 +36,12 @@ INSTALLED_APPS = [
     'newsfeed.users.apps.UsersConfig',
 
     # Third party applications:
-    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'easy_thumbnails',
     'crispy_forms',
     'oauth2_provider',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
