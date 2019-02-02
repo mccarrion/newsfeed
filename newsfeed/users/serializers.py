@@ -19,6 +19,15 @@ class SignUpSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
 
 
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        pass
+
+
 class UserSerializer(serializers.ModelSerializer):
     """
     This is the serializer for the User data.

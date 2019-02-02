@@ -25,6 +25,13 @@ class SignUpView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+class LoginView(APIView):
+    pass
+
+
+class LogoutView(APIView):
+    pass
+    
 
 class UserProfileView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
