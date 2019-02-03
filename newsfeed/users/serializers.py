@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import User
 
 
-class SignUpSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         min_length=8, 
         max_length=128, 

@@ -4,11 +4,11 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 
 from .models import User
-from .serializers import SignUpSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserSerializer
 from newsfeed.core.helpers import IsOwnerOrReadOnly
 
 
-class SignUpView(APIView):
+class RegisterView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = SignUpSerializer
 
@@ -33,7 +33,7 @@ class LogoutView(APIView):
     pass
     
 
-class UserProfileView(RetrieveUpdateAPIView):
+class ProfileView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
