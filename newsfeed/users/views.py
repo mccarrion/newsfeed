@@ -10,7 +10,7 @@ from newsfeed.core.helpers import IsOwnerOrReadOnly
 
 class RegisterView(APIView):
     permission_classes = (AllowAny,)
-    serializer_class = SignUpSerializer
+    serializer_class = RegisterSerializer
 
     def post(self, request):
         user = request.data.get('user', {})
