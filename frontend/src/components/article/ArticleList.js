@@ -23,7 +23,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    return axios.get(`http://localhost:8000/api/articles/viewset/`)
+    return axios.get(`http://localhost:8000/api/articles/`)
       .then(res => {
         this.setState({ articles: res.data });
       })
