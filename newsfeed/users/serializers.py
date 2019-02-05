@@ -10,13 +10,20 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True
     )
     token = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = User
-        fields = ['email', 'username', 'password', 'token']
     
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email']
+        )
+        # Password is not serialized because it is hashed
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password', 'token')
 
 
 class LoginSerializer(serializers.Serializer):
