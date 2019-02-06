@@ -27,9 +27,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=255)
+    username = serializers.CharField()
     email = serializers.EmailField()
-    password = serializers.CharField()
+    password = serializers.CharField(max_length=128, write_only=True)
+    token = serializers.CharField(read_only=True)
 
     def validate(self, data):
         pass
