@@ -1,4 +1,25 @@
+# Deployment
+apiVersion: extensions/v1betav1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    app: django
+spec:
+  replicas: 3
+  template:
+
+# Service
 apiVersion: v1
 kind: Service
 metadata:
   name: django
+  labels:
+    app: django
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: django
