@@ -1,6 +1,8 @@
 import jwt
 
-from rest_framework.authentication import BaseAuthentication
+from rest_framework.authentication import (
+    BaseAuthentication, get_authorization_header
+)
 
 from .models import User
 
@@ -17,4 +19,7 @@ class JWTAuthentication(BaseAuthentication):
         elif len(auth_header) > 2:
             return None
         
-        return token
+        return self._authenticate_credentials(request, token)
+    
+    def _authenticate_credentials(self, request, token):
+        pass
