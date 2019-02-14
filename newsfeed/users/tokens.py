@@ -8,15 +8,17 @@ from .models import User
 
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
-        auth_header = get_authorization_header(request).split()
+        auth = get_authorization_header(request).split()
+        auth_header_prefix = 'token'
         
-        if not auth_header:
+        if not auth:
             return None
         
-        if len(auth_header) == 1:
+        if len(auth) == 1:
+            # No credentials provided, so this is invalid.
             return None
-        
-        elif len(auth_header) > 2:
+        elif len(auth) > 2:
+            # Token string should not contain spaces
             return None
         
         return self._authenticate_credentials(request, token)
