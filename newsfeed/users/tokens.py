@@ -20,6 +20,8 @@ class JWTAuthentication(BaseAuthentication):
         elif len(auth) > 2:
             # Token string should not contain spaces
             return None
+
+        prefix = auth[0].decode('utf-8')
         
         return self._authenticate_credentials(request, token)
     
