@@ -59,3 +59,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comments(models.Model):
+    body = models.TextField(max_length=1024)
+    date = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
