@@ -13,8 +13,13 @@ class Article(models.Model):
     """
     title = models.CharField(max_length=128)
     subtitle = models.CharField(max_length=128)
-    thumbnail = ThumbnailerImageField(upload_to='thumbnail', blank=True,
-        null=True, resize_source=dict(size=(150, 150), crop="True"), max_length=255)
+    thumbnail = ThumbnailerImageField(
+        upload_to='thumbnail', 
+        blank=True,
+        null=True, 
+        resize_source=dict(size=(150, 150), crop="True"), 
+        max_length=255
+    )
     author = models.ManyToManyField(User)
     image = models.ImageField(upload_to='articles', blank=True,
         null=True, max_length=255)
@@ -31,12 +36,12 @@ class Article(models.Model):
 
     # Using an array of tuples to allow publisher to define subjects
     # to include in their news website.
-    SUBJECT_CHOICES = [
+    SUBJECT_CHOICES = (
         (TECH, 'Tech'),
         (BUSINESS, 'Business'),
         (WORLD, 'World'),
         (SCIENCE, 'Science'),
-    ]
+    )
 
     subject = models.CharField(
         max_length=9,
@@ -60,8 +65,23 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-class Comments(models.Model):
+
+class Comment(models.Model):
+    """
+    This model stores the user's comments.
+    """
     body = models.TextField(max_length=1024)
     date = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+
+class Favorite(models.Model):
+    """
+    This is a model for tracking articles that have been favorited by 
+    various users. The tracking will be done through a boolean where when the 
+    article is favorited, the boolean will be marked true.
+    """
+    favorited - models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
