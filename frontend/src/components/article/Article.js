@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { API_URL } from '../../constants/appConstants';
 
 class Article extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Article extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    return axios.get(`http://localhost:8000/api/articles/${params.subject}/${params.title}`)
+    return axios.get(`${API_URL}/api/articles/${params.subject}/${params.title}`)
       .then(res => {
         this.setState({ article: res.data });
       })

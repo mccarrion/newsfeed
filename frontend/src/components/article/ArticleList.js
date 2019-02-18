@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
+import { API_URL } from '../../constants/appConstants';
 
 class ArticleList extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    return axios.get(`http://localhost:8000/api/articles/`)
+    return axios.get(`${API_URL}/articles/`)
       .then(res => {
         this.setState({ articles: res.data });
       })
