@@ -49,14 +49,6 @@ class Article(models.Model):
         default='science'
     )
 
-    def get_absolute_url(self):
-        kwargs = {
-            'year': self.date.year,
-            'month': self.date.strftime('%b').lower(),
-            'day': self.date.strftime('%d').lower(),
-            'slug': self.slug,
-        }
-
     #TODO: Add a check for uniqueness
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

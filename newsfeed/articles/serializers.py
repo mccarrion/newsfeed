@@ -22,6 +22,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ('title', 'subtitle', 'thumbnail', 'author',
                   'image', 'body', 'date', 'slug', 'subject')
 
+
 class CommentSerializer(serializers.ModelSerializer):
     user = AuthorField(
         queryset=User.objects.all(), required=True
