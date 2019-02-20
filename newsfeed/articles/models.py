@@ -82,6 +82,6 @@ class Favorite(models.Model):
     various users. The tracking will be done through a boolean where when the 
     article is favorited, the boolean will be marked true.
     """
-    favorited - models.BooleanField(default=False)
+    favorited = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)

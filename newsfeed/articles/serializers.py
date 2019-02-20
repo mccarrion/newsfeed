@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Article
+from .models import Article, Comment, Favorite
 from newsfeed.users.models import User
 
 
@@ -21,3 +21,11 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = ('title', 'subtitle', 'thumbnail', 'author',
                   'image', 'body', 'date', 'slug', 'subject')
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = AuthorField(
+        queryset=User.objects.all(), required=True
+    )
+    class Meta:
+        model = Comment
+        fields = ('body', 'date', 'user', 'article')
