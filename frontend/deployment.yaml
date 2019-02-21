@@ -13,3 +13,4 @@ spec:
     nodePort: 30080
   selector:
     app: app
+    
