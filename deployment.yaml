@@ -14,6 +14,22 @@ spec:
     spec:
       containers:
       - name: newsfeed-app
+        image: gcr.io/<replace-with-projectid/newsfeed
+        imagePullPolicy: Always
+        env:
+            # cloudsql secrets
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql
+                  key: password
+        ports:
+        - containerPort: 8080
 
 # Service
 # This service provides an HTTP load balancing proxy over the newsfeed app
