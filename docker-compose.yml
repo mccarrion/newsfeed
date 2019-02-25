@@ -1,13 +1,9 @@
 version: '3.6'
 
 services:
-  postgres:
-    hostname: postgres
+  db:
     image: postgres
-    ports:
-      - "5432:5432"
-
-  django:
+  web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
@@ -15,7 +11,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
-
-volumes:
-  postgres_data:
+      - db

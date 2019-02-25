@@ -5,14 +5,17 @@ import logging
 
 from .base import *
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# SECURITY WARNING: If you deploy a Django app to production, make sure to set
+# an appropriate host here.
+# See https://docs.djangoproject.com/en/1.10/ref/settings/
 ALLOWED_HOSTS = ['*']
 
+# Additional apps for production
+
 INSTALLED_APPS += [
-    # Additional apps for production
     'gunicorn',
     'storages',
 ]
@@ -21,6 +24,7 @@ MIDDLEWARE_CLASSES = [
     'sslify.middleware.SSLifyMiddleware',
 ]
 
+# Define thumbnail dimensions
 THUMBNAIL_CACHE_DIMENSIONS = True
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
@@ -31,7 +35,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'polls',
+        'NAME': 'newsfeed',
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': '127.0.0.1',
@@ -39,18 +43,7 @@ DATABASES = {
     }
 }
 
-
-# Static file storage and AWS Configuration
-# NOTE: These keys need to be kept outside of version control
-# will work on how these keys will be stored
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_REGION = os.environ.get('AWS_REGION')
-
-DEFAULT_FILE_STORAGE = 'newsfeed.settings.utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'newsfeed.settings.utils.StaticRootS3BotoStorage'
-
-STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % os.environ.get('AWS_STORAGE_BUCKET_NAME')
-MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# Static file storage
+STATIC_URL = 'http://storage.googleapis.com/<PROJECT_ID>/static/'
+MEDIA_URL = 'http://storage.googleapis.com/<PROJECT_ID>/media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'

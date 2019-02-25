@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: newsfeed-app
-        image: gcr.io/<replace-with-projectid/newsfeed
+        image: gcr.io/newsfeed-232716/newsfeed
         # The Pull policy is useful for debugging, but should be turned off in
         # production
         imagePullPolicy: Always
@@ -37,7 +37,7 @@ spec:
       - image: gcr.io/cloudsql-docker/gce-proxy:1.05
         name: cloudsql-proxy
         command: ["/cloud_sql_proxy", "--dir=/cloudsql",
-                  "-instances=<replace with project>",
+                  "-instances=newsfeed-232716:us-central1:newsfeed-instance=tcp:5432",
                   "-credential_file=/secrets/cloudsql/credentials.json"]
         volumeMounts:
           - name: cloudsql-oauth-credentials

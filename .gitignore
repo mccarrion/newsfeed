@@ -27,6 +27,7 @@ logs
 pip-log.txt
 
 # Local development files
+static/
 media/
 .cache/
 .idea

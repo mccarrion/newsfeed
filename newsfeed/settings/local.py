@@ -5,12 +5,6 @@ import os
 
 from .base import *
 
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# NOTE: This will need to be moved to a .env file or something of that
-# nature in the near future. Also, key needs to be changed
-SECRET_KEY = os.environ.get('SECRET_KEY', default='7x*9_#61df+4xe2_%dz0k3*7!e&!3b20ql0s2y5607ow@5ichy')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -20,10 +14,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
