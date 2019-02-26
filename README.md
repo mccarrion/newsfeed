@@ -11,6 +11,15 @@ with my thought process behind why and how things were developed the way they
 are. As the notes grow, they might be broken up and put into a folder, but that
 is unlikely due to my aversion to having more than two folders in the main repo.
 
+## Table of Contents
+
+- [User Interface](#user-interface)
+- [Docker and Kubernetes](#docker-and-kubernetes)
+- [Authentication](#authentication)
+- [User Integration](#user-integration)
+- [Top Articles App](#top-articles-app)
+- [Ideas for the Future](#ideas-for-the-future)
+
 ### User Interface (UI):
 
 The UI follows principles gleaned from Thinkster's [realworld.io](https://github.com/gothinkster/realworld), the super-blog [Medium](https://medium.com/), and the news website [Axios](https://www.axios.com/).
@@ -54,15 +63,15 @@ From there, an API endpoint will be created that lists the top five articles in
 order of quantity of hits. The JSON data will be rendered by React as a part of 
 the sidebar.
 
-### Ideas for the future...
+### Ideas for the Future
 
 The first thing on the list for the future is to transcribe this app from Django
 to Flask as the backend framework. The driving force behind this is that Flask 
 is ORM agnostic meaning that one can import SQLAlchemy and use that as the ORM 
 for creating database objects. The main advantage of SQLAlchemy over Django's 
 ORM is that it has a database abstraction layer allowing developers to create 
-scripts directly given commands to PostgreSQL's API on the rare case that such a 
-thing is needed.
+scripts directly giving commands to PostgreSQL's API on the rare case that such 
+a thing is needed.
 
 A couple other things are: shift REST API's to JSON:API spec, develop a system 
 of signals for tracking how the app is being used, integrate a CMS, and the list
