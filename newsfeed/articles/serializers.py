@@ -30,3 +30,11 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('body', 'date', 'user', 'article')
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    user = AuthorField(
+        queryset=User.objects.all(), required=True
+    )
+    class Meta:
+        model = Favorite
+        fields = ('favorited', 'user', 'article')
