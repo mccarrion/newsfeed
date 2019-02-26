@@ -10,7 +10,7 @@ DEBUG = False
 
 # SECURITY WARNING: If you deploy a Django app to production, make sure to set
 # an appropriate host here.
-# See https://docs.djangoproject.com/en/1.10/ref/settings/
+# See https://docs.djangoproject.com/en/dev/ref/settings/
 ALLOWED_HOSTS = ['*']
 
 # Additional apps for production
