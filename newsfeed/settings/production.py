@@ -13,11 +13,12 @@ DEBUG = False
 # See https://docs.djangoproject.com/en/dev/ref/settings/
 ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Additional apps for production
 
 INSTALLED_APPS += [
-    'gunicorn',
-    'storages',
+    'gunicorn'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -44,6 +45,6 @@ DATABASES = {
 }
 
 # Static file storage
-STATIC_URL = 'http://storage.googleapis.com/<PROJECT_ID>/static/'
-MEDIA_URL = 'http://storage.googleapis.com/<PROJECT_ID>/media/'
+STATIC_URL = 'http://storage.googleapis.com/newsfeed-django/static/'
+# MEDIA_URL = 'http://storage.googleapis.com/newsfeed-django/media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
