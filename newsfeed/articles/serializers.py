@@ -24,17 +24,16 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = AuthorField(
-        queryset=User.objects.all(), required=True
-    )
+    user = serializers.RelatedField(source='user', read_only=True)
+    
     class Meta:
         model = Comment
         fields = ('body', 'date', 'user', 'article')
 
+
 class FavoriteSerializer(serializers.ModelSerializer):
-    user = AuthorField(
-        queryset=User.objects.all(), required=True
-    )
+    user = serializers.RelatedField(source='category', read_only=True)
+
     class Meta:
         model = Favorite
         fields = ('favorited', 'user', 'article')
