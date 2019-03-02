@@ -36,3 +36,11 @@ class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     # TODO: needing multiple lookup fields supposedly does not follow
     # RESTful design principles. May need to find a better way of doing things
     lookup_fields = ('subject', 'slug')
+
+
+class CommentListView(generics.ListAPIView):
+    pass
+
+
+class FavoriteView(generics.RetrieveAPIView):
+    pass
