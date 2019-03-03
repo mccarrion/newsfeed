@@ -26,4 +26,6 @@ class JWTAuthentication(BaseAuthentication):
         return self._authenticate_credentials(request, token)
     
     def _authenticate_credentials(self, request, token):
-        pass
+        try:
+            user_id = request.META.get('HTTP_AUTHORIZATION')
+        return user_id
