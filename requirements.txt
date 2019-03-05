@@ -1,3 +1,4 @@
+# Commented out requirements to be removed in near future
 # Need Wheel
 wheel==0.30.0
 
@@ -5,26 +6,26 @@ wheel==0.30.0
 django==2.1.7
 
 # Project Specific Apps
-Pillow==4.2.1
+# Pillow==4.2.1
 easy-thumbnails==2.5
-django-sslify==0.2.7
-django-crispy-forms==1.7.2
+# django-sslify==0.2.7
+# django-crispy-forms==1.7.2
 djangorestframework==3.8.2
 django-cors-headers==2.4.0
 django-oauth-toolkit==1.0.0
 PyJWT==1.7.1
 
 # Database Adapter and Management
-mysqlclient==1.4.1
+# mysqlclient==1.4.1
 psycopg2==2.7.6
 
 # WSGI Handling
 gunicorn==19.7.1
 
 # Static File Storage and Management
-django-storages==1.6.5
-boto==2.48.0
-boto3==1.5.14
+# django-storages==1.6.5
+# boto==2.48.0
+# boto3==1.5.14
 
 # Automated Tests
 pytest==3.6.0

@@ -6,7 +6,7 @@ import logging
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: If you deploy a Django app to production, make sure to set
 # an appropriate host here.
@@ -14,12 +14,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
-
-# Additional apps for production
-
-INSTALLED_APPS += [
-    'gunicorn'
-]
 
 # Define thumbnail dimensions
 THUMBNAIL_CACHE_DIMENSIONS = True
@@ -38,5 +32,5 @@ DATABASES = {
 
 # Static file storage
 STATIC_URL = 'http://storage.googleapis.com/newsfeed-django/static/'
-# MEDIA_URL = 'http://storage.googleapis.com/newsfeed-django/media/'
+MEDIA_URL = 'http://storage.googleapis.com/newsfeed-django/media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
