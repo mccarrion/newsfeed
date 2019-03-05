@@ -15,11 +15,12 @@ spec:
       containers:
       - name: newsfeed-app
         image: gcr.io/newsfeed-django/newsfeed
-        # The Pull policy is useful for debugging, but should be turned off in
-        # production
+        # This setting makes nodes pull the docker image every time before
+        # starting the pod. This is useful when debugging, but should be turned
+        # off in production.
         imagePullPolicy: Always
         env:
-            # cloudsql secrets
+            # CloudSQL Secrets
             - name: DATABASE_USER
               valueFrom:
                 secretKeyRef:
@@ -32,8 +33,8 @@ spec:
                   key: password
         ports:
         - containerPort: 8080
-      
-      # proxy container
+
+      # Proxy Container
       - image: gcr.io/cloudsql-docker/gce-proxy:1.05
         name: cloudsql-proxy
         command: ["/cloud_sql_proxy", "--dir=/cloudsql",
@@ -47,9 +48,9 @@ spec:
             mountPath: /etc/ssl/certs
           - name: cloudsql
             mountPath: /cloudsql
-      # volumes:
+      # Volumes
       volumes:
-        - name: cloudsql-oath-credentials
+        - name: cloudsql-oauth-credentials
           secret:
             secretName: cloudsql-oauth-credentials
         - name: ssl-certs
