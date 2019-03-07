@@ -1,36 +1,30 @@
-import { Profile } from './Profile';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../constants/appConstants';
 
-class Comments extends Profile {
-  renderTabs() {
+class Comments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [],
+    };
+
+  }
+
+  componentDidmount() {
+    return axios.get(`${API_URL}/comments/`)
+      .then(res => {
+        this.setState({ comments: res.data });
+      })
+      .catch(error => {
+        console.log('Error while fetching!', error);
+      });
+  }
+
+  render() {
     return (
-      <ul className="nav">
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}`}>
-            Profile
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}/comments`}>
-            Comments
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}/favorites`}>
-            Favorites
-          </Link>
-        </li>
-      </ul>
-    );
+      <div></div>
+    )
   }
 }
 
