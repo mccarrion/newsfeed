@@ -1,37 +1,33 @@
-import { Profile } from './Profile';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../constants/appConstants';
 
-class Favorites extends Profile {
-  renderTabs() {
+class Favorites extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      boolean: false,
+      error: false
+    };
+  }
+
+  componentDidMount() {
+    const {match: { params }} = this.props;
+    return axios.get(`${API_URL}/profiles/${params.user}/${params.favorites}`)
+      .then(res => {
+        this.setState({ boolean: res.data });
+      })
+      .catch(error => {
+        console.log('Error while fetching!', error);
+      });
+  }
+
+  render() {
     return (
-      <ul className="nav">
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}`}>
-            Profile
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}/comments`}>
-            Comments
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="link"
-            to={`/@${this.props.profile.username}/favorites`}>
-            Favorites
-          </Link>
-        </li>
-      </ul>
-    );
+      <div></div>
+    )
   }
 }
+
 
 export default Favorites;

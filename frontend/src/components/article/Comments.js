@@ -11,7 +11,7 @@ class Comments extends Component {
 
   }
 
-  componentDidmount() {
+  componentDidMount() {
     return axios.get(`${API_URL}/comments/`)
       .then(res => {
         this.setState({ comments: res.data });
