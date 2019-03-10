@@ -23,9 +23,16 @@ class Favorites extends Component {
   }
 
   render() {
-    return (
-      <div></div>
-    )
+    const { boolean } = this.state;
+    if (boolean === true) {
+      return (
+        <div></div>
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
