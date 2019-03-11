@@ -35,7 +35,7 @@ spec:
         - containerPort: 8080
 
       # Proxy Container
-      - image: gcr.io/cloudsql-docker/gce-proxy:1.05
+      - image: b.gcr.io/cloudsql-docker/gce-proxy:1.05
         name: cloudsql-proxy
         command: ["/cloud_sql_proxy", "--dir=/cloudsql",
                   "-instances=newsfeed-django:us-central1:newsfeed-instance=tcp:5432",
@@ -59,8 +59,9 @@ spec:
         - name: cloudsql
           emptyDir:
 
+---
+
 # Service
-# This service provides an HTTP load balancing proxy over the newsfeed app
 apiVersion: v1
 kind: Service
 metadata:
