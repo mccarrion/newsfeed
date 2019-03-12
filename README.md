@@ -8,8 +8,7 @@ clone the code and use it for personal or commercial purposes.
 
 The following will be notes on the design and functionality of the app, along 
 with my thought process behind why and how things were developed the way they
-are. As the notes grow, they might be broken up and put into a folder, but that
-is unlikely due to my aversion to having more than two folders in the main repo.
+are.
 
 ## Table of Contents
 
@@ -26,8 +25,10 @@ The UI follows principles gleaned from Thinkster's [realworld.io](https://github
 
 The UI was build with React.js. Redux is currently not used in the frontend as 
 that would add an additional layer of complexity beyond learning React. Redux 
-may be added at a later time depending on how well it ties into the new API 
-spec that this app will eventually migrate to, specifically the JSON:API spec.
+will be added at a later time given that the available libraries for pulling 
+data from an API spec that this app will migrate too use Redux as the way of 
+pulling and rendering that data. The API spec that this app will migrate to is 
+specifically the JSON:API spec.
 
 ### Docker and Kubernetes
 
@@ -52,27 +53,31 @@ will be handled through OAuth2 (eventually).
 ### User Integration
 
 There are two primary ways for the User to interact with this webapp: commenting
-on and favoriting articles.
+on and favoriting articles. Also, users will be able to manage their accounts 
+through a profile that pulls and displays relevant information to them, like a 
+list of their comments in descending order.
 
 ### Top Articles App
 
 The Top Articles app will become a part of the sidebar for the newsfeed app. 
 This open source library will be used to store the number of hits that each 
 article receives: [django-hitcount](https://github.com/thornomad/django-hitcount).
-From there, an API endpoint will be created that lists the top five articles in 
-order of quantity of hits. The JSON data will be rendered by React as a part of 
-the sidebar.
+From there, an API endpoint will be created that lists the top five to ten 
+articles in order of quantity of hits. The JSON data will be rendered by React 
+as a part of the sidebar.
 
 ### Ideas for the Future
 
 The first thing on the list for the future is to transcribe this app from Django
 to Flask as the backend framework. The driving force behind this is that Flask 
 is ORM agnostic meaning that one can import SQLAlchemy and use that as the ORM 
-for creating database objects. The main advantage of SQLAlchemy over Django's 
-ORM is that it has a database abstraction layer allowing developers to create 
-scripts directly giving commands to PostgreSQL's API on the rare case that such 
-a thing is needed.
+for creating database objects. The main interest in SQLAlchemy is that it has a 
+fully developed database abstraction layer providing developers with a great 
+tool for going down to the database layer when object relational mapping is not 
+sufficient for creating relationships between data. Django does provide a way to 
+make raw SQL queries, it just has not been developed to the extent that 
+SQLAlchemy's has.
 
 A couple other things are: shift REST API's to JSON:API spec, develop a system 
-of signals for tracking how the app is being used, integrate a CMS, and the list
-goes on.
+of signals for tracking how the app is being used, integrate a CMS, and so on, 
+and so on...
