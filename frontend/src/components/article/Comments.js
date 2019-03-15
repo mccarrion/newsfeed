@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
-import ArticleList from './ArticleList';
 
 class Comments extends Component {
   constructor(props) {
@@ -30,7 +29,14 @@ class Comments extends Component {
         <div className="container">
           {
             comments.map((comment, index) =>
-              <div className="col-md-8"></div>
+              <div className="col-md-8">
+                <div key={index}>
+                  <div className="row">
+                    <p>{comment.text}</p>
+                    <p>By {comment.author}</p>
+                  </div>
+                </div>
+              </div>
             )
           }
         </div>
