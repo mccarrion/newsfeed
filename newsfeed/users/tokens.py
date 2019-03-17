@@ -6,6 +6,8 @@ from rest_framework.authentication import (
 
 from .models import User
 
+# TODO: Authentication will adhere closely to existing open source backends 
+# until my understanding of how, when, and why JWT are encoded and decoded
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
         auth = get_authorization_header(request).split()
@@ -22,6 +24,7 @@ class JWTAuthentication(BaseAuthentication):
             return None
 
         prefix = auth[0].decode('utf-8')
+        token = auth[1].decode('utf-8')
         
         return self._authenticate_credentials(request, token)
     
