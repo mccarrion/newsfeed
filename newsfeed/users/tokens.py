@@ -3,11 +3,13 @@ import jwt
 from rest_framework.authentication import (
     BaseAuthentication, get_authorization_header
 )
+from rest_framework.exceptions import AuthenticationFailed
 
 from .models import User
 
 # TODO: Authentication will adhere closely to existing open source backends 
 # until my understanding of how, when, and why JWT are encoded and decoded
+# Check out realworld.io. Code will evolve beyond this starting point.
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
         auth = get_authorization_header(request).split()
@@ -33,5 +35,15 @@ class JWTAuthentication(BaseAuthentication):
     
     def _authenticate_credentials(self, request, token):
         try:
-            user_id = request.META.get('HTTP_AUTHORIZATION')
-        return user_id
+            payload = jwt.decode(token, settings.SECRET_KEY)
+        except:
+            msg = 'Authentication error, token could not be decoded.'
+            raise AuthenticationFailed(msg)
+        
+        try:
+            user = User.objects.get(pk=payload['id'])
+        except User.DoesNotExist:
+            msg = 'No user exists for this token.'
+            raise AuthenticationFailed(msg)
+        
+        return (user, token)
