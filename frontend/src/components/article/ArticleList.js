@@ -54,18 +54,18 @@ class ArticleList extends Component {
         <div className="container">
           { 
             articles.map((article, index) => 
-              <div class="col-md-8">
+              <div className="col-md-8">
                 <div key={index}>
-                  <div class="container articlePreview">
-                    <div class="row">
-                      <div class="col-md-8">
+                  <div className="container articlePreview">
+                    <div className="row">
+                      <div className="col-md-8">
                         <Link to={`/${article.subject}/${article.slug}`} className="link">
                           <h3>{article.title}</h3>
                         </Link>
                         <h5>{article.subtitle}</h5>
                         <p>By {article.author} on {moment(article.date).format('MMM D')}</p>
                       </div>
-                      <div class="col-md-4">
+                      <div className="col-md-4">
                         <Link to={`/${article.subject}/${article.slug}`} className="link">
                           <img src={`${article.thumbnail}`} alt="thumbnail" />
                         </Link>

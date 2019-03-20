@@ -42,14 +42,14 @@ const UserProfileView = props => {
       );
     } else {
       return (
-        <ul class="navbar-nav">
-          <div class="btn-group">
+        <ul className="navbar-nav">
+          <div className="btn-group">
             <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <PersonIcon />
             </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="/signin">Sign In</a>
-              <a class="dropdown-item" href="/signup">Sign Up</a>
+            <div className="dropdown-menu dropdown-menu-right">
+              <a className="dropdown-item" href="/signin">Sign In</a>
+              <a className="dropdown-item" href="/signup">Sign Up</a>
             </div>
           </div>
         </ul>
@@ -83,14 +83,14 @@ const Subjects = props => {
     return (
       <ul className="navbar-nav mr-auto">
         <div className="btn-group">
-          <button type="button" class="btn bg-white text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" className="btn bg-white text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Topics
           </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="/tech">Tech</a>
-            <a class="dropdown-item" href="/business">Business</a>
-            <a class="dropdown-item" href="/world">World</a>
-            <a class="dropdown-item" href="/science">Science</a>
+          <div className="dropdown-menu dropdown-menu-right">
+            <a className="dropdown-item" href="/tech">Tech</a>
+            <a className="dropdown-item" href="/business">Business</a>
+            <a className="dropdown-item" href="/world">World</a>
+            <a className="dropdown-item" href="/science">Science</a>
           </div>
         </div>
       </ul>
