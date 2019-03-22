@@ -20,6 +20,12 @@ spec:
         # off in production.
         imagePullPolicy: Always
         env:
+            # Django Secrets
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django
+                  key: secret_key
             # CloudSQL Secrets
             - name: DATABASE_USER
               valueFrom:
