@@ -1,19 +1,19 @@
 # Pull base image
-FROM mhart/alpine-node
+FROM gcr.io/google_appengine/nodejs AS build
 
 # Set the working directory
 WORKDIR /app
-
-# Install app dependencies
-COPY package*.json ./
-ADD package.json /app/package.json
-RUN npm install
-
-# Bundle app
 COPY . .
 
-# Specify port
-EXPOSE 3000
+# Create production build
+RUN npm run build
+
+# Install app dependencies
+FROM gcr.io/google_appengine/nodejs
+
+# Bundle app
+COPY --from=build /app/build .
+RUN npm install -g serve
 
 # Start app
-CMD ["npm", "start"]
+CMD npm start

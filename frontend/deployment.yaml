@@ -3,8 +3,10 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: newsfeed
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -15,7 +17,8 @@ spec:
         image: gcr.io/newsfeed-django/frontend
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - name: http-server
+          containerPort: 8080
 
 ---
 
@@ -30,7 +33,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 3000
+    targetPort: http-server
   selector:
     app: newsfeed
     
