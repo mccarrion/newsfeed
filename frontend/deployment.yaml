@@ -4,21 +4,20 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    app: newsfeed
+    app: frontend
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: newsfeed
+        app: frontend
     spec:
       containers:
       - name: frontend
         image: gcr.io/newsfeed-django/frontend
         imagePullPolicy: Always
         ports:
-        - name: http-server
-          containerPort: 8080
+        - containerPort: 3000
 
 ---
 
@@ -28,12 +27,12 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    app: newsfeed
+    app: frontend
 spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: http-server
+    targetPort: 3000
   selector:
-    app: newsfeed
+    app: frontend
     
