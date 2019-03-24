@@ -1,3 +1,5 @@
+# Experimenting with Dockerfile builds until React app is a production
+# build being served quickly over the internet
 # build environment
 FROM node:9.6.1 as builder
 RUN mkdir /usr/src/app
