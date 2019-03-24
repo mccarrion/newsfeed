@@ -58,17 +58,17 @@ class ArticleList extends Component {
                 <div key={index}>
                   <div className="container articlePreview">
                     <div className="row">
-                      <div className="col-md-8">
-                        <Link to={`/${article.subject}/${article.slug}`} className="link">
-                          <h3>{article.title}</h3>
-                        </Link>
-                        <h5>{article.subtitle}</h5>
-                        <p>By {article.author} on {moment(article.date).format('MMM D')}</p>
-                      </div>
-                      <div className="col-md-4">
+                      <div className="col-md-3">
                         <Link to={`/${article.subject}/${article.slug}`} className="link">
                           <img src={`${article.thumbnail}`} alt="thumbnail" />
                         </Link>
+                      </div>
+                      <div className="col-md-9">
+                        <Link to={`/${article.subject}/${article.slug}`} className="link">
+                          <h3>{article.title}</h3>
+                        </Link>
+                        <p>{article.subtitle}</p>
+                        <p>By {article.author} on {moment(article.date).format('MMMM D')}</p>
                       </div>
                     </div>
                   </div>

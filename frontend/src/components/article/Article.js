@@ -32,9 +32,8 @@ class Article extends Component {
           <div className="col-md-8 offset-md-2">
             <h1>{article.title}</h1>
             <img className="img-fluid" src={`${article.image}`} alt="headline" />
-            <h3>{article.subtitle}</h3>
             <b>By {article.author}</b>
-            <p>{moment(article.date).format('MMM D')}</p>
+            <p>{moment(article.date).format('MMMM D, YYYY')}</p>
             <p>{article.body}</p>
           </div>
         </div>
