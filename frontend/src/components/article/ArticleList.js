@@ -43,8 +43,8 @@ class ArticleList extends Component {
 
     const renderPages = pages.map(number => {
       return (
-        <li key={number} id={number} onClick={this.handleClick}>
-          {number}
+        <li className="page-item" key={number} id={number} onClick={this.handleClick}>
+          <button class="page-link" href="#">{number}</button>
         </li>
       );
     });
@@ -78,9 +78,16 @@ class ArticleList extends Component {
           }
         </div>
         <div className="container">
-          <ul>
-            { renderPages }
-          </ul>
+          <div className="col-md-8 justify-content-md-center">
+            <div className="row justify-content-md-center">
+              <ul className="pagination">
+                {/* TODO: Switch from button to a for linking in the near future */}
+                <li className="page-item"><button class="page-link" href="#">Previous</button></li>
+                { renderPages }
+                <li class="page-item"><button class="page-link" href="#">Next</button></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
