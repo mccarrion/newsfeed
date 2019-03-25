@@ -1,22 +1,25 @@
 # Experimenting with Dockerfile builds until React app is a production
 # build being served quickly over the internet
 # build environment
-FROM node:9.6.1 as builder
-RUN mkdir /usr/src/app
+# base image
+FROM node:9.4
+
+# set working directory
 WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@1.1.1 -g --silent
-COPY . /usr/src/app
-RUN npm run build
 
-# production environment
-FROM nginx:1.13.9-alpine
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# install and cache app dependencies
+COPY package*.json ./
+ADD package.json /usr/src/app/package.json
+RUN npm install
 
+# Bundle app source
+COPY . .
+
+# Specify port
+EXPOSE 3000
+
+# start app
+CMD ["npm", "start"]
 
 # # Pull base image
 # FROM gcr.io/google_appengine/nodejs AS build

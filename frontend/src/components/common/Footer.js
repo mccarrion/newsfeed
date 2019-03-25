@@ -6,22 +6,24 @@ import { Link } from 'react-router-dom';
 class Footer extends Component {
   render() {
     return (
-      <nav className="navbar">
-        <div>
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
           {/* TODO: Add a Help center and About section */}
-          <li className="nav-item">
-            <Link to="/privacy" className="nav-link">
-              Privacy
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link to="/terms" className="nav-link">
-              Terms
-            </Link>
-          </li>
+            <div className="col-md-1">
+                <Link to="/privacy" className="nav-link">
+                  Privacy
+                </Link>
+            </div>
+            <div className="col-md-1">
+                <Link to="/terms" className="nav-link">
+                  Terms
+                </Link>
+            </div>
+          </div>
         </div>
-      </nav>
+      </footer>
+      
     );
   }
 }
