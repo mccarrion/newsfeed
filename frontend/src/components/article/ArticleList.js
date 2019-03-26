@@ -30,7 +30,7 @@ class ArticleList extends Component {
       })
       .catch(error => {
         console.log('Error while fetching!', error);
-    });
+      });
   }
 
   render() {
