@@ -101,7 +101,7 @@ const Subjects = props => {
 class Header extends Component {
   render() {
     return (
-      <div>
+      <div className="navbar-padding">
         <nav className="navbar navbarBrand navbar-expand-md navbar-light">
           <div className="container">
             <Link to="/" className="navbar-brand text-dark">

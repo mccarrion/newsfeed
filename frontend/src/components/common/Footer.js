@@ -7,7 +7,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="footer">
-        <div className="container">
+        <div className="container footer-container">
           <div className="row">
           {/* TODO: Add a Help center and About section */}
             <div className="col-md-1">

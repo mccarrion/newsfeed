@@ -52,6 +52,11 @@ class ArticleList extends Component {
     return (
       <div>
         <div className="container">
+          <div className="col-md-8">
+            <div className="row latest">
+              <h4>The Latest</h4>
+            </div>
+          </div>
           { 
             articles.map((article, index) => 
               <div className="col-md-8">

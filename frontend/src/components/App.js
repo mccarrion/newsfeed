@@ -31,9 +31,7 @@ class App extends Component {
           <Route exact path="/:subject" component={ArticleList} />
           <Route path="/:subject/:title" component={Article} />
         </Switch>
-        <Footer
-          appName={this.props.appName}
-        />
+        <Footer />
       </div>
     );
   }
