@@ -27,6 +27,11 @@ class Article(models.Model):
     date = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
 
+    # This is for the headline feed. The idea is that an Editor in the newsroom
+    # would set this value to true for selected articles and it would
+    # lead to the article becoming a part of the headline
+    whats_news = models.BooleanField(default=False)
+
     # This list will be used to break up the news website into subsections
     # based on what subjects the publisher decides to include
     TECH = 'tech'
