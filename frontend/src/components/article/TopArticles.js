@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
 
-class WhatsNews extends Component {
+class TopArticles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       articles: [],
       error: false
     };
-    
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(event) {
-    this.setState({
-      current: Number(event.target.id)
-    });
   }
 
   componentDidMount() {
@@ -49,4 +41,4 @@ class WhatsNews extends Component {
   }
 }
 
-export default WhatsNews;
+export default TopArticles;
