@@ -20,7 +20,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('title', 'subtitle', 'thumbnail', 'author',
-                  'image', 'body', 'date', 'slug', 'subject')
+                  'image', 'body', 'date', 'slug', 'whats_news','subject')
 
 
 class CommentSerializer(serializers.ModelSerializer):
