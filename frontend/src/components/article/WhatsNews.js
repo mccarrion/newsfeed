@@ -35,15 +35,43 @@ class WhatsNews extends Component {
 
     return (
       <div>
-        {
-          articles.map((article, index) =>
-            <div key={index}>
-              <Link to={`/${article.subject}/${article.slug}`} className="link">
-                <img src={`${article.thumbnail}`} alt="thumbnail" />
-              </Link>
+        <div className="container">
+          <div className="row">
+            {
+              articles.map((article, index) => {
+                if (article.whats_news)
+                  return (
+                    <div className="col-md-3">
+                      <div key={index}>
+                        <Link to={`/${article.subject}/${article.slug}`} className="link">
+                          <img src={`${article.image}`} alt="thumbnail" className="img-fluid" />
+                        </Link>
+                        <Link to={`/${article.subject}/${article.slug}`} className="link">
+                          <h3>{article.title}</h3>
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                return <span></span>;
+                }
+              )
+            }
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+              <div className="container underline"></div>
             </div>
-          )
-        }
+            <div className="col-md-3">
+              <div className="container underline"></div>
+            </div>
+            <div className="col-md-3">
+              <div className="container underline"></div>
+            </div>
+            <div className="col-md-3">
+              <div className="container underline"></div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

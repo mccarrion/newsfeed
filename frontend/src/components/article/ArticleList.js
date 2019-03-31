@@ -53,32 +53,37 @@ class ArticleList extends Component {
       <div>
         <div className="container">
           <div className="col-md-8">
-            <div className="row latest">
+            <div className="row underline">
               <h4>The Latest</h4>
             </div>
           </div>
           { 
-            articles.map((article, index) => 
-              <div className="col-md-8">
-                <div key={index}>
-                  <div className="container articlePreview">
-                    <div className="row">
-                      <div className="col-md-3">
-                        <Link to={`/${article.subject}/${article.slug}`} className="link">
-                          <img src={`${article.thumbnail}`} alt="thumbnail" />
-                        </Link>
-                      </div>
-                      <div className="col-md-9">
-                        <Link to={`/${article.subject}/${article.slug}`} className="link">
-                          <h3>{article.title}</h3>
-                        </Link>
-                        <p>{article.subtitle}</p>
-                        <p>By {article.author} on {moment(article.date).format('MMMM D')}</p>
+            articles.map((article, index) => {
+              if (!article.whats_news)
+                return (
+                  <div className="col-md-8">
+                    <div key={index}>
+                      <div className="container articlePreview">
+                        <div className="row">
+                          <div className="col-md-3">
+                            <Link to={`/${article.subject}/${article.slug}`} className="link">
+                              <img src={`${article.thumbnail}`} alt="thumbnail" />
+                            </Link>
+                          </div>
+                          <div className="col-md-9">
+                            <Link to={`/${article.subject}/${article.slug}`} className="link">
+                              <h3>{article.title}</h3>
+                            </Link>
+                            <p>{article.subtitle}</p>
+                            <p>By {article.author} on {moment(article.date).format('MMMM D')}</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+                return <span></span>;
+              }
             )
           }
         </div>

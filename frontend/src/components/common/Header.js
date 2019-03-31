@@ -102,7 +102,7 @@ class Header extends Component {
   render() {
     return (
       <div className="navbar-padding">
-        <nav className="navbar navbarBrand navbar-expand-md navbar-light">
+        <nav className="navbar underline navbar-expand-md navbar-light">
           <div className="container">
             <Link to="/" className="navbar-brand text-dark">
               NewsFeed

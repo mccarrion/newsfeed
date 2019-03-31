@@ -29,7 +29,12 @@ code {
   white-space: pre-line;
 }
 
-.latest {
+.px-2 {
+  padding-left: ($spacer * .5) !important;
+  padding-right: ($spacer * .5) !important;
+}
+
+.underline {
   border-bottom: 1px solid rgb(211, 211, 211);
 }
 
