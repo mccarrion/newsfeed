@@ -36,6 +36,11 @@ class WhatsNews extends Component {
     return (
       <div>
         <div className="container">
+          <div className="col-md-12">
+            <div className="row underline">
+              <h4>What's News</h4>
+            </div>
+          </div>
           <div className="row">
             {
               articles.map((article, index) => {
@@ -56,20 +61,6 @@ class WhatsNews extends Component {
                 }
               )
             }
-          </div>
-          <div className="row">
-            <div className="col-md-3">
-              <div className="container underline"></div>
-            </div>
-            <div className="col-md-3">
-              <div className="container underline"></div>
-            </div>
-            <div className="col-md-3">
-              <div className="container underline"></div>
-            </div>
-            <div className="col-md-3">
-              <div className="container underline"></div>
-            </div>
           </div>
         </div>
       </div>

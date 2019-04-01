@@ -4,13 +4,14 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    app: frontend
+    app: newsfeed
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
-        app: frontend
+        app: newsfeed
+        tier: frontend
     spec:
       containers:
       - name: frontend
@@ -27,12 +28,14 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    app: frontend
+    app: newsfeed
+    tier: frontend
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 3000
   selector:
-    app: frontend
+    app: newsfeed
+    tier: frontend
     
