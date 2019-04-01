@@ -1,12 +1,14 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from easy_thumbnails.fields import ThumbnailerImageField
+from hitcount.models import HitCount, HitCountMixin
 
 from newsfeed.users.models import User
 
 
-class Article(models.Model):
+class Article(models.Model, HitCountMixin):
     """
     This is the model for all of the articles that will be written in the news
     website.
@@ -26,6 +28,13 @@ class Article(models.Model):
     body = models.TextField()
     date = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
+
+    # This is for displaying the most popular articles
+    hit_count_generic = GenericRelation(
+        HitCount,
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    )
 
     # This is for the headline feed. The idea is that an Editor in the newsroom
     # would set this value to true for selected articles and it would
