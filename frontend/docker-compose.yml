@@ -1,0 +1,11 @@
+# This is purely to debug the Dockerfile configuration for the docker
+# container on a local machine. Much easier to develop this way
+version: '3.6'
+
+services:
+  react:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"

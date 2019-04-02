@@ -18,7 +18,7 @@ spec:
         image: gcr.io/newsfeed-django/frontend
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
 
 ---
 
@@ -34,7 +34,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 3000
+    targetPort: 5000
   selector:
     app: newsfeed
     tier: frontend

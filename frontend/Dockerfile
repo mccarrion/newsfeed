@@ -5,7 +5,7 @@
 # gcr.io/google_appengine/nodejs
 
 # base image
-FROM node:9.4
+FROM gcr.io/google_appengine/nodejs
 
 # set working directory
 WORKDIR /usr/src/app
@@ -19,7 +19,11 @@ RUN npm install
 COPY . .
 
 # Specify port
-EXPOSE 3000
+EXPOSE 5000
 
-# start app
-CMD ["npm", "start"]
+# Create production build and ability to serve it
+RUN npm run build
+RUN npm install -g serve
+
+# Serve production app
+CMD ["serve", "-s", "build", "-l", "5000"]
