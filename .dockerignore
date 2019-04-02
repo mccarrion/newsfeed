@@ -7,3 +7,7 @@
 
 # Other
 .git
+
+# Staticfiles
+static/
+media/

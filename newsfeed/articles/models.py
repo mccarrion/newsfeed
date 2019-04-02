@@ -11,7 +11,8 @@ from newsfeed.users.models import User
 class Article(models.Model, HitCountMixin):
     """
     This is the model for all of the articles that will be written in the news
-    website.
+    website. For an attribute with multiple constraints, each constraint is put
+    on its own line. Way more readable.
     """
     title = models.CharField(max_length=128)
     subtitle = models.CharField(max_length=128)
@@ -23,8 +24,12 @@ class Article(models.Model, HitCountMixin):
         max_length=255
     )
     author = models.ManyToManyField(User)
-    image = models.ImageField(upload_to='articles', blank=True,
-        null=True, max_length=255)
+    image = models.ImageField(
+        upload_to='articles', 
+        blank=True,
+        null=True, 
+        max_length=255
+    )
     body = models.TextField()
     date = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=128, unique=True, blank=True)

@@ -44,7 +44,7 @@ spec:
       - image: b.gcr.io/cloudsql-docker/gce-proxy:1.05
         name: cloudsql-proxy
         command: ["/cloud_sql_proxy", "--dir=/cloudsql",
-                  "-instances=newsfeed-django:us-central1:newsfeed-instance=tcp:5432",
+                  "-instances=newsfeed-django:us-central1:postgres-instance=tcp:5432",
                   "-credential_file=/secrets/cloudsql/credentials.json"]
         volumeMounts:
           - name: cloudsql-oauth-credentials
