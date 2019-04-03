@@ -13,6 +13,10 @@ code {
     monospace;
 }
 
+.link {
+  color: rgb(0, 0, 0);
+}
+
 .articlePreview {
   padding: 15px;
 }
@@ -36,6 +40,12 @@ code {
 
 .underline {
   border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.underline-bottom {
+  border-bottom: 1px solid rgb(211, 211, 211);
+  position: relative;
+  bottom: 0;
 }
 
 .footer-container {

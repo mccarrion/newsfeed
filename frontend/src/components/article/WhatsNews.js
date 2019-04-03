@@ -41,12 +41,13 @@ class WhatsNews extends Component {
               <h4>What's News</h4>
             </div>
           </div>
+          <p></p>
           <div className="row">
             {
               articles.map((article, index) => {
                 if (article.whats_news)
                   return (
-                    <div className="col-md-3">
+                    <div className="col-md-3 d-flex align-items-end flex-column">
                       <div key={index}>
                         <Link to={`/${article.subject}/${article.slug}`} className="link">
                           <img src={`${article.image}`} alt="thumbnail" className="img-fluid" />
@@ -55,6 +56,7 @@ class WhatsNews extends Component {
                           <h3>{article.title}</h3>
                         </Link>
                       </div>
+                      <div className="mt-auto container underline"></div>
                     </div>
                   );
                 return <span></span>;
@@ -62,6 +64,7 @@ class WhatsNews extends Component {
               )
             }
           </div>
+          <p></p>
         </div>
       </div>
     )
