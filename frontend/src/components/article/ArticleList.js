@@ -63,7 +63,7 @@ class ArticleList extends Component {
                 return (
                   <div className="col-md-8">
                     <div key={index}>
-                      <div className="container articlePreview">
+                      <div className="container article-preview">
                         <div className="row">
                           <div className="col-md-3">
                             <Link to={`/${article.subject}/${article.slug}`} className="link">

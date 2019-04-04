@@ -17,12 +17,8 @@ code {
   color: rgb(0, 0, 0);
 }
 
-.articlePreview {
+.article-preview {
   padding: 15px;
-}
-
-.navbarBrand {
-  border-bottom: 1px solid rgb(211, 211, 211);
 }
 
 .navbar-padding{
