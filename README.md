@@ -30,6 +30,10 @@ data from an API spec that this app will migrate too use Redux as the way of
 pulling and rendering that data. The API spec that this app will migrate to is 
 specifically the JSON:API spec.
 
+### Heroku
+
+Using Heroku for the time being due to it being significantly less expensive than Google Kubernetes Engine.
+
 ### Docker and Kubernetes
 
 This project has containerized the sub-applications making up the webapp. The 

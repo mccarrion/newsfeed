@@ -23,6 +23,8 @@ psycopg2==2.7.6
 # WSGI Handling
 gunicorn==19.7.1
 
+dj-database-url==0.4.2
+
 # Static File Storage and Management
 # django-storages==1.6.5
 # boto==2.48.0
