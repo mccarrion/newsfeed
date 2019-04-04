@@ -8,7 +8,7 @@ import logging
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', default='7x*9_#61df+4xe2_%dz0k3*7!e&!3b20ql0s2y5607ow@5ichy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
