@@ -8,7 +8,7 @@ import logging
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', default='7x*9_#61df+4xe2_%dz0k3*7!e&!3b20ql0s2y5607ow@5ichy')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -23,6 +23,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS += [
     # Additional apps for production
     'gunicorn',
+    'storages',
 ]
 
 THUMBNAIL_CACHE_DIMENSIONS = True
@@ -36,6 +37,17 @@ DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Static file storage
-STATIC_URL = 'http://storage.googleapis.com/newsfeed-django/static/'
-MEDIA_URL = 'http://storage.googleapis.com/newsfeed-django/media/'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# Static file storage and AWS Configuration
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_REGION = os.getenv('AWS_REGION')
+
+DEFAULT_FILE_STORAGE = 'newsfeed.settings.utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'newsfeed.settings.utils.StaticRootS3BotoStorage'
+
+STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'

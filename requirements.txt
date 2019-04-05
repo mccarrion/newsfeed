@@ -19,16 +19,15 @@ PyJWT==1.7.1
 # Database Adapter and Management
 # mysqlclient==1.4.1
 psycopg2==2.7.6
+dj-database-url==0.4.2
 
 # WSGI Handling
 gunicorn==19.7.1
 
-dj-database-url==0.4.2
-
 # Static File Storage and Management
-# django-storages==1.6.5
-# boto==2.48.0
-# boto3==1.5.14
+django-storages==1.6.5
+boto==2.48.0
+boto3==1.5.14
 
 # Automated Tests
 pytest==3.6.0
