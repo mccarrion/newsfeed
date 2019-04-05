@@ -36,9 +36,6 @@ DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['CONN_MAX_AGE'] = 500
 
-# Static file storage
-SECRET_KEY = os.getenv('SECRET_KEY')
-
 # Static file storage and AWS Configuration
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
