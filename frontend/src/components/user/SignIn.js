@@ -27,10 +27,16 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post(`${API_URL}/signin/`, {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
-    })
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          this.props.history.push("/");
+          console.log('Login successful');
+        }
+      })
   }
 
   render() {
