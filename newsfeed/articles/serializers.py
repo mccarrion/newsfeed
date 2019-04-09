@@ -44,6 +44,9 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('body', 'date', 'user', 'article')
+    
+    def create(self, validated_data):
+        return Comment.objects.create(**validated_data)
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
