@@ -32,9 +32,10 @@ specifically the JSON:API spec.
 
 ### Heroku
 
-Using Heroku for the time being due to it being significantly less expensive than Google Kubernetes Engine.
+Using Heroku to serve the frontend and backend webapps. Images are served from an
+Amazon S3 bucket.
 
-### Docker and Kubernetes
+### Docker
 
 This project has containerized the sub-applications making up the webapp. The 
 sub-apps in this project are specifically: React.js for rendering data, Django 
@@ -43,11 +44,6 @@ added in the near future for storing data in a cache like page hits.
 
 Docker was chosen as the method of locally running and testing the application
 given its ease of use and extensibility.
-
-Kubernetes was chosen for deployment given that it is more effective at handling
-applications that have a variety of decoupled sub-apps (microservices) that are 
-connected into one larger webapp than Heroku is and it is far far better than 
-trying to manually upload everything to a VPS. 
 
 ### Authentication
 
