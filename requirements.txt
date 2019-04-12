@@ -6,18 +6,19 @@ wheel==0.30.0
 django==2.1.7
 
 # Project Specific Apps
-# Pillow==4.2.1
 easy-thumbnails==2.5
-# django-sslify==0.2.7
-# django-crispy-forms==1.7.2
 django-hitcount==1.3.0
+
+# Rest related
 djangorestframework==3.8.2
 django-cors-headers==2.4.0
+
+# Authentication and authorization
 django-oauth-toolkit==1.0.0
+djoser==1.5.1
 PyJWT==1.7.1
 
 # Database Adapter and Management
-# mysqlclient==1.4.1
 psycopg2==2.7.6
 dj-database-url==0.4.2
 
@@ -33,3 +34,9 @@ boto3==1.5.14
 pytest==3.6.0
 pytest-django==3.2.1
 factory-boy==2.11.1
+
+# Not currently being used
+# django-sslify==0.2.7
+# django-crispy-forms==1.7.2
+# Pillow==4.2.1
+# mysqlclient==1.4.1

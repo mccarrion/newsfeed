@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'easy_thumbnails',
     'hitcount',
+    'djoser',
     'oauth2_provider',
     'corsheaders',
 ]
