@@ -26,6 +26,7 @@ urlpatterns = [
     re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     re_path(r'^accounts/login/$', auth_views.LoginView.as_view(template_name='registration/login.html')),
     path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
     path('api/articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('api/users/', include('newsfeed.users.urls', namespace='users')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt",

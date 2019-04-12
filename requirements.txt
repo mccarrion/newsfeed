@@ -16,6 +16,7 @@ django-cors-headers==2.4.0
 # Authentication and authorization
 django-oauth-toolkit==1.0.0
 djoser==1.5.1
+djangorestframework-jwt==1.11.0
 PyJWT==1.7.1
 
 # Database Adapter and Management

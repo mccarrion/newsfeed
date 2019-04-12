@@ -132,6 +132,10 @@ USE_TZ = True
 # Setting the User model
 AUTH_USER_MODEL = 'users.User'
 
+# Setings for JWT tokens
+# JWT_AUTH = {
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
