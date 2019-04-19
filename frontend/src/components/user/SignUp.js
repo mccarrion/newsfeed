@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
@@ -26,10 +26,15 @@ class SignUp extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/api/users/register/`, {
+    axios.post(`${API_URL}/auth/users/`, {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
+    })
+    .then(function (response) {
+      if (response.status === 201) {
+        return <Redirect to='/' />
+      }
     })
   }
 
