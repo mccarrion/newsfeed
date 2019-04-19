@@ -44,7 +44,7 @@ class ArticleList extends Component {
     const renderPages = pages.map(number => {
       return (
         <li className="page-item" key={number} id={number} onClick={this.handleClick}>
-          <button class="page-link" href="#">{number}</button>
+          <button className="page-link" href="#">{number}</button>
         </li>
       );
     });
@@ -92,9 +92,9 @@ class ArticleList extends Component {
             <div className="row justify-content-md-center">
               <ul className="pagination">
                 {/* TODO: Switch from button to a for linking in the near future */}
-                <li className="page-item"><button class="page-link" href="#">Previous</button></li>
+                <li className="page-item"><button className="page-link" href="#">Previous</button></li>
                 { renderPages }
-                <li class="page-item"><button class="page-link" href="#">Next</button></li>
+                <li className="page-item"><button className="page-link" href="#">Next</button></li>
               </ul>
             </div>
           </div>
