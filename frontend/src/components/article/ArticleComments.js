@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
 
-class Comments extends Component {
+class ArticleComments extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,4 +45,4 @@ class Comments extends Component {
   }
 }
 
-export default Comments;
+export default ArticleComments;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
 
-class UserComments extends Component {
+class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,4 +43,4 @@ class UserComments extends Component {
   }
 }
 
-export default UserComments;
+export default Comments;
