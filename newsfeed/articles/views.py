@@ -2,8 +2,8 @@ from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
-from .models import Article
-from .serializers import ArticleSerializer
+from .models import Article, Comment
+from .serializers import ArticleSerializer, CommentSerializer
 from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
 
@@ -39,7 +39,8 @@ class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
 
 
 class CommentListView(generics.ListAPIView):
-    pass
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
 
 class FavoriteView(generics.RetrieveAPIView):
