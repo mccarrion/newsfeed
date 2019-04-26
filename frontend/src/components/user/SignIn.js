@@ -31,8 +31,9 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then(function (response) {
-        if (response.status === 200) {
+      .then(function (res) {
+        if (res.status === 200) {
+          this.setToken(res.token)
           this.props.history.push("/");
           console.log('Login successful');
         }
