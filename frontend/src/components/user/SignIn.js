@@ -33,16 +33,11 @@ class Login extends Component {
       })
       .then(function (res) {
         if (res.status === 200) {
-          this.setToken(res.token)
-          this.props.history.push("/");
+          localStorage.setItem('id_token', res.token)
+          // this.props.history.push("/");
           console.log('Login successful');
         }
       })
-  }
-
-  setToken(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken)
   }
 
   render() {
