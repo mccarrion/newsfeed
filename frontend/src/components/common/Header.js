@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonIcon } from 'react-octicons';
+import Axios from 'axios';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize
+export function isAuthenticated() {
+  const token = localStorage.getItem('id_token') // GEtting token from localstorage
+  return !!token
+};
+
 const UserProfileView = props => {
   if (window.innerWidth < 768) {
     if (props.currentUser) {
@@ -31,7 +37,7 @@ const UserProfileView = props => {
       );
     }
   } else {
-    if (props.currentUser) {
+    if (isAuthenticated()) {
       return (
         <li className="nav-item">
           <Link
@@ -99,6 +105,8 @@ const Subjects = props => {
 }
 
 class Header extends Component {
+
+
   render() {
     return (
       <div className="navbar-padding">

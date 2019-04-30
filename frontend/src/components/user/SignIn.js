@@ -26,7 +26,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/signin/`, {
+    axios.post(`${API_URL}/auth/jwt/create/`, {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password
