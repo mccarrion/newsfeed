@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../constants/appConstants';
 
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      error: false
+    };
+  }
+  
   componentWillMount() {
   }
 
   renderTabs() {
+    const { user } = this.state;
     return (
       <ul className="nav">
         <li className="nav-item">
