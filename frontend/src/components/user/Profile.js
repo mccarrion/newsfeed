@@ -13,6 +13,13 @@ class Profile extends Component {
   }
   
   componentWillMount() {
+    return axios.get(`${API_URL}/auth/users/me`)
+      .then(res => {
+        this.setState({ user: res.data })
+      })
+      .catch(error => {
+        console.log('Error while fetching!', error);
+    });
   }
 
   renderTabs() {
@@ -22,7 +29,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${this.props.profile.username}`}>
+            to={`/@${user.username}`}>
             Profile
           </Link>
         </li>
@@ -30,7 +37,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${this.props.profile.username}/comments`}>
+            to={`/@${user.username}/comments`}>
             Comments
           </Link>
         </li>
@@ -38,7 +45,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${this.props.profile.username}/favorites`}>
+            to={`/@${user.username}/favorites`}>
             Favorites
           </Link>
         </li>
@@ -49,8 +56,8 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <img src={this.props.profile.image} alt="user" />
-        <h5>{this.props.profile.username}</h5>
+        <img src={user.image} alt="user" />
+        <h5>{user.username}</h5>
       </div>
     );
   }
