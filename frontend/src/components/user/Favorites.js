@@ -6,16 +6,15 @@ class Favorites extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boolean: false,
+      favorites: [],
       error: false
     };
   }
 
   componentDidMount() {
-    const {match: { params }} = this.props;
-    return axios.get(`${API_URL}/profiles/${params.user}/${params.favorites}`)
+    return axios.get(`${API_URL}/users/${user.username}/favorites/`)
       .then(res => {
-        this.setState({ boolean: res.data });
+        this.setState({ favorites: res.data });
       })
       .catch(error => {
         console.log('Error while fetching!', error);
@@ -23,16 +22,22 @@ class Favorites extends Component {
   }
 
   render() {
-    const { boolean } = this.state;
-    if (boolean === true) {
-      return (
-        <div></div>
-      )
-    } else {
-      return (
-        <div></div>
-      )
-    }
+    const { favorites } = this.state;
+    return(
+      <div className="container">
+        {
+          favorites.map((favorite, index) => 
+            <div className="col-md-8">
+              <div key={index}>
+                <div className="row">
+                  <p>{favorite.text}</p>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </div>
+    )
   }
 }
 
