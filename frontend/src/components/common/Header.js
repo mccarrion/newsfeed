@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonIcon } from 'react-octicons';
 import axios from 'axios';
+import isAuthenticated from '../Auth';
 import { API_URL } from '../../constants/appConstants';
 
 // TODO: Add a listener for change in window size
@@ -14,11 +15,6 @@ class Header extends Component {
       error: false
     };
   }
-
-  isAuthenticated() {
-    const token = localStorage.getItem('id_token') // GEtting token from localstorage
-    return false// !!token && !this.isExpired(token)
-  };
 
   componentDidMount() {
     return axios.get(`${API_URL}/auth/users/me/`)
@@ -59,7 +55,7 @@ class Header extends Component {
           );
         }
       } else {
-        if (this.isAuthenticated()) {
+        if (isAuthenticated()) {
           return (
             <li className="nav-item">
               <Link
