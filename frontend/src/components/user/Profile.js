@@ -54,6 +54,7 @@ class Profile extends Component {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <div className="profile">
         <img src={user.image} alt="user" />
