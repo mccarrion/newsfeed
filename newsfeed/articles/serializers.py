@@ -5,7 +5,6 @@ from hitcount.models import HitCount
 from newsfeed.users.models import User
 
 
-
 class AuthorField(serializers.RelatedField):
 	def to_representation(self, obj):
 		data = obj.username
@@ -33,9 +32,19 @@ class ArticleSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Article
-        fields = ('title', 'subtitle', 'thumbnail', 'author', 
-                  'hit_count', 'image', 'body', 'date', 
-                  'slug', 'whats_news','subject')
+        fields = (
+            'title', 
+            'subtitle', 
+            'thumbnail', 
+            'author', 
+            'hit_count', 
+            'image', 
+            'body', 
+            'date', 
+            'slug', 
+            'whats_news',
+            'subject'
+        )
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -46,7 +55,18 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('body', 'date', 'user', 'article')
     
     def create(self, validated_data):
-        return Comment.objects.create(**validated_data)
+        article = self.context['article']
+        user = self.context['user']
+
+        return Comment.objects.create(
+            article=article, user=user, **validated_data
+        )
+
+    def update(self, instance, validated_data):
+        instance.body = validated_data.get('body', instance.body)
+        instance.date = validated_data.get('date', instance.date)
+        instance.save()
+        return instance
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
@@ -55,3 +75,16 @@ class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = ('favorited', 'user', 'article')
+
+    def create(self, validated_data):
+        article = self.context['article']
+        user = self.context['user']
+
+        return Favorite.objects.create(
+            article=article, user=user, **validated_data
+        )
+
+    def update(self, instance, validated_data):
+        instance.favorited = validated_data.get('favorited', instance.favorited)
+        instance.save()
+        return instance
