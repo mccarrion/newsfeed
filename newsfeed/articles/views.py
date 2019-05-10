@@ -43,5 +43,8 @@ class CommentListView(generics.ListAPIView):
     serializer_class = CommentSerializer
 
 
-class FavoriteView(generics.RetrieveAPIView):
-    pass
+class FavoriteListView(generics.ListAPIView):
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        return Article.objects.filter(favorite__favorited=True)
