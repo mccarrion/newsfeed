@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
@@ -9,7 +9,8 @@ class Login extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      redirect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,58 +34,65 @@ class Login extends Component {
       })
       .then(function (res) {
         if (res.status === 200) {
+          this.setState({ redirect: true });
           localStorage.setItem('id_token', res.token)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
-          // this.props.history.push("/");
           console.log('Login successful');
         }
       })
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className="row justify-content-md-center">
-          <div className="col-md-4">
-            <h2 className="text-md-center">Sign In</h2>
-            <form onSubmit={this.handleSubmit}>
-              <fieldset>
-                <fieldset className="form-group">
-                  <input
-                    className="form-control"
-                    name="username"
-                    type="text"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.handleChange} />
-                </fieldset>
+    const { redirect } = this.state.redirect;
+    if (redirect === true) {
+      return (
+        <Redirect to={"/science/blah-blah-blah"} />
+      )
+    } else {
+      return (
+        <div className="container">
+          <div className="row justify-content-md-center">
+            <div className="col-md-4">
+              <h2 className="text-md-center">Sign In</h2>
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <fieldset>
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      value={this.state.username}
+                      onChange={this.handleChange} />
+                  </fieldset>
 
-                <fieldset className="form-group">
-                  <input
-                    className="form-control"
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.handleChange} />
-                </fieldset>
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.handleChange} />
+                  </fieldset>
 
-                <button
-                  type="button submit"
-                  className="btn btn-block">
-                  Sign In
-                </button>
-              </fieldset>
-            </form>
-            {/* TODO: Handle padding through a CSS class. */}
-            <p></p>
-            <p>
-              Need an account? <Link to="/signup">Sign Up</Link>
-            </p>
-          </div> 
+                  <button
+                    type="button submit"
+                    className="btn btn-block">
+                    Sign In
+                  </button>
+                </fieldset>
+              </form>
+              {/* TODO: Handle padding through a CSS class. */}
+              <p></p>
+              <p>
+                Need an account? <Link to="/signup">Sign Up</Link>
+              </p>
+            </div> 
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

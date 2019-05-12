@@ -12,7 +12,7 @@ export function isExpired(token) {
     }
 }
 
-export function isAuthenticated() {
+export default function isAuthenticated() {
     // Getting token from localstorage
     const token = localStorage.getItem('id_token');
     return !!token && !isExpired(token)

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonIcon } from 'react-octicons';
 import axios from 'axios';
-import isAuthenticated from '../Auth';
+import isAuthenticated from '../user/Auth';
+import decode from 'jwt-decode';
 import { API_URL } from '../../constants/appConstants';
 
 // TODO: Add a listener for change in window size
@@ -15,6 +16,18 @@ class Header extends Component {
       error: false
     };
   }
+
+  isExpired(token) {
+    try {
+        const jwt = decode(token);
+        if (jwt.exp < (Date.now() / 1000)) {
+            return true;
+        }
+        return false;
+    } catch(err) {
+        return false;
+    }
+}
 
   componentDidMount() {
     return axios.get(`${API_URL}/auth/users/me/`)
@@ -55,7 +68,7 @@ class Header extends Component {
           );
         }
       } else {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && user !== null) {
           return (
             <li className="nav-item">
               <Link
