@@ -43,7 +43,7 @@ class Header extends Component {
     const { user } = this.state;
     const UserProfileView = props => {
       if (window.innerWidth < 768) {
-        if (user.username) {
+        if (isAuthenticated() && user !== null) {
           return (
             <li className="nav-item">
               <Link
