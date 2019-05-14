@@ -24,17 +24,20 @@ class Login extends Component {
     });
   }
 
-  handleSubmit = (event) => {
+  async handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/auth/jwt/create/`, {
+    const res = await axios.post(`${API_URL}/auth/jwt/create/`, {
         username: this.state.username,
         password: this.state.password
-      })
+      });
+    console.log(res);
+      /*
       .then(function (res) {
         localStorage.setItem('id_token', res.token);
         localStorage.setItem('status', res.status);
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
       }, this.handleResponse())
+      */
   }
 
   handleResponse = () => {
