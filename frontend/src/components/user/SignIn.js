@@ -30,19 +30,15 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
       });
-    console.log(res);
-      /*
-      .then(function (res) {
-        localStorage.setItem('id_token', res.token);
-        localStorage.setItem('status', res.status);
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
-      }, this.handleResponse())
-      */
+    this.handleResponse(res);
+    console.log(res.data);
   }
 
-  handleResponse = () => {
-    if (localStorage.getItem('status') === '301') {
-      this.props.history.push('/');
+  handleResponse = (res) => {
+    if (res.status === 200) {
+      localStorage.setItem('id_token', res.data.access);
+      axios.defaults.headers.common['Authorization'] = 'Authorization: Token ' + localStorage.getItem('id_token');
+      //this.props.history.push('/');
       console.log('Login successful');
     }
   }
