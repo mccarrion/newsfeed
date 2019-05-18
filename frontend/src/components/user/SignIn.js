@@ -37,7 +37,7 @@ class Login extends Component {
   handleResponse = (res) => {
     if (res.status === 200) {
       localStorage.setItem('id_token', res.data.access);
-      axios.defaults.headers.common['Authorization'] = 'Authorization: Token ' + localStorage.getItem('id_token');
+      axios.defaults.headers.common['Authorization'] = 'Authorization: Bearer ' + localStorage.getItem('id_token');
       //this.props.history.push('/');
       console.log('Login successful');
     }
