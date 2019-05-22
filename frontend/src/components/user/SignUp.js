@@ -1,4 +1,5 @@
-import { Link, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
@@ -24,18 +25,21 @@ class SignUp extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/auth/users/`, {
+    const res = await axios.post(`${API_URL}/auth/users/`, {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     })
-    .then(function (response) {
-      if (response.status === 201) {
-        return <Redirect to='/' />
-      }
-    })
+    this.handleResponse(res);
+  }
+
+  handleResponse = (res) => {
+    if (res.status === 201) {
+      this.props.history.push('/');
+      console.log('Registration successful')
+    }
   }
 
   render() {
