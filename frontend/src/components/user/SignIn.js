@@ -31,15 +31,15 @@ class Login extends Component {
         password: this.state.password
       });
     this.handleResponse(res);
-    console.log(res.data);
+    //console.log(res.data.access);
   }
 
   handleResponse = (res) => {
     if (res.status === 200) {
       localStorage.setItem('id_token', res.data.access);
-      axios.defaults.headers.common['Authorization'] = 'Authorization: JWT ' + localStorage.getItem('id_token');
+      axios.defaults.headers.common['Authorization'] = `JWT ${localStorage.getItem('id_token')}`;
       //this.props.history.push('/');
-      console.log('Login successful');
+      console.log(localStorage.getItem('id_token'));
     }
   }
 
