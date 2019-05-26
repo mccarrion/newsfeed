@@ -11,7 +11,7 @@ django-hitcount==1.3.0
 
 # Rest related
 djangorestframework>=3.9.1
-django-cors-headers==2.4.0
+django-cors-headers==3.0.1
 
 # Authentication and authorization
 django-oauth-toolkit==1.0.0
