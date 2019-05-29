@@ -17,6 +17,7 @@ are.
 - [Authentication](#authentication)
 - [User Integration](#user-integration)
 - [Top Articles App](#top-articles-app)
+- [Migration to Flask](#migration-to-flask)
 - [Ideas for the Future](#ideas-for-the-future)
 
 ### User Interface (UI):
@@ -66,17 +67,18 @@ From there, an API endpoint will be created that lists the top five to ten
 articles in order of quantity of hits. The JSON data will be rendered by React 
 as a part of the sidebar.
 
-### Ideas for the Future
+### Migration to Flask
 
-The first thing on the list for the future is to transcribe this app from Django
-to Flask as the backend framework. The driving force behind this is that Flask 
-is ORM agnostic meaning that one can import SQLAlchemy and use that as the ORM 
-for creating database objects. The main interest in SQLAlchemy is that it has a 
-fully developed database abstraction layer providing developers with a great 
-tool for going down to the database layer when object relational mapping is not 
-sufficient for creating relationships between data. Django does provide a way to 
-make raw SQL queries, it just has not been developed to the extent that 
-SQLAlchemy's has.
+The goal feature-set for the initial version of this News website software was:
+* One feed of news that could be broken up by subject
+* Author pages
+* User profiles
+* User commenting and favorites 
+
+Now that that feature-set is almost fully implemented, it is time to prepare to 
+migrate the backend from the Django web framework to the Flask web framework.
+
+### Ideas for the Future
 
 A couple other things are: shift REST API's to JSON:API spec, develop a system 
 of signals for tracking how the app is being used, integrate a CMS, and so on, 
