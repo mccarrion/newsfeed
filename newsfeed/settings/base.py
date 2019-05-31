@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # Custom applications:
     'newsfeed.articles.apps.ArticlesConfig',
     'newsfeed.users.apps.UsersConfig',
+    'newsfeed.djauth.apps.DjauthConfig',
 
     # Third party applications:
     'rest_framework',

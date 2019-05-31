@@ -24,11 +24,15 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    re_path(r'^accounts/login/$', auth_views.LoginView.as_view(template_name='registration/login.html')),
-    path('auth/', include('djauth.urls')),
-    path('auth/', include('djauth.urls.jwt')),
+    re_path(r'^accounts/login/$', 
+        auth_views.LoginView.as_view(template_name='registration/login.html')
+    ),
+    path('auth/', include('newsfeed.djauth.urls')),
+    path('auth/', include('djoser.urls.jwt')),
     path('articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('users/', include('newsfeed.users.urls', namespace='users')),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt",
-         content_type="text/plain"), name="robots.txt"),
+    path('robots.txt', TemplateView.as_view(
+        template_name="robots.txt",
+        content_type="text/plain"
+    ), name="robots.txt"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

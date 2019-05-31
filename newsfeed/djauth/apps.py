@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class DjauthConfig(AppConfig):
-    name = 'djauth'
+    name = 'newsfeed.djauth'
+    label = 'djauth'
+    verbose_name = 'DJAuth'
