@@ -37,7 +37,8 @@ class Login extends Component {
   handleResponse = (res) => {
     if (res.status === 200) {
       localStorage.setItem('id_token', res.data.access);
-      axios.defaults.headers.common['Authorization'] = `Authorization: JWT ${localStorage.getItem('id_token')}`;
+      // TODO: Figure out why this approach did not work for authentication
+      // axios.defaults.headers.common['Authorization'] = `JWT ${localStorage.getItem('id_token')}`;
       //this.props.history.push('/');
       console.log('Hello');
       console.log(axios.defaults.headers.common['Authorization']);

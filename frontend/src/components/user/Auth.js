@@ -1,4 +1,6 @@
+import axios from 'axios';
 import decode from 'jwt-decode';
+import { API_URL } from '../../constants/appConstants';
 
 export function isExpired(token) {
     try {
@@ -17,3 +19,12 @@ export default function isAuthenticated() {
     const token = localStorage.getItem('id_token');
     return !!token && !isExpired(token)
 };
+
+export const users = axios.create({
+    baseURL: `${API_URL}`,
+    timeout: 5000,
+    headers : {
+      Authorization: `JWT ${localStorage.getItem('id_token')}`,
+      'Content-Type': 'application/json'
+    }
+});

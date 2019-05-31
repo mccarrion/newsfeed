@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonIcon } from 'react-octicons';
-import axios from 'axios';
-import isAuthenticated from '../user/Auth';
+import isAuthenticated, { users } from '../user/Auth';
 import decode from 'jwt-decode';
-import { API_URL } from '../../constants/appConstants';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize
@@ -27,10 +25,10 @@ class Header extends Component {
     } catch(err) {
         return false;
     }
-}
+  }
 
   componentDidMount() {
-    return axios.get(`${API_URL}/auth/users/me/`)
+    return users.get(`/auth/users/me/`)
       .then(res => {
         this.setState({ user: res.data })
       })
