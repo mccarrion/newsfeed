@@ -49,7 +49,9 @@ given its ease of use and extensibility.
 ### Authentication
 
 User authentication will be handled through JWT tokens. Authorization of clients
-will be handled through OAuth2 (eventually).
+will be handled through OAuth2 (eventually). Using Djoser library for REST API
+endpoints for user authentication. Also used [this](https://github.com/cloudigrade/cloudigrade/pull/324/commits/eb0228361c207f2e9a8b0411938eee013ef8771d) workaround
+for handlind pre-flight OPTIONS requests from the browser.
 
 ### User Integration
 

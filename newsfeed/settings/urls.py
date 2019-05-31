@@ -27,7 +27,7 @@ urlpatterns = [
     re_path(r'^accounts/login/$', 
         auth_views.LoginView.as_view(template_name='registration/login.html')
     ),
-    path('auth/', include('newsfeed.djauth.urls')),
+    path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('articles/', include('newsfeed.articles.urls', namespace='articles')),
     path('users/', include('newsfeed.users.urls', namespace='users')),
