@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonIcon } from 'react-octicons';
 import isAuthenticated, { users } from '../user/Auth';
-import decode from 'jwt-decode';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize
@@ -13,18 +12,6 @@ class Header extends Component {
       user: null,
       error: false
     };
-  }
-
-  isExpired(token) {
-    try {
-        const jwt = decode(token);
-        if (jwt.exp < (Date.now() / 1000)) {
-            return true;
-        }
-        return false;
-    } catch(err) {
-        return false;
-    }
   }
 
   componentDidMount() {
@@ -40,6 +27,7 @@ class Header extends Component {
   render() {
     const { user } = this.state;
     const UserProfileView = props => {
+      // TODO: Find a less verbose way of handling window size changes
       if (window.innerWidth < 768) {
         if (isAuthenticated() && user !== null) {
           return (
@@ -68,12 +56,17 @@ class Header extends Component {
       } else {
         if (isAuthenticated() && user !== null) {
           return (
-            <li className="nav-item">
-              <Link
-                to={`/@${user}`}>
-                {user.username}
-              </Link>
-            </li>
+            <ul className="navbar-nav">
+              <div className="btn-group">
+                <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <PersonIcon />
+                </button>
+                <div className="dropdown-menu dropdown-menu-right">
+                  <a className="dropdown-item" href={`/@${user}`}>{user.username}</a>
+                  <a className="dropdown-item" href="/logout">Log Out</a>
+                </div>
+              </div>
+            </ul>
           );
         } else {
           return (
