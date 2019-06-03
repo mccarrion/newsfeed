@@ -24,6 +24,11 @@ class Header extends Component {
     });
   }
 
+  // This removes the JWT token from localStorage, thus logging out the user
+  removeToken() {
+    localStorage.removeItem('id_token');
+  }
+
   render() {
     const { user } = this.state;
     const UserProfileView = props => {

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Article from './article/Article';
-import Header from './common/Header';
 import Footer from './common/Footer';
+import Header from './common/Header';
+import Home from './common/Home';
 import Privacy from './common/Privacy';
 import Terms from './common/Terms';
-import Home from './common/Home';
-import SignIn from './user/SignIn';
+import Logout from './user/Logout';
 import Profile from './user/Profile';
+import SignIn from './user/SignIn';
 import SignUp from './user/SignUp';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/signin"  component={SignIn} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/logout" component={Logout} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route exact path="/@:username" component={Profile} />
