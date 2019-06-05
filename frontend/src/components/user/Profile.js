@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { API_URL } from '../../constants/appConstants';
+import isAuthenticated, { users } from '../user/Auth';
 
 class Profile extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class Profile extends Component {
   }
   
   componentWillMount() {
-    return axios.get(`${API_URL}/auth/users/me`)
+    return users.get(`/auth/users/me`)
       .then(res => {
         this.setState({ user: res.data })
       })
@@ -55,12 +54,20 @@ class Profile extends Component {
 
   render() {
     const { user } = this.state;
-    return (
-      <div className="profile">
-        <img src={user.image} alt="user" />
-        <h5>{user.username}</h5>
-      </div>
-    );
+    if (isAuthenticated() && user !== null) {
+      return (
+        <div className="container">
+          <div className="profile">
+            {/* <img src={user.image} alt="user" /> */}
+            <h5>{user.username}</h5>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="container">Loading...</div>
+      )
+    }
   }
 }
 

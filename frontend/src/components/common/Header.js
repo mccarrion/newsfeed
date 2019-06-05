@@ -67,7 +67,7 @@ class Header extends Component {
                   <PersonIcon />
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" href={`/@${user}`}>{user.username}</a>
+                  <a className="dropdown-item" href={`/${user.username}`}>{user.username}</a>
                   <a className="dropdown-item" href="/logout">Log Out</a>
                 </div>
               </div>
