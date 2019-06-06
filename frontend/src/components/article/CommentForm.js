@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/appConstants';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -30,7 +32,20 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <div></div>
+      <div className="container">
+        <h4>Comments</h4>
+        <CKEditor 
+          editor={ ClassicEditor }
+          data="<p>Share your ideas</p>"
+          onInit={ editor => {
+            console.log('Editor is working!', editor);
+          }}
+          onChange={ (event, editor) => {
+            const data = editor.getData();
+            console.log({ event, editor, data });
+          }}
+        />
+      </div>
     );
   }
 }
