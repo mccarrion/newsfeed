@@ -28,7 +28,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${user.username}`}>
+            to={`/${user.username}`}>
             Profile
           </Link>
         </li>
@@ -36,7 +36,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${user.username}/comments`}>
+            to={`/${user.username}/comments`}>
             Comments
           </Link>
         </li>
@@ -44,7 +44,7 @@ class Profile extends Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${user.username}/favorites`}>
+            to={`/${user.username}/favorites`}>
             Favorites
           </Link>
         </li>
