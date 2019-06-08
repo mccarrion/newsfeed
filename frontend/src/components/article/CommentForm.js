@@ -8,15 +8,15 @@ class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      comment: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    const value = event.target.value;
+  handleChange(event, editor) {
+    const value = editor.getData();
     const name = event.target.name;
     this.setState({
       [name]: value
@@ -26,7 +26,7 @@ class CommentForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post(`${API_URL}/comments/`, {
-      text: this.state.text
+      comment: this.state.comment
     })
   }
 
@@ -40,10 +40,14 @@ class CommentForm extends Component {
           onInit={ editor => {
             console.log('Editor is working!', editor);
           }}
-          onChange={ (event, editor) => {
-            const data = editor.getData();
-            console.log({ event, editor, data });
-          }}
+          name="comment"
+          type="text"
+          value={this.state.comment}
+          onChange={this.handleChange}
+          // onChange={ (event, editor) => {
+          //   const data = editor.getData();
+          //   console.log({ event, editor, data });
+          // }}
         />
       </div>
     );

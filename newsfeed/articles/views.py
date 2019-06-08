@@ -38,8 +38,13 @@ class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     lookup_fields = ('subject', 'slug')
 
 
-class CommentListView(generics.ListAPIView):
-    queryset = Comment.objects.all()
+class CommentListView(generics.ListCreateAPIView):
+    lookup_field = 'article__slug'
+    lookup_url_kwarg = 'article_slug'
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Comment.objects.select_related(
+        'article', 'article__author'
+    )
     serializer_class = CommentSerializer
 
 
