@@ -1,7 +1,11 @@
 from django.urls import include, path, re_path
-from rest_framework.routers import DefaultRouter
 
-from .views import ArticleDetailView, ArticleListView, SubjectListView
+from .views import (
+    ArticleDetailView, 
+    ArticleListView,
+    CommentListView, 
+    SubjectListView
+)
 
 
 #TODO: The detail url has to be on top or else it will be
@@ -12,4 +16,5 @@ urlpatterns = [
     path(r'', ArticleListView.as_view(), name='articles'),
     re_path(r'(?P<subject>.+)/(?P<slug>.+)/$', ArticleDetailView.as_view()),
     re_path(r'(?P<subject>.+)/$', SubjectListView.as_view()),
+    re_path(r'(?P<article_slug>[-\w]+)/comments/$', CommentListView.as_view()),
 ]
