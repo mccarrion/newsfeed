@@ -12,7 +12,11 @@ class ArticleListView(generics.ListAPIView):
     This API endpoint lists all articles ever created by order of date created.
     Only can perform GET HTTP requests on this endpoint.
     """
-    queryset = Article.objects.all().order_by("-date")
+    lookup_field = 'article__subject'
+    lookup_url_kwarg = 'article_subject'
+    queryset = Article.objects.select_related(
+        'article', 'article__subject'
+    ).order_by("-date")
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
