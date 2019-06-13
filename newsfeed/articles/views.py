@@ -12,33 +12,24 @@ class ArticleListView(generics.ListAPIView):
     This API endpoint lists all articles ever created by order of date created.
     Only can perform GET HTTP requests on this endpoint.
     """
-    lookup_field = 'article__subject'
-    lookup_url_kwarg = 'article_subject'
-    queryset = Article.objects.select_related(
-        'article', 'article__subject'
-    ).order_by("-date")
+    queryset = Article.objects.all().order_by("-date")
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
-
-    def get_queryset(self):
-        queryset = self.queryset
-
-        subject = self.request.query_params.get('subject', None)
-        if subject is not None:
-            queryset = queryset.filter(article__subject=subject)
-
+    
 
 class SubjectListView(generics.ListAPIView):
     """
     This API endpoint is designed to create a list of articles broken up by the
     subject that each article contains.
     """
+    lookup_url_kwarg = 'subject'
     serializer_class = ArticleSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
     def get_queryset(self):
-        subject = self.kwargs['subject']
-        return Article.objects.filter(subject=subject).order_by("-date")
-
+        subject = self.kwargs.get(self.lookup_url_kwarg)
+        queryset = Article.objects.filter(subject=subject)
+        return queryset
 
 class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     queryset = Article.objects.all()
