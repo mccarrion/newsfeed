@@ -20,6 +20,13 @@ class ArticleListView(generics.ListAPIView):
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
+    def get_queryset(self):
+        queryset = self.queryset
+
+        subject = self.request.query_params.get('subject', None)
+        if subject is not None:
+            queryset = queryset.filter(article__subject=subject)
+
 
 class SubjectListView(generics.ListAPIView):
     """
