@@ -14,7 +14,7 @@ from .views import (
 app_name = "articles"
 urlpatterns = [
     path(r'', ArticleListView.as_view(), name='articles'),
+    re_path(r'(?P<subject>.+)/(?P<slug>.+)/comments/$', CommentListView.as_view()),
     re_path(r'(?P<subject>.+)/(?P<slug>.+)/$', ArticleDetailView.as_view()),
     re_path(r'(?P<subject>.+)/$', SubjectListView.as_view()),
-    re_path(r'(?P<article_slug>[-\w]+)/comments/$', CommentListView.as_view()),
 ]
