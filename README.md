@@ -13,14 +13,14 @@ are.
 ## Table of Contents
 
 - [User Interface](#user-interface)
-- [Docker and Kubernetes](#docker-and-kubernetes)
+- [Heroku](#heroku)
+- [Docker](#docker)
 - [Authentication](#authentication)
 - [User Integration](#user-integration)
 - [Top Articles App](#top-articles-app)
-- [Migration to Flask](#migration-to-flask)
 - [Ideas for the Future](#ideas-for-the-future)
 
-### User Interface (UI):
+### User Interface:
 
 The UI follows principles gleaned from Thinkster's [realworld.io](https://github.com/gothinkster/realworld), the super-blog [Medium](https://medium.com/), and the news website [Axios](https://www.axios.com/).
 
@@ -68,19 +68,9 @@ From there, an API endpoint will be created that lists the top five to ten
 articles in order of quantity of hits. The JSON data will be rendered by React 
 as a part of the sidebar.
 
-### Migration to Flask
-
-The goal feature-set for the initial version of this News website software was:
-* One feed of news that could be broken up by subject
-* Author pages
-* User profiles
-* User commenting and favorites 
-
-Now that that feature-set is almost fully implemented, it is time to prepare to 
-migrate the backend from the Django web framework to the Flask web framework.
-
 ### Ideas for the Future
 
-A couple other things are: shift REST API's to JSON:API spec, develop a system 
-of signals for tracking how the app is being used, integrate a CMS, and so on, 
-and so on...
+* Adopt an API spec like OpenAPI or GraphQL. Leaning towards OpenAPI
+* Rewrite backend in Flask due to Flask's modularity, extensibility, and the fact that it maps better to the MVC design pattern
+* CMS for writers and editors
+* Signals and logging for how website is being used

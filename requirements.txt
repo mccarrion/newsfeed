@@ -3,7 +3,7 @@
 wheel==0.30.0
 
 # Latest Django Package
-django==2.1.7
+django>=2.1.9
 
 # Project Specific Apps
 easy-thumbnails==2.5
