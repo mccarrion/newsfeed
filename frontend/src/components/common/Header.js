@@ -62,29 +62,23 @@ class Header extends Component {
         if (isAuthenticated() && user !== null) {
           return (
             <ul className="navbar-nav">
-              <div className="btn-group">
-                <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <PersonIcon />
-                </button>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" href={`/${user.username}`}>{user.username}</a>
-                  <a className="dropdown-item" href="/logout">Log Out</a>
-                </div>
-              </div>
+              <li className="nav-item">
+                <a className="nav-link" href={`/${user.username}`}>{user.username}</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/logout">Log Out</a>
+              </li>
             </ul>
           );
         } else {
           return (
             <ul className="navbar-nav">
-              <div className="btn-group">
-                <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <PersonIcon />
-                </button>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" href="/signin">Sign In</a>
-                  <a className="dropdown-item" href="/signup">Sign Up</a>
-                </div>
-              </div>
+              <li className="nav-item">
+                <a className="nav-link" href="/signin">Sign In</a>
+              </li>
+              <li className="nav-item">
+                <a role="button" className="btn btn-outline-secondary" href="/signup">Sign Up</a>
+              </li>
             </ul>
           );
         }   
@@ -115,17 +109,18 @@ class Header extends Component {
       } else {
         return (
           <ul className="navbar-nav mr-auto">
-            <div className="btn-group">
-              <button type="button" className="btn bg-white text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Topics
-              </button>
-              <div className="dropdown-menu dropdown-menu-right">
-                <a className="dropdown-item" href="/tech">Tech</a>
-                <a className="dropdown-item" href="/business">Business</a>
-                <a className="dropdown-item" href="/world">World</a>
-                <a className="dropdown-item" href="/science">Science</a>
-              </div>
-            </div>
+            <li className="nav-item">
+              <a className="nav-link" href="/tech">Tech</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/business">Business</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/world">World</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/science">Science</a>
+            </li>
           </ul>
         );
       }
