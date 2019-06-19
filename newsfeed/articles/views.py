@@ -2,7 +2,7 @@ from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
-from .models import Article, Comment
+from .models import Article, Comment, Favorite
 from .serializers import ArticleSerializer, CommentSerializer
 from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
@@ -31,6 +31,7 @@ class SubjectListView(generics.ListAPIView):
         queryset = Article.objects.filter(subject=subject)
         return queryset
 
+
 class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -58,6 +59,12 @@ class CommentListView(generics.ListCreateAPIView):
 
 
 class FavoriteListView(generics.ListAPIView):
+    lookup_field = 'article__slug'
+    lookup_url_kwarg = 'slug'
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Favorite.objects.select_related(
+        'article'
+    )
     serializer_class = ArticleSerializer
 
     def get_queryset(self):
