@@ -3,7 +3,11 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from .models import Article, Comment, Favorite
-from .serializers import ArticleSerializer, CommentSerializer
+from .serializers import (
+    ArticleSerializer, 
+    CommentSerializer, 
+    FavoriteSerializer
+)
 from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
 
@@ -65,7 +69,7 @@ class FavoriteListView(generics.ListAPIView):
     queryset = Favorite.objects.select_related(
         'article'
     )
-    serializer_class = ArticleSerializer
+    serializer_class = FavoriteSerializer
 
     def get_queryset(self):
         return Article.objects.filter(favorite__favorited=True)
