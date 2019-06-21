@@ -74,7 +74,7 @@ class Header extends Component {
           return (
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="/signin">Sign In</a>
+                <a role="button" className="btn btn-outline-secondary" href="/signin">Sign In</a>
               </li>
               <li className="nav-item">
                 <a role="button" className="btn btn-outline-secondary" href="/signup">Sign Up</a>
