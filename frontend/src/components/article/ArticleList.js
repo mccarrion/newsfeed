@@ -21,6 +21,13 @@ class ArticleList extends Component {
     this.setState({
       current: Number(event.target.id)
     });
+    /*
+    this.setState({
+      return {
+        list: prev.list + 5
+      };
+    });
+    */
   }
 
   componentDidMount() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { PersonIcon } from 'react-octicons';
 import isAuthenticated, { users } from '../user/Auth';
 
 // TODO: Add a listener for change in window size
@@ -73,10 +72,10 @@ class Header extends Component {
         } else {
           return (
             <ul className="navbar-nav">
-              <li className="nav-item">
+              <li className="nav-item btn-item">
                 <a role="button" className="btn btn-outline-secondary" href="/signin">Sign In</a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item btn-item">
                 <a role="button" className="btn btn-outline-secondary" href="/signup">Sign Up</a>
               </li>
             </ul>

@@ -13,20 +13,28 @@ code {
     monospace;
 }
 
-.link {
-  color: rgb(0, 0, 0);
-}
-
 .article-preview {
   padding: 15px;
 }
 
-.navbar-padding{
-  padding-bottom: 15px;
+.btn-item {
+  padding-right: 5px;
 }
 
 .display-article {
   white-space: pre-line;
+}
+
+.footer-container {
+  border-top: 1px solid rgb(211, 211, 211);
+}
+
+.link {
+  color: rgb(0, 0, 0);
+}
+
+.navbar-padding{
+  padding-bottom: 15px;
 }
 
 .px-2 {
@@ -42,8 +50,4 @@ code {
   border-bottom: 1px solid rgb(211, 211, 211);
   position: relative;
   bottom: 0;
-}
-
-.footer-container {
-  border-top: 1px solid rgb(211, 211, 211);
 }
