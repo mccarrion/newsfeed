@@ -75,7 +75,7 @@ class Login extends Component {
 
                 <button
                   type="button submit"
-                  className="btn btn-block">
+                  className="btn btn-block btn-secondary">
                   Sign In
                 </button>
               </fieldset>

@@ -93,20 +93,20 @@ class ArticleList extends Component {
               }
             )
           }
-        </div>
-        <div className="container">
-          <div className="col-md-8 justify-content-md-center">
-            <div className="row justify-content-md-center">
-              <ul className="pagination">
-                {/* TODO: Switch from button to a for linking in the near future */}
-                <li className="page-item"><button className="page-link" href="#">Previous</button></li>
-                { renderPages }
-                <li className="page-item"><button className="page-link" href="#">Next</button></li>
-              </ul>
-            </div>
           </div>
+          <p></p>
+          <div className="container">
+            <div className="col-md-8 justify-content-md-center">
+              <div className="row justify-content-md-center">
+                  <button type="button submit" className="btn btn-block btn-secondary">
+                    Load More
+                  </button>
+              </div>
+            </div>
         </div>
+        <p></p>
       </div>
+
 
     )
   }
