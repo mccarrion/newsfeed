@@ -19,15 +19,10 @@ class ArticleList extends Component {
 
   handleClick(event) {
     this.setState({
-      current: Number(event.target.id)
-    });
-    /*
-    this.setState({
       return {
         list: prev.list + 5
       };
     });
-    */
   }
 
   componentDidMount() {
@@ -42,19 +37,6 @@ class ArticleList extends Component {
 
   render() {
     const { articles } = this.state;
-
-    const pages = [];
-    for (let i = 1; i <= Math.ceil(articles.length / 10); i++) {
-      pages.push(i);
-    }
-
-    const renderPages = pages.map(number => {
-      return (
-        <li className="page-item" key={number} id={number} onClick={this.handleClick}>
-          <button className="page-link" href="#">{number}</button>
-        </li>
-      );
-    });
 
     return (
       <div>
