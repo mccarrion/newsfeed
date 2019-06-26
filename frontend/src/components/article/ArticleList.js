@@ -18,10 +18,9 @@ class ArticleList extends Component {
   }
 
   handleClick(event) {
+    event.preventDefault();
     this.setState({
-      return {
-        list: prev.list + 5
-      };
+      list: this.state.list + 5
     });
   }
 
@@ -80,7 +79,10 @@ class ArticleList extends Component {
           <div className="container">
             <div className="col-md-8 justify-content-md-center">
               <div className="row justify-content-md-center">
-                  <button type="button submit" className="btn btn-block btn-secondary">
+                  <button 
+                    handleClick={this.handleClick.bind(this)}
+                    type="button submit" 
+                    className="btn btn-block btn-secondary">
                     Load More
                   </button>
               </div>
