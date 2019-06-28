@@ -1,8 +1,9 @@
+from hitcount.models import HitCount
 from rest_framework import serializers
 
 from .models import Article, Comment, Favorite
-from hitcount.models import HitCount
 from newsfeed.users.models import User
+from newsfeed.users.serializers import UserSerializer
 
 
 class AuthorField(serializers.RelatedField):
@@ -30,6 +31,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     hit_count = HitCountField(
     	queryset=HitCount.objects.all()
     )
+
     class Meta:
         model = Article
         fields = (
@@ -48,7 +50,6 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.RelatedField(read_only=True)
 
     class Meta:
         model = Comment
@@ -59,7 +60,7 @@ class CommentSerializer(serializers.ModelSerializer):
         user = self.context['user']
 
         return Comment.objects.create(
-            article=article, user=user, **validated_data
+            user=user, article=article, **validated_data
         )
 
     def update(self, instance, validated_data):

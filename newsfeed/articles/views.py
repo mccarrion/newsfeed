@@ -1,4 +1,5 @@
-from rest_framework import generics, viewsets
+from rest_framework import generics, status, viewsets
+from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
@@ -36,13 +37,13 @@ class SubjectListView(generics.ListAPIView):
         return queryset
 
 
-class ArticleDetailView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+class ArticleDetailView(generics.RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
     # TODO: needing multiple lookup fields supposedly does not follow
     # RESTful design principles. May need to find a better way of doing things
-    lookup_fields = ('subject', 'slug')
+    lookup_field = 'slug'
 
 
 class CommentListView(generics.ListCreateAPIView):
@@ -50,7 +51,7 @@ class CommentListView(generics.ListCreateAPIView):
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Comment.objects.select_related(
-        'article'
+        'article', 'user'
     )
     serializer_class = CommentSerializer
 
@@ -60,6 +61,21 @@ class CommentListView(generics.ListCreateAPIView):
         }
 
         return queryset.filter(**filters)
+    
+    def create(self, request, slug=None):
+        data = request.data.get('comment', {})
+        context = {'user': request.user}
+
+        try:
+            context['article'] = Article.objects.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('An article with this slug does not exist.')
+
+        serializer = self.serializer_class(data=data, context=context)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class FavoriteListView(generics.ListAPIView):
