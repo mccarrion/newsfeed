@@ -61,12 +61,13 @@ class Header extends Component {
         if (isAuthenticated() && user !== null) {
           return (
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href={`/${user.username}`}>{user.username}</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/logout">Log Out</a>
-              </li>
+              <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {user.username}
+              </button>
+              <div className="dropdown-menu dropdown-menu-right">
+                <a className="dropdown-item" href={`/${user.username}`}>Profile</a>
+                <a className="dropdown-item" href="/logout">Log Out</a>
+              </div>
             </ul>
           );
         } else {
