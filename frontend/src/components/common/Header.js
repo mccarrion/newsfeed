@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { PersonIcon } from 'react-octicons';
+
 import isAuthenticated, { users } from '../user/Auth';
 
 // TODO: Add a listener for change in window size
@@ -61,12 +63,14 @@ class Header extends Component {
         if (isAuthenticated() && user !== null) {
           return (
             <ul className="navbar-nav">
-              <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {user.username}
-              </button>
-              <div className="dropdown-menu dropdown-menu-right">
-                <a className="dropdown-item" href={`/${user.username}`}>Profile</a>
-                <a className="dropdown-item" href="/logout">Log Out</a>
+              <div className="btn-group">
+                <button type="button" className="btn bg-white text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {user.username}
+                </button>
+                <div className="dropdown-menu dropdown-menu-right">
+                  <a className="dropdown-item" href={`/${user.username}`}>Profile</a>
+                  <a className="dropdown-item" href="/logout">Log Out</a>
+                </div>
               </div>
             </ul>
           );

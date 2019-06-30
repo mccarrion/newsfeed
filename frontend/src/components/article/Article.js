@@ -15,7 +15,7 @@ class Article extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    return axios.get(`${API_URL}/articles/${params.subject}/${params.title}`)
+    return axios.get(`${API_URL}/articles/${params.title}`)
       .then(res => {
         this.setState({ article: res.data });
       })
