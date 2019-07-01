@@ -70,7 +70,7 @@ as a part of the sidebar.
 
 ### Ideas for the Future
 
-* Adopt an API spec like OpenAPI or GraphQL. Leaning towards OpenAPI
+* Adopt an API spec like JSON:API Spec, OpenAPI, or GraphQL. Leaning towards OpenAPI
 * Rewrite backend in Flask due to Flask's modularity, extensibility, and the fact that it maps better to the MVC design pattern
 * CMS for writers and editors
 * Signals and logging for how website is being used
