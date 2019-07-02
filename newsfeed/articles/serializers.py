@@ -54,7 +54,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('body', 'date', 'user', 'article')
-    
+    """
     def create(self, validated_data):
         article = self.context['article']
         user = self.context['user']
@@ -68,7 +68,7 @@ class CommentSerializer(serializers.ModelSerializer):
         instance.date = validated_data.get('date', instance.date)
         instance.save()
         return instance
-
+    """
 
 class FavoriteSerializer(serializers.ModelSerializer):
     user = serializers.RelatedField(source='user', read_only=True)

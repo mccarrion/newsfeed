@@ -2,6 +2,7 @@ from rest_framework import generics, status, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Article, Comment, Favorite
 from .serializers import (
@@ -11,7 +12,9 @@ from .serializers import (
 )
 from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
-
+# TODO: Completely alter the way articles are retrieved
+# there should be one article list view that is filtered based
+# on information passed in the requests
 class ArticleListView(generics.ListAPIView):
     """
     This API endpoint lists all articles ever created by order of date created.
@@ -38,13 +41,31 @@ class SubjectListView(generics.ListAPIView):
 
 
 class ArticleDetailView(generics.RetrieveAPIView):
+    """
+    This gets a single article based on the article's slug. Slugs will have a
+    constraint for uniqueness.
+    """
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
-    # TODO: needing multiple lookup fields supposedly does not follow
-    # RESTful design principles. May need to find a better way of doing things
     lookup_field = 'slug'
 
+
+class CommentsView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get(self, request):
+        comments = Comment.objects.filter(article=request.article.slug)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+    """
+    def post(self, request):
+        serializer = CommentSerializer(data=request.DATA)
+        if serializer.is_valid():
+            data = serializer.data
+            user = request.user
+            comment = Comment(user=user, )
+    """
 
 class CommentListView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'

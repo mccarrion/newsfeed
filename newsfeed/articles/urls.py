@@ -3,7 +3,8 @@ from django.urls import include, path, re_path
 from .views import (
     ArticleDetailView, 
     ArticleListView,
-    CommentListView, 
+    CommentListView,
+    CommentsView,
     SubjectListView
 )
 
@@ -14,7 +15,7 @@ from .views import (
 app_name = "articles"
 urlpatterns = [
     path(r'', ArticleListView.as_view(), name='articles'),
-    re_path(r'(?P<slug>.+)/comments/$', CommentListView.as_view()),
+    re_path(r'(?P<slug>.+)/comments/$', CommentsView.as_view()),
     re_path(r'(?P<slug>.+)/$', ArticleDetailView.as_view()),
     re_path(r'(?P<subject>.+)/$', SubjectListView.as_view()),
 ]
