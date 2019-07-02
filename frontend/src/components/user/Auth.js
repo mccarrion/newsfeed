@@ -1,6 +1,6 @@
 import axios from 'axios';
 import decode from 'jwt-decode';
-import { API_URL } from '../../constants/appConstants';
+import { API_URL } from '../../constants/General';
 
 export function isExpired(token) {
     const jwt = decode(token);

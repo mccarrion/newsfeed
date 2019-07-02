@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../constants/appConstants';
+import { API_URL } from '../../constants/General';
 import CKEditor from 'ckeditor4-react';
 
 class CommentForm extends Component {
