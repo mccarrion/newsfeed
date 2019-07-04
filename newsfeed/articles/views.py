@@ -53,19 +53,28 @@ class ArticleDetailView(generics.RetrieveAPIView):
 
 class CommentsView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    lookup_url_kwarg = 'slug'
 
-    def get(self, request):
+    def get(self, request, slug=None):
         comments = Comment.objects.filter(article=request.article.slug)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
-    """
+    
     def post(self, request):
         serializer = CommentSerializer(data=request.DATA)
         if serializer.is_valid():
             data = serializer.data
+            article = Article.objects.get(slug=slug)
             user = request.user
-            comment = Comment(user=user, )
-    """
+            comment = Comment(
+                body=data['body'], 
+                user=user, 
+                article=article
+            )
+            comment.save()
+            request.DATA['id'] = comment.pk
+            return Response(request.DATA, status=status.HTTP_201_CREATED)
+
 
 class CommentListView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
