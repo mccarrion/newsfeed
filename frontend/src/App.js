@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Article from './article/Article';
-import Footer from './common/Footer';
-import Header from './common/Header';
-import Home from './common/Home';
-import Privacy from './common/Privacy';
-import Terms from './common/Terms';
-import Logout from './user/Logout';
-import Profile from './user/Profile';
-import SignIn from './user/SignIn';
-import SignUp from './user/SignUp';
+import Article from './components/article/Article';
+import Footer from './components/common/Footer';
+import Header from './components/common/Header';
+import Home from './components/common/Home';
+import Privacy from './components/common/Privacy';
+import Terms from './components/common/Terms';
+import Logout from './components/user/Logout';
+import Profile from './components/user/Profile';
+import SignIn from './components/user/SignIn';
+import SignUp from './components/user/SignUp';
 
 class App extends Component {
   render() {

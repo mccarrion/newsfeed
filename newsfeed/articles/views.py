@@ -3,7 +3,6 @@ from rest_framework import generics, status, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .models import Article, Comment, Favorite
 from .serializers import (
@@ -52,20 +51,23 @@ class ArticleDetailView(generics.RetrieveAPIView):
     lookup_field = 'slug'
 
 
-class CommentsView(APIView):
+class CommentsView(generics.GenericAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     lookup_url_kwarg = 'slug'
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
 
     # GET comments filtered by article
     def get(self, request, slug=None):
-        article = Article.objects.get(slug=slug)
-        comments = Comment.objects.filter(article=article)
+        #article = Article.objects.get(slug=slug)
+        #comments = Comment.objects.filter(article=article)
+        comments = Comment.objects.all()
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     
     # POST a comment based on user and article
     def post(self, request, slug=None):
-        serializer = CommentSerializer(data=request.DATA)
+        serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.data
             article = Article.objects.get(slug=slug)
@@ -76,8 +78,8 @@ class CommentsView(APIView):
                 article=article
             )
             comment.save()
-            request.DATA['id'] = comment.pk
-            return Response(request.DATA, status=status.HTTP_201_CREATED)
+            request.data['id'] = comment.pk
+            return Response(request.data, status=status.HTTP_201_CREATED)
 
 
 class CommentListView(generics.ListCreateAPIView):
