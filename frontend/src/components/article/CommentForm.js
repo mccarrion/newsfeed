@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/General';
-import CKEditor from 'ckeditor4-react';
 
 class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: '<p>Share your ideas</p>'
+      comment: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,16 +14,18 @@ class CommentForm extends Component {
   }
 
   handleChange(event) {
+    const value = event.target.value;
+    const name = event.target.name;
     this.setState({
-      data: event.editor.getData()
+      [name]: value
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/comments/`, {
+    axios.post(`${API_URL}/comments`, {
       comment: this.state.data
-    })
+    });
   }
 
   render() {
@@ -32,10 +33,26 @@ class CommentForm extends Component {
       <div className="container">
         <h4>Comments</h4>
         {/* TODO: Change to quilljs -> https://github.com/quilljs/quill */}
-        <CKEditor 
-          data={this.state.data}
-          onChange={this.handleChange} 
-        />
+        <form onSubmit={this.handleSubmit.bind(this)}>
+              <fieldset>
+                <fieldset className="form-group">
+                  <textarea
+                    className="form-control"
+                    name="comment"
+                    type="text"
+                    placeholder="Share your ideas"
+                    value={this.state.comment}
+                    onChange={this.handleChange} />
+                </fieldset>
+
+                <button
+                  type="button submit"
+                  className="btn btn-secondary float-right">
+                  Submit
+                </button>
+              </fieldset>
+            </form>
+          <p></p>
       </div>
     );
   }

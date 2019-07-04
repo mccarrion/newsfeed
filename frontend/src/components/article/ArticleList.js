@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
-import { API_URL } from '../../constants/appConstants';
+import { API_URL } from '../../constants/General';
 
 class ArticleList extends Component {
   constructor(props) {

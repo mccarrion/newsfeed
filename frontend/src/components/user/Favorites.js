@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../constants/appConstants';
+import { API_URL } from '../../constants/General';
 
 class Favorites extends Component {
   constructor(props) {

@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework import generics, status, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -55,12 +56,15 @@ class CommentsView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     lookup_url_kwarg = 'slug'
 
+    # GET comments filtered by article
     def get(self, request, slug=None):
-        comments = Comment.objects.filter(article=request.article.slug)
+        article = Article.objects.get(slug=slug)
+        comments = Comment.objects.filter(article=article)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     
-    def post(self, request):
+    # POST a comment based on user and article
+    def post(self, request, slug=None):
         serializer = CommentSerializer(data=request.DATA)
         if serializer.is_valid():
             data = serializer.data

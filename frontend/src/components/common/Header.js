@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { PersonIcon } from 'react-octicons';
 
 import isAuthenticated, { users } from '../user/Auth';
 

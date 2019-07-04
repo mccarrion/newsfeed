@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { API_URL } from '../../constants/appConstants';
+import { API_URL } from '../../constants/General';
 import CommentForm from './CommentForm';
 
 class Article extends Component {
