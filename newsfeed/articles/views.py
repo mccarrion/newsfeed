@@ -52,10 +52,13 @@ class ArticleDetailView(generics.RetrieveAPIView):
 
 
 class CommentsView(generics.GenericAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Comment.objects.select_related(
+        'article', 'user'
+    )
     serializer_class = CommentSerializer
-    queryset = Comment.objects.all()
 
     # GET comments filtered by article
     def get(self, request, slug=None):

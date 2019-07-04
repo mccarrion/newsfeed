@@ -27,8 +27,8 @@ class App extends Component {
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route exact path="/:username" component={Profile} />
-          {/* <Router path="/@:username/comments" component={Comments} /> */}
-          {/* <Router path="/@:username/favorites" component={Favorites} /> */}
+          {/* <Router path="/:username/comments" component={Comments} /> */}
+          {/* <Router path="/:username/favorites" component={Favorites} /> */}
           {/* <Route exact path="/:subject" component={SubjectFeed} /> */}
           <Route path="/:subject/:title" component={Article} />
         </Switch>

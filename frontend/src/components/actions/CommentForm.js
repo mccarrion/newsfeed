@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/General';
+import isAuthenticated from '../user/Auth';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class CommentForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post(`${API_URL}/comments`, {
-      comment: this.state.data
+      comment: this.state.comment
     });
   }
 
@@ -34,25 +35,27 @@ class CommentForm extends Component {
         <h4>Comments</h4>
         {/* TODO: Change to quilljs -> https://github.com/quilljs/quill */}
         <form onSubmit={this.handleSubmit.bind(this)}>
-              <fieldset>
-                <fieldset className="form-group">
-                  <textarea
-                    className="form-control"
-                    name="comment"
-                    type="text"
-                    placeholder="Share your ideas"
-                    value={this.state.comment}
-                    onChange={this.handleChange} />
-                </fieldset>
-
-                <button
-                  type="button submit"
-                  className="btn btn-secondary float-right">
-                  Submit
-                </button>
+          <div className="container box">
+            <fieldset>
+              <fieldset className="form-group">
+                <textarea
+                  className="form-control"
+                  name="comment"
+                  type="text"
+                  placeholder="Share your ideas"
+                  value={this.state.comment}
+                  onChange={this.handleChange} />
               </fieldset>
-            </form>
-          <p></p>
+
+              <button
+                type="button submit"
+                className="btn btn-secondary float-right">
+                Submit
+              </button>
+            </fieldset>
+          </div>
+        </form>
+        <p></p>
       </div>
     );
   }
