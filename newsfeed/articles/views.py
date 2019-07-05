@@ -55,9 +55,10 @@ class CommentsView(generics.GenericAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Comment.objects.select_related(
-        'article', 'user'
-    )
+    queryset = Comment.objects.all()
+    #queryset = Comment.objects.select_related(
+    #    'article', 'user'
+    #)
     serializer_class = CommentSerializer
 
     # GET comments filtered by article
