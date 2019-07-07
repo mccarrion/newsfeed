@@ -1,17 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import App from './components/App';
+import configureStore from './store/configureStore';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+const store = configureStore()
 
-ReactDOM.render((
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" component={App} />
-    </Switch>
-  </BrowserRouter>
-), document.getElementById('root'));
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+)
