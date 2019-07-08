@@ -51,45 +51,10 @@ class ArticleDetailView(generics.RetrieveAPIView):
     lookup_field = 'slug'
 
 
-class MyCommentsView(generics.GenericAPIView):
-    lookup_field = 'article__slug'
-    lookup_url_kwarg = 'slug'
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Comment.objects.all()
-    #queryset = Comment.objects.select_related(
-    #    'article', 'user'
-    #)
-    serializer_class = CommentSerializer
-
-    # GET comments filtered by article
-    def get(self, request, slug=None):
-        #article = Article.objects.get(slug=slug)
-        #comments = Comment.objects.filter(article=article)
-        comments = Comment.objects.all()
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
-    
-    # POST a comment based on user and article
-    def post(self, request, slug=None):
-        if request.user == None:
-            request.user = 1
-        serializer = CommentSerializer(data=request.data)
-        print(request.data)
-        if serializer.is_valid():
-            data = serializer.data
-            article = Article.objects.get(slug=slug)
-            user = request.user
-            comment = Comment(
-                body=data['body'], 
-                user=user, 
-                article=article
-            )
-            comment.save()
-            request.data['id'] = comment.pk
-            return Response(request.data, status=status.HTTP_201_CREATED)
-
-
 class CommentsView(generics.ListCreateAPIView):
+    """
+    This is a controller for users to create, read, and alter comments.
+    """
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
