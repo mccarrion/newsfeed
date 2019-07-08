@@ -51,7 +51,7 @@ class ArticleDetailView(generics.RetrieveAPIView):
     lookup_field = 'slug'
 
 
-class CommentsView(generics.GenericAPIView):
+class MyCommentsView(generics.GenericAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -71,7 +71,10 @@ class CommentsView(generics.GenericAPIView):
     
     # POST a comment based on user and article
     def post(self, request, slug=None):
+        if request.user == None:
+            request.user = 1
         serializer = CommentSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             data = serializer.data
             article = Article.objects.get(slug=slug)
@@ -86,24 +89,26 @@ class CommentsView(generics.GenericAPIView):
             return Response(request.data, status=status.HTTP_201_CREATED)
 
 
-class CommentListView(generics.ListCreateAPIView):
+class CommentsView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Comment.objects.select_related(
-        'article', 'user'
-    )
+    queryset = Comment.objects.all()
+    #queryset = Comment.objects.select_related(
+    #    'article', 'user'
+    #)
+    #renderer_classes = (CommentJSONRenderer,)
     serializer_class = CommentSerializer
 
-    def filter_queryset(self, queryset):
-        filters = {
-            self.lookup_field: self.kwargs[self.lookup_url_kwarg]
-        }
+    #def filter_queryset(self, queryset):
+    #    filters = {
+    #        self.lookup_field: self.kwargs[self.lookup_url_kwarg]
+    #    }
 
-        return queryset.filter(**filters)
+    #    return queryset.filter(**filters)
     
     def create(self, request, slug=None):
-        data = request.data.get('comment', {})
+        data = request.data
         context = {'user': request.user}
 
         try:

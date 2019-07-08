@@ -50,11 +50,21 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
+
+    # TODO: Leads to a lot of information in comment JSON, may need to change
+    article = ArticleSerializer(required=False)
 
     class Meta:
         model = Comment
-        fields = ('body', 'date', 'user', 'article')
-    """
+        fields = (
+            'id', 
+            'body', 
+            'date', 
+            'user', 
+            'article'
+        )
+    
     def create(self, validated_data):
         article = self.context['article']
         user = self.context['user']
@@ -62,7 +72,8 @@ class CommentSerializer(serializers.ModelSerializer):
         return Comment.objects.create(
             user=user, article=article, **validated_data
         )
-
+    
+    """
     def update(self, instance, validated_data):
         instance.body = validated_data.get('body', instance.body)
         instance.date = validated_data.get('date', instance.date)
