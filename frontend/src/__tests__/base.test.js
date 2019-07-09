@@ -4,8 +4,8 @@
  */
 import React from 'react';
 import { mount } from 'enzyme';
-import SignUp from '../src/components/user/SignUp';
-import enzymeConfig from './enzymeConfig';
+import SignUp from '../components/user/SignUp';
+import enzymeConfig from '../enzymeConfig';
 
 // This is the base test to make sure the lights are on
 it('Should sum to 2', () => {
