@@ -36,7 +36,7 @@ class Article extends Component {
             <b>By {article.author}</b>
             <p>{moment(article.date).format('MMMM D, YYYY')}</p>
             <p>{article.body}</p>
-            <CommentForm />
+            <CommentForm article={article.slug} />
           </div>
         </div>
       </div>

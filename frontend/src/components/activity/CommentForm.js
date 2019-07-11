@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/General';
-import isAuthenticated from '../user/Auth';
+//import isAuthenticated from '../user/Auth';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -22,11 +22,19 @@ class CommentForm extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    axios.post(`${API_URL}/comments`, {
-      comment: this.state.comment
+    const data = {'body': this.state.comment};
+    const res = await fetch(`${API_URL}/articles/${this.props.article}/comments/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${localStorage.getItem('id_token')}`,
+      },
+      body: JSON.stringify(data),
     });
+
+    console.log(res);
   }
 
   render() {
