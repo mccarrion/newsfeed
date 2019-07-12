@@ -58,19 +58,18 @@ class CommentsView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Comment.objects.all()
-    #queryset = Comment.objects.select_related(
-    #    'article', 'user'
-    #)
-    #renderer_classes = (CommentJSONRenderer,)
+    # queryset = Comment.objects.all()
+    queryset = Comment.objects.select_related(
+       'article', 'user'
+    )
     serializer_class = CommentSerializer
 
-    #def filter_queryset(self, queryset):
-    #    filters = {
-    #        self.lookup_field: self.kwargs[self.lookup_url_kwarg]
-    #    }
+    def filter_queryset(self, queryset):
+       filters = {
+           self.lookup_field: self.kwargs[self.lookup_url_kwarg]
+       }
 
-    #    return queryset.filter(**filters)
+       return queryset.filter(**filters)
     
     def create(self, request, slug=None):
         data = request.data
