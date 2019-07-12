@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { API_URL } from '../../constants/General';
 import CommentForm from '../activity/CommentForm';
+import CommentList from '../activity/CommentList';
 
 class Article extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Article extends Component {
             <p>{moment(article.date).format('MMMM D, YYYY')}</p>
             <p>{article.body}</p>
             <CommentForm article={article.slug} />
+            <CommentList article={article.slug} />
           </div>
         </div>
       </div>

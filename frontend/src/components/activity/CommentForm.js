@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { API_URL } from '../../constants/General';
 //import isAuthenticated from '../user/Auth';
 
@@ -40,7 +39,7 @@ class CommentForm extends Component {
   render() {
     return (
       <div className="container">
-        <h4>Comments</h4>
+        <h4>Comment</h4>
         {/* TODO: Change to quilljs -> https://github.com/quilljs/quill */}
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="container box">

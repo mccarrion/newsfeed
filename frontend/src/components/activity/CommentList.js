@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { API_URL } from '../../constants/General';
 
 class ArticleComments extends Component {
@@ -12,7 +13,7 @@ class ArticleComments extends Component {
   }
 
   componentDidMount() {
-    return axios.get(`${API_URL}/comments/`)
+    return axios.get(`${API_URL}/articles/${this.props.article}/comments/`)
       .then(res => {
         this.setState({ comments: res.data });
       })
@@ -27,13 +28,14 @@ class ArticleComments extends Component {
     return (
       <div>
         <div className="container">
+          <u><h5>Comments</h5></u>
           {
             comments.map((comment, index) =>
-              <div className="col-md-8">
-                <div key={index}>
-                  <div className="row">
-                    <p>{comment.text}</p>
-                    <p>By {comment.author}</p>
+              <div key={index}>
+                <div className="row">
+                  <div className="col-md-12">
+                    <p><b>{comment.user.username}</b> on {moment(comment.date).format('MMMM D, YYYY')}
+                    <p>{comment.body}</p></p>
                   </div>
                 </div>
               </div>
