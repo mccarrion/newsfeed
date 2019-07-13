@@ -1,10 +1,10 @@
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/General';
 
-class SignUp extends Component {
+export class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +89,9 @@ class SignUp extends Component {
             </form>
             <p></p>
             <p>
-              Have an account? <Link to="/signin">Sign In</Link>
+              {/* TODO: Get Link to work correctly or replace it. */}
+              Have an account? Sign In
+              {/* Have an account? <Link to="/signin">Sign In</Link> */}
             </p>
           </div>
         </div>
