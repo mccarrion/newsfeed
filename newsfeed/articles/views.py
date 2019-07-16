@@ -92,9 +92,28 @@ class FavoriteListView(generics.ListAPIView):
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Favorite.objects.select_related(
-        'article'
+        'article', 'user'
     )
     serializer_class = FavoriteSerializer
 
-    def get_queryset(self):
-        return Article.objects.filter(favorite__favorited=True)
+    def filter_queryset(self):
+        filters = {
+            self.lookup_field: self.kwargs[self.lookup_url_kwarg]
+        }
+
+        return queryset.filter(**filters)
+    
+    def create(self, request, slug=None):
+        data = request.data
+        context = {'user': request.user}
+
+        try:
+            context['article'] = Article.objects.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('An article with this slug does not exist')
+        
+        serializer = self.serializer_class(data=data, context=context)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
