@@ -4,28 +4,15 @@ from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
-from .models import Article, Comment, Favorite
+from .models import Article, Comment
 from .serializers import (
     ArticleSerializer, 
-    CommentSerializer, 
-    FavoriteSerializer
+    CommentSerializer
 )
 from newsfeed.core.helpers import IsOwnerOrReadOnly, MultipleFieldLookupMixin
 
-# TODO: Completely alter the way articles are retrieved
-# there should be one article list view that is filtered based
-# on information passed in the requests
-class ArticleListView(generics.ListAPIView):
-    """
-    This API endpoint lists all articles ever created by order of date created.
-    Only can perform GET HTTP requests on this endpoint.
-    """
-    queryset = Article.objects.all().order_by("-date")
-    serializer_class = ArticleSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
-    
 
-class SubjectListView(generics.ListAPIView):
+class ArticleListView(generics.ListAPIView):
     """
     This API endpoint is designed to create a list of articles broken up by the
     subject that each article contains.
@@ -36,7 +23,13 @@ class SubjectListView(generics.ListAPIView):
 
     def get_queryset(self):
         subject = self.kwargs.get(self.lookup_url_kwarg)
-        queryset = Article.objects.filter(subject=subject)
+        
+        # Control flow for handling subject in path
+        if subject == None:
+            queryset = Article.objects.all().order_by("-date")
+        else:
+            queryset = Article.objects.filter(subject=subject)
+        
         return queryset
 
 
@@ -58,7 +51,6 @@ class CommentsView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    # queryset = Comment.objects.all()
     queryset = Comment.objects.select_related(
        'article', 'user'
     )
@@ -87,33 +79,33 @@ class CommentsView(generics.ListCreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class FavoriteListView(generics.ListAPIView):
+class FavoritesView(generics.GenericAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Favorite.objects.select_related(
-        'article', 'user'
-    )
-    serializer_class = FavoriteSerializer
+    queryset = Article.objects.all()
+    # queryset = Article.objects.select_related(
+    #     'article', 'user'
+    # )
+    serializer_class = ArticleSerializer
 
-    def filter_queryset(self):
-        filters = {
-            self.lookup_field: self.kwargs[self.lookup_url_kwarg]
-        }
+    # def filter_queryset(self):
+    #     filters = {
+    #         self.lookup_field: self.kwargs[self.lookup_url_kwarg]
+    #     }
 
-        return queryset.filter(**filters)
+    #     return queryset.filter(**filters)
     
-    def create(self, request, slug=None):
-        data = request.data
-        context = {'user': request.user}
+    def put(self, request, slug=None):
+        user = self.request.user
 
         try:
-            context['article'] = Article.objects.get(slug=slug)
+            article = Article.objects.get(slug=slug)
         except Article.DoesNotExist:
-            raise NotFound('An article with this slug does not exist')
+            raise NotFound('Article with this slug not found')
         
-        serializer = self.serializer_class(data=data, context=context)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        user.favorite(article)
+
+        serializer = self.serializer_class(article, context=serializer_context)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)

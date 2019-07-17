@@ -85,14 +85,3 @@ class Comment(models.Model):
     date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-
-
-class Favorite(models.Model):
-    """
-    This is a model for tracking articles that have been favorited by 
-    various users. The tracking will be done through a boolean where when the 
-    article is favorited, the boolean will be marked true.
-    """
-    favorited = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)

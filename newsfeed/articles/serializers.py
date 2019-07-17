@@ -1,7 +1,7 @@
 from hitcount.models import HitCount
 from rest_framework import serializers
 
-from .models import Article, Comment, Favorite
+from .models import Article, Comment
 from newsfeed.users.models import User
 from newsfeed.users.serializers import UserSerializer
 
@@ -80,23 +80,3 @@ class CommentSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     """
-
-class FavoriteSerializer(serializers.ModelSerializer):
-    user = serializers.RelatedField(source='user', read_only=True)
-
-    class Meta:
-        model = Favorite
-        fields = ('favorited', 'user', 'article')
-
-    def create(self, validated_data):
-        article = self.context['article']
-        user = self.context['user']
-
-        return Favorite.objects.create(
-            article=article, user=user, **validated_data
-        )
-
-    def update(self, instance, validated_data):
-        instance.favorited = validated_data.get('favorited', instance.favorited)
-        instance.save()
-        return instance
