@@ -8,8 +8,7 @@ from django.urls import reverse
 
 
 # TODO: Work on defining varying levels of authentication.
-# Figure out how the abstract model relates the the API library that
-# is used for exposing the User authentication endpoints
+# Figure out how user data is exposed from User model
 class User(AbstractUser):
     """
     This is an extendable model that will represent users across the website.
