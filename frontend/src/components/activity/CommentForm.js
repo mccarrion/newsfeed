@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_URL } from '../../constants/General';
+import { API_URL } from '../../constants';
 //import isAuthenticated from '../user/Auth';
 
 class CommentForm extends Component {

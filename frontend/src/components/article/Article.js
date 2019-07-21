@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { API_URL } from '../../constants/General';
+import { API_URL } from '../../constants';
 import CommentForm from '../activity/CommentForm';
 import CommentList from '../activity/CommentList';
 

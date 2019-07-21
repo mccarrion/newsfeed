@@ -2,7 +2,7 @@ import { withRouter } from 'react-router';
 //import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../constants/General';
+import { API_URL } from '../../constants';
 
 export class SignUp extends Component {
   constructor(props) {

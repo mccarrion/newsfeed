@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { API_URL } from '../../constants/General';
+import { API_URL } from '../../constants';
 
 class WhatsNews extends Component {
   constructor(props) {

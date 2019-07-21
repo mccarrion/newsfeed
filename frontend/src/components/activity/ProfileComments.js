@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../constants/General';
+import { API_URL } from '../../constants';
 
 class Comments extends Component {
   constructor(props) {
