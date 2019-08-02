@@ -1,10 +1,18 @@
 import axios from 'axios';
 import { API_URL } from '../../constants';
-import { SIGNIN } from './actionTypes';
+import * as types from './actionTypes';
 
-export const userSignIn = userData => dispatch => {
-	axios.post(`${API_URL}/auth/jwt/create/`, userData)
-		.then( res => {
-			localStorage.setItem('id_token', res.data.access);
+export function signinSuccess() {
+	return { type: types.SIGNIN }
+}
+
+export function userSignIn(data) {
+	return function(dispatch) {
+		return sessionApi.login(data).then(response => {
+			localStorage.setItem('id_token', response.data.access);
+			dispatch(signinSuccess());
+		}).catch(error => {
+			throw(error);
 		});
+	};
 }
