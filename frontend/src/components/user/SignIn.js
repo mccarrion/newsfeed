@@ -7,9 +7,8 @@ import { API_URL } from '../../constants';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: ''
+    this.state = { 
+      data: {username: '', password: ''}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,23 +16,25 @@ class Login extends Component {
   }
 
   handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
+    const data = this.state.data;
+    const field = event.target.name;
+    data[field] = event.target.value;
+    return this.setState({data: data});
   }
 
   async handleSubmit(event) {
     event.preventDefault();
+    this.props.actions.userSignIn(this.state.data);
+    /*
     const res = await axios.post(`${API_URL}/auth/jwt/create/`, {
         username: this.state.username,
         password: this.state.password
       });
-    this.handleResponse(res);
+    */
+    //this.handleResponse(res);
     //console.log(res.data.access);
   }
-
+  /*
   handleResponse = (res) => {
     if (res.status === 200) {
       localStorage.setItem('id_token', res.data.access);
@@ -44,6 +45,7 @@ class Login extends Component {
       console.log(axios.defaults.headers.common['Authorization']);
     }
   }
+  */
 
   render() {
     return (
