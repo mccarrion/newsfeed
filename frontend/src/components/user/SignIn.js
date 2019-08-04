@@ -1,8 +1,8 @@
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../constants';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authActions from '../../actions/authActions';
 
 class Login extends Component {
   constructor(props) {
@@ -22,30 +22,10 @@ class Login extends Component {
     return this.setState({data: data});
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     this.props.actions.userSignIn(this.state.data);
-    /*
-    const res = await axios.post(`${API_URL}/auth/jwt/create/`, {
-        username: this.state.username,
-        password: this.state.password
-      });
-    */
-    //this.handleResponse(res);
-    //console.log(res.data.access);
   }
-  /*
-  handleResponse = (res) => {
-    if (res.status === 200) {
-      localStorage.setItem('id_token', res.data.access);
-      // TODO: Figure out why this approach did not work for authentication
-      // axios.defaults.headers.common['Authorization'] = `JWT ${localStorage.getItem('id_token')}`;
-      //this.props.history.push('/');
-      console.log('Hello');
-      console.log(axios.defaults.headers.common['Authorization']);
-    }
-  }
-  */
 
   render() {
     return (
@@ -61,7 +41,7 @@ class Login extends Component {
                     name="username"
                     type="text"
                     placeholder="Username"
-                    value={this.state.username}
+                    value={this.state.data.username}
                     onChange={this.handleChange} />
                 </fieldset>
 
@@ -71,7 +51,7 @@ class Login extends Component {
                     name="password"
                     type="password"
                     placeholder="Password"
-                    value={this.state.password}
+                    value={this.state.data.password}
                     onChange={this.handleChange} />
                 </fieldset>
 
@@ -94,4 +74,10 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(authActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);
