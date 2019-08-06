@@ -10,7 +10,7 @@ export function isExpired(token) {
     return false;
 };
 
-export default function isAuthenticated() {
+export function isAuthenticated() {
     // Getting token from localstorage
     const token = localStorage.getItem('id_token');
     return !!token && !isExpired(token);
@@ -24,3 +24,19 @@ export const users = axios.create({
       'Content-Type': 'application/json'
     }
 });
+
+export default class fetchSignIn {
+    static login(data) {
+        const req = fetch(`${API_URL}/auth/jwt/create/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            type:'cors',
+            body: JSON.stringify(data),
+        })
+        .then(res => {
+            return res.json();
+        });
+    }
+}
