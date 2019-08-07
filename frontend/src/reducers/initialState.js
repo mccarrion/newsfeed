@@ -1,7 +1,3 @@
 export default {
-    auth: {
-        isAuthenticated: false,
-        user: {},
-        loading: false
-    }
+    auth: !!localStorage.getItem('id_token')
 }
