@@ -16,3 +16,8 @@ export function userSignIn(data) {
 		});
 	};
 }
+
+export function userSignOut() {
+	localStorage.removeItem('id_token');
+	return {type: types.SIGNOUT}
+}
