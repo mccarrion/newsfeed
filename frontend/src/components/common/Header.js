@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
 import isAuthenticated, { users } from '../user/Auth';
@@ -12,6 +12,8 @@ class Header extends Component {
       user: null,
       error: false
     };
+
+    this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +29,11 @@ class Header extends Component {
   // This removes the JWT token from localStorage, thus logging out the user
   removeToken() {
     localStorage.removeItem('id_token');
+  }
+
+  signOut(event) {
+    event.preventDefault();
+    this.props.actions.signOut();
   }
 
   render() {
