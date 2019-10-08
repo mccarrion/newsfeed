@@ -47,32 +47,29 @@ class ArticleList extends Component {
           </div>
           { 
             articles.map((article, index) => {
-              if (!article.whats_news)
-                return (
-                  <div className="col-md-8">
-                    <div key={index}>
-                      <div className="container article-preview">
-                        <div className="row">
-                          <div className="col-md-3">
-                            <Link to={`/${article.subject}/${article.slug}`} className="link">
-                              <img src={`${article.thumbnail}`} alt="thumbnail" />
-                            </Link>
-                          </div>
-                          <div className="col-md-9">
-                            <Link to={`/${article.subject}/${article.slug}`} className="link">
-                              <h3>{article.title}</h3>
-                            </Link>
-                            <p>{article.subtitle}</p>
-                            <p>By {article.author} on {moment(article.date).format('MMMM D')}</p>
-                          </div>
+              return (
+                <div className="col-md-8">
+                  <div key={index}>
+                    <div className="container article-preview">
+                      <div className="row">
+                        <div className="col-md-3">
+                          <Link to={`/${article.subject}/${article.slug}`} className="link">
+                            <img src={`${article.thumbnail}`} alt="thumbnail" />
+                          </Link>
+                        </div>
+                        <div className="col-md-9">
+                          <Link to={`/${article.subject}/${article.slug}`} className="link">
+                            <h3>{article.title}</h3>
+                          </Link>
+                          <p>{article.subtitle}</p>
+                          <p>By {article.author} on {moment(article.date).format('MMMM D')}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                );
-                return <span></span>;
-              }
-            )
+                </div>
+              );
+            })
           }
           </div>
           <p></p>
