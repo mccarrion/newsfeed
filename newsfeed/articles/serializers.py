@@ -44,7 +44,6 @@ class ArticleSerializer(serializers.ModelSerializer):
             'body', 
             'date', 
             'slug', 
-            'whats_news',
             'subject'
         )
 
