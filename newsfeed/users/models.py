@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
-#from newsfeed.articles.models import Article
+# from newsfeed.articles.models import Article
 
 
 # TODO: Work on defining varying levels of authentication.
@@ -19,7 +19,7 @@ class User(AbstractUser):
         editable=False,
         unique=True
     )
-    #favorites = models.ManyToManyField(Article)
+    favorites = models.ManyToManyField('articles.Article')
 
     def __str__(self):
         return self.username
@@ -27,8 +27,8 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
 
-    # def favorite(self, article):
-    #     if article in self.favorites:
-    #         self.favorites.remove(article)
-    #     else:
-    #         self.favorites.add(article)
+    def favorite(self, article):
+        if self.favorites.filter(pk=article.pk).exists():
+            self.favorites.remove(article)
+        else:
+            self.favorites.add(article)

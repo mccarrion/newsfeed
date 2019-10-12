@@ -5,8 +5,6 @@ from django.utils.text import slugify
 from easy_thumbnails.fields import ThumbnailerImageField
 from hitcount.models import HitCount, HitCountMixin
 
-from newsfeed.users.models import User
-
 
 class Article(models.Model, HitCountMixin):
     """
@@ -23,7 +21,7 @@ class Article(models.Model, HitCountMixin):
         resize_source=dict(size=(150, 150), crop="True"), 
         max_length=255
     )
-    author = models.ManyToManyField(User)
+    author = models.ManyToManyField('users.User')
     image = models.ImageField(
         upload_to='articles', 
         blank=True,
@@ -78,5 +76,5 @@ class Comment(models.Model):
     """
     body = models.TextField(max_length=1024)
     date = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    article = models.ForeignKey('articles.Article', on_delete=models.CASCADE)
