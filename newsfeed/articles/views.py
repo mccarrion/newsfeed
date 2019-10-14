@@ -84,20 +84,11 @@ class FavoritesView(generics.GenericAPIView):
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Article.objects.all()
-    # queryset = Article.objects.select_related(
-    #     'article', 'user'
-    # )
     serializer_class = ArticleSerializer
-
-    # def filter_queryset(self):
-    #     filters = {
-    #         self.lookup_field: self.kwargs[self.lookup_url_kwarg]
-    #     }
-
-    #     return queryset.filter(**filters)
     
     def put(self, request, slug=None):
         user = self.request.user
+        serializer_context = {'request': request}
 
         try:
             article = Article.objects.get(slug=slug)
@@ -108,4 +99,4 @@ class FavoritesView(generics.GenericAPIView):
 
         serializer = self.serializer_class(article, context=serializer_context)
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_200_OK)
