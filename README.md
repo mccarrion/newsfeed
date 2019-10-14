@@ -5,26 +5,20 @@ This is a newsfeed with a top articles app. The frontend is written in
 JavaScript using React and Redux libraries. The backend is implemented with 
 Python and Django.  
 
-## Table of Contents
+### Core Features
 
-- [Running the App](#running-the-app)
-- [Users](#users)
-- [Articles](#top-articles-app)
-- [Acknowledgement](#acknowledgement)
+The core features of this app is a scrollable list of articles descending by 
+time. This list of articles can be filtered by subject. User accounts can be 
+created allowing users to comment and favorite on articles. Users can also see
+all of their own comments and favorites in their user profile. There is a top 
+5-10 articles list on the sidebar.
 
-### Running the App
+Some of these features are still a work in progress, but are close to being 
+taken to completion.
 
-The app is run locally through Docker containers. In production the app runs
-on Heroku Dynos.
+### Credit
 
-### Users
-
-Users are authenticated using JWT tokens. Once a user is authenticated, they are
-authorized to make comments, favorite, and access their user profile.
-
-### Acknowledgement
-
-Thank you to Thinkster for providing a solid example of how to implement a feed
-of articles. Also, thank you to React, Redux, Django, Stackoverflow, et al. for
-providing free and open resources that make independent projects like this 
-possible.
+I want to specifically acknowledge Thinkster and their 
+[realworld.io](https://github.com/gothinkster/realworld) project. It provided 
+an excellent path on how to create and connect the components of a news or blog
+website.
