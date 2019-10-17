@@ -4,6 +4,7 @@ import moment from 'moment';
 import { API_URL } from '../../constants';
 import CommentForm from '../activity/CommentForm';
 import CommentList from '../activity/CommentList';
+import Favorited from '../activity/Favorited';
 
 class Article extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Article extends Component {
             <b>By {article.author}</b>
             <p>{moment(article.date).format('MMMM D, YYYY')}</p>
             <p>{article.body}</p>
+            <Favorited article={article.slug} />
             <CommentForm article={article.slug} />
             <CommentList article={article.slug} />
           </div>
