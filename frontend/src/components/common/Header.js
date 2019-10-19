@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
-import isAuthenticated, { users } from '../user/Auth';
+import { isAuthenticated, users } from '../user/Auth';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize
