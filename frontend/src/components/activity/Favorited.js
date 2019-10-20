@@ -21,8 +21,20 @@ class Favorited extends Component {
   }
 
   render() {
+    const { favorited } = this.state;
+    const BookmarkView = props => {
+      if (favorited === true) {
+        return (
+          <div>{/* Bookmarked, use font-awesome-react */}</div>
+        );
+      } else {
+        return (
+          <div>{/* Not bookmarked */}</div>
+        );
+      }
+    }
     return (
-      <div></div>
+      <div><BookmarkView /></div>
     )
   }
 }
