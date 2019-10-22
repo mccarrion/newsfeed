@@ -28,9 +28,8 @@ class ArticleSerializer(serializers.ModelSerializer):
     author = AuthorField(
     	queryset=User.objects.all(), many=True, required=True
     )
-    hit_count = HitCountField(
-    	queryset=HitCount.objects.all()
-    )
+    hit_count = HitCountField(queryset=HitCount.objects.all())
+    favorited = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
@@ -44,7 +43,8 @@ class ArticleSerializer(serializers.ModelSerializer):
             'body', 
             'date', 
             'slug', 
-            'subject'
+            'subject',
+            'favorited',
         )
 
 
