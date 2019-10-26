@@ -27,6 +27,9 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
 
+    def is_favorited(self, article):
+        return self.favorites.filter(pk=article.pk).exists()
+
     def favorite(self, article):
         if self.favorites.filter(pk=article.pk).exists():
             self.favorites.remove(article)

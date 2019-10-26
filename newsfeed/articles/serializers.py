@@ -46,6 +46,17 @@ class ArticleSerializer(serializers.ModelSerializer):
             'subject',
             'favorited',
         )
+    
+    def get_favorited(self, instance):
+        # user = self.context['user']
+        request = self.context.get('request', None)
+
+        if request is None:
+            return False
+        # elif not request.user.is_authenticated():
+        #     return False
+        else:
+            return request.user.is_favorited(instance)
 
 
 class CommentSerializer(serializers.ModelSerializer):
