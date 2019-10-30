@@ -48,7 +48,6 @@ class ArticleSerializer(serializers.ModelSerializer):
         )
     
     def get_favorited(self, instance):
-        # user = self.context['user']
         request = self.context.get('request', None)
 
         if request is None:

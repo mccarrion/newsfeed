@@ -6,18 +6,22 @@ class Favorited extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorited: false,
+      favorited: this.props.article.favorited,
     };
+
+    this.handleFavorited = this.handleFavorited.bind(this);
   }
 
-  componentDidMount() {
-    return axios.get(`${API_URL}/articles/${this.props.article}/favorites/`)
-      .then(res => {
-        this.setState({ favorted: res.data});
-      })
-      .catch(error => {
-        console.log('Error while fetching!', error);
-      });
+  handleFavorited(event) {
+    event.preventDefault();
+    const res = await fetch(`${API_URL}/articles/${this.props.article}/favorited/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${localStorage.getItem('id_token')}`,
+      }
+    })
+    
   }
 
   render() {
