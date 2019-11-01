@@ -50,12 +50,11 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_favorited(self, instance):
         request = self.context.get('request', None)
 
-        if request is None:
-            return False
-        # elif not request.user.is_authenticated():
-        #     return False
-        else:
+        try:
             return request.user.is_favorited(instance)
+        except:
+            return False
+
 
 
 class CommentSerializer(serializers.ModelSerializer):
