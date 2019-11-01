@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { API_URL } from '../../constants';
 
 class Favorited extends Component {
@@ -12,9 +11,9 @@ class Favorited extends Component {
     this.handleFavorited = this.handleFavorited.bind(this);
   }
 
-  handleFavorited(event) {
+  async handleFavorited(event) {
     event.preventDefault();
-    const res = await fetch(`${API_URL}/articles/${this.props.article}/favorited/`, {
+    await fetch(`${API_URL}/articles/${this.props.article}/favorited/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -29,11 +28,15 @@ class Favorited extends Component {
     const BookmarkView = props => {
       if (favorited === true) {
         return (
-          <div>{/* Bookmarked, use font-awesome-react */}</div>
+          <button onClick={this.handleFavorited}>
+            {/* Bookmarked, use font-awesome-react */}
+          </button>
         );
       } else {
         return (
-          <div>{/* Not bookmarked */}</div>
+          <button onClick={this.handleFavorited}>
+            {/* Not bookmarked */}
+          </button>
         );
       }
     }
