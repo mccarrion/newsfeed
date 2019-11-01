@@ -36,9 +36,9 @@ class Article extends Component {
             <h1>{article.title}</h1>
             <img className="img-fluid" src={`${article.image}`} alt="headline" />
             <b>By {article.author}</b>
+            <Favorited article={article.slug} />
             <p>{moment(article.date).format('MMMM D, YYYY')}</p>
             <p>{article.body}</p>
-            <Favorited article={article.slug} />
             <CommentForm article={article.slug} />
             <CommentList article={article.slug} />
           </div>

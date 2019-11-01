@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { API_URL } from '../../constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 class Favorited extends Component {
   constructor(props) {
@@ -19,8 +21,7 @@ class Favorited extends Component {
         'Content-Type': 'application/json',
         Authorization: `JWT ${localStorage.getItem('id_token')}`,
       }
-    })
-    
+    })  
   }
 
   render() {
@@ -28,14 +29,18 @@ class Favorited extends Component {
     const BookmarkView = props => {
       if (favorited === true) {
         return (
-          <button onClick={this.handleFavorited}>
-            {/* Bookmarked, use font-awesome-react */}
+          <button 
+            className="btn btn-flat float-right"
+            onClick={this.handleFavorited}>
+            <FontAwesomeIcon icon={faBookmark} />
           </button>
         );
       } else {
         return (
-          <button onClick={this.handleFavorited}>
-            {/* Not bookmarked */}
+          <button 
+            className="btn btn-flat float-right"
+            onClick={this.handleFavorited}>
+            <FontAwesomeIcon icon={faBookmark} />
           </button>
         );
       }
