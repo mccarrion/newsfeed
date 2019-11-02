@@ -16,6 +16,20 @@ all of their own comments and favorites in their user profile. There is a top
 Some of these features are still a work in progress, but are close to being 
 taken to completion.
 
+### Goals for this application
+
+[x] Comments
+[x] Users
+[x] Articles
+[] Redux for saving global state -> specifically user and subjects
+[] Favorites
+[x] REST API's
+[x] JWT
+[] 50% minimum code coverage between unit and integration tests -> 70% or greater target
+
+A content management system would be ideal, but even integrating an open-source
+one increases scope too much.
+
 ### Credit
 
 I want to specifically acknowledge Thinkster and their 
