@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API_URL } from '../../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 class Favorited extends Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class Favorited extends Component {
           <button 
             className="btn btn-flat float-right"
             onClick={this.handleFavorited}>
-            <FontAwesomeIcon icon={faBookmark} />
+            <FontAwesomeIcon icon={['fas','bookmark']} />
           </button>
         );
       } else {
@@ -40,7 +39,7 @@ class Favorited extends Component {
           <button 
             className="btn btn-flat float-right"
             onClick={this.handleFavorited}>
-            <FontAwesomeIcon icon={faBookmark} />
+            <FontAwesomeIcon icon={['far','bookmark']} />
           </button>
         );
       }

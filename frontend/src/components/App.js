@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {far} from '@fortawesome/free-regular-svg-icons';
 import Article from './article/Article';
 import Footer from './common/Footer';
 import Header from './common/Header';
@@ -10,6 +12,10 @@ import Logout from './user/Logout';
 import Profile from './user/Profile';
 import SignIn from './user/SignIn';
 import SignUp from './user/SignUp';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+library.add(far);
+library.add(fas);
 
 class App extends Component {
   render() {
