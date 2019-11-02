@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 
 export default function authReducer(state = initialState.auth, action) {
   switch(action.type) {
-    case types.SIGNIN:
+    case types.SIGNIN_SUCCESS:
       browserHistory.push('/')
       return !!localStorage.getItem('id_token')
     default:

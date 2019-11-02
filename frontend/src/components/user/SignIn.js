@@ -8,7 +8,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      data: {username: '', password: ''}
+      credentials: {username: '', password: ''}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,15 +16,15 @@ class Login extends Component {
   }
 
   handleChange(event) {
-    const data = this.state.data;
+    const credentials = this.state.credentials;
     const field = event.target.name;
-    data[field] = event.target.value;
-    return this.setState({data: data});
+    credentials[field] = event.target.value;
+    return this.setState({credentials: credentials});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.actions.userSignIn(this.state.data);
+    this.props.actions.userSignIn(this.state.credentials);
   }
 
   render() {
@@ -41,7 +41,7 @@ class Login extends Component {
                     name="username"
                     type="text"
                     placeholder="Username"
-                    value={this.state.data.username}
+                    value={this.state.credentials.username}
                     onChange={this.handleChange} />
                 </fieldset>
 
@@ -51,7 +51,7 @@ class Login extends Component {
                     name="password"
                     type="password"
                     placeholder="Password"
-                    value={this.state.data.password}
+                    value={this.state.credentials.password}
                     onChange={this.handleChange} />
                 </fieldset>
 

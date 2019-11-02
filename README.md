@@ -21,11 +21,11 @@ taken to completion.
 - [x] Comments
 - [x] Users
 - [x] Articles
-- [] Redux for saving global state -> specifically user and subjects
-- [] Favorites
+- [ ] Redux for saving global state -> specifically user and subjects
+- [ ] Favorites
 - [x] REST API's
 - [x] JWT
-- [] 50% minimum code coverage between unit and integration tests -> 70% or greater target
+- [ ] 50% minimum code coverage between unit and integration tests -> 70% or greater target
 
 A content management system would be ideal, but even integrating an open-source
 one increases scope too much.

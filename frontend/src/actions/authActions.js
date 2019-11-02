@@ -1,24 +1,19 @@
-import axios from 'axios';
-import { API_URL } from '../constants';
 import * as types from './actionTypes';
-import sessionApi from './sessionApi';
+import AuthApi from './authApi';
 
 export function signinSuccess() {
-	return { type: types.SIGNIN }
+	return { type: types.SIGNIN_SUCCESS }
 }
 
-export function userSignIn(data) {
-	return function(dispatch) {
-		return sessionApi.login(data).then(response => {
-			localStorage.setItem('id_token', response.data.access);
-			dispatch(signinSuccess());
-		}).catch(error => {
-			throw(error);
-		});
+export function userSignIn(credentials) {
+	return async function(dispatch) {
+		const request = await AuthApi.login(credentials);
+		localStorage.setItem('id_token', request.access);
+		dispatch(signinSuccess());
 	};
 }
 
 export function userSignOut() {
 	localStorage.removeItem('id_token');
-	return {type: types.SIGNOUT}
+	return {type: types.SIGNOUT_SUCCESS}
 }
