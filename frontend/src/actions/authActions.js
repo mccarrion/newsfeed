@@ -1,19 +1,25 @@
 import * as types from './actionTypes';
 import AuthApi from './authApi';
 
-export function signinSuccess() {
+export function signInSuccess() {
 	return { type: types.SIGNIN_SUCCESS }
+}
+
+export function signOutSuccess() {
+	return { type: types.SIGNOUT_SUCCESS }
 }
 
 export function userSignIn(credentials) {
 	return async function(dispatch) {
 		const request = await AuthApi.login(credentials);
 		localStorage.setItem('id_token', request.access);
-		dispatch(signinSuccess());
+		dispatch(signInSuccess());
 	};
 }
 
 export function userSignOut() {
-	localStorage.removeItem('id_token');
-	return {type: types.SIGNOUT_SUCCESS}
+	return function(dispatch) {
+		localStorage.removeItem('id_token');
+		dispatch(signOutSuccess());
+	};
 }
