@@ -4,7 +4,7 @@ from .views import (
     ArticleDetailView, 
     ArticleListView,
     CommentsView,
-    FavoritesView
+    FavoritedView
 )
 
 
@@ -14,6 +14,6 @@ urlpatterns = [
     path(r'', ArticleListView.as_view(), name='articles'),
     re_path(r'feed/(?P<subject>.+)/$', ArticleListView.as_view()),
     re_path(r'(?P<slug>.+)/comments/$', CommentsView.as_view()),
-    re_path(r'(?P<slug>.+)/favorites/$', FavoritesView.as_view()),
+    re_path(r'(?P<slug>.+)/favorited/$', FavoritedView.as_view()),
     re_path(r'(?P<slug>.+)/$', ArticleDetailView.as_view()),
 ]

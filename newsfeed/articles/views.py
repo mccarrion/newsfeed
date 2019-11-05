@@ -79,7 +79,7 @@ class CommentsView(generics.ListCreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class FavoritesView(generics.GenericAPIView):
+class FavoritedView(generics.GenericAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
