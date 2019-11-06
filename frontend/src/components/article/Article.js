@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { API_URL } from '../../constants';
-import CommentForm from '../activity/CommentForm';
-import CommentList from '../activity/CommentList';
-import Favorited from '../activity/Favorited';
+import CommentForm from './CommentForm';
+import CommentList from './CommentList';
+import Favorited from './Favorited';
 
 class Article extends Component {
   constructor(props) {

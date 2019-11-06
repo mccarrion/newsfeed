@@ -8,10 +8,10 @@ import Header from './common/Header';
 import Home from './common/Home';
 import Privacy from './common/Privacy';
 import Terms from './common/Terms';
-import Logout from './user/Logout';
-import Profile from './user/Profile';
-import SignIn from './user/SignIn';
-import SignUp from './user/SignUp';
+import Logout from './auth/Logout';
+import Profile from './profile/Profile';
+import SignIn from './auth/SignIn';
+import SignUp from './auth/SignUp';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(far);
