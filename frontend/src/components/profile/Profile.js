@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Comments from './Comments';
+import Favorites from './Favorites';
 import isAuthenticated, { users } from '../auth/Auth';
 
 class Profile extends Component {
@@ -21,37 +23,6 @@ class Profile extends Component {
     });
   }
 
-  renderTabs() {
-    const { user } = this.state;
-    return (
-      <ul className="nav">
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/${user.username}`}>
-            Profile
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/${user.username}/comments`}>
-            Comments
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/${user.username}/favorites`}>
-            Favorites
-          </Link>
-        </li>
-      </ul>
-    );
-  }
-
   render() {
     const { user } = this.state;
     if (isAuthenticated() && user !== null) {
@@ -60,6 +31,8 @@ class Profile extends Component {
           <div className="profile">
             {/* <img src={user.image} alt="user" /> */}
             <h5>{user.username}</h5>
+            <Comments user={user.username}/>
+            <Favorites user={user.username}/>
           </div>
         </div>
       );
