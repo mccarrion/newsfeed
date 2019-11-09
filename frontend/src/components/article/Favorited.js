@@ -13,16 +13,16 @@ class Favorited extends Component {
   }
 
   async componentDidMount() {
-    let res;
+    let req;
     try {
-      res = await fetch(`${API_URL}/articles/${this.props.article}`, {
+      req = await fetch(`${API_URL}/articles/${this.props.article}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `JWT ${localStorage.getItem('id_token')}`,
       }})
       .then(res => res.json());
-      this.setState({ favorited: res.favorited });
+      this.setState({ favorited: req.favorited });
     } catch (error) {
       console.log('You are not authorized!', error);
     }

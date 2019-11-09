@@ -11,14 +11,19 @@ class Favorites extends Component {
     };
   }
 
-  componentDidMount() {
-    return axios.get(`${API_URL}/users/${user.username}/favorites/`)
-      .then(res => {
-        this.setState({ favorites: res.data });
-      })
-      .catch(error => {
-        console.log('Error while fetching!', error);
-      });
+  async componentDidMount() {
+    let req;
+    try {
+      req = await fetch(`${API_URL}/articles/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `JWT ${localStorage.getItem('id_token')}`,
+        }})
+        .then(res => res.json());
+    } catch (error) {
+      console.log('Error fetching!', error);
+    }
   }
 
   render() {
