@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-
 import { isAuthenticated, users } from '../auth/Auth';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as subjectActions from '../../actions/subjectActions';
 
 // TODO: Add a listener for change in window size
 // addEventListener or onresize
@@ -158,4 +160,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(subjectActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Header);
