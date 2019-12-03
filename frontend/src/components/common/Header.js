@@ -12,10 +12,12 @@ class Header extends Component {
     super(props);
     this.state = {
       user: null,
-      error: false
+      error: false,
+      subject: null,
     };
 
     this.signOut = this.signOut.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +38,11 @@ class Header extends Component {
   signOut(event) {
     event.preventDefault();
     this.props.actions.signOut();
+  }
+
+  handleClick(event) {
+    const subject = this.state.subject;
+    return this.setState({subject: subject});
   }
 
   render() {
