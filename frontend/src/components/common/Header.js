@@ -40,9 +40,8 @@ class Header extends Component {
     this.props.actions.signOut();
   }
 
-  handleClick(event) {
-    const subject = this.state.subject;
-    return this.setState({subject: subject});
+  handleClick(subject) {
+    this.setState({subject: subject});
   }
 
   render() {
@@ -112,16 +111,24 @@ class Header extends Component {
               <b>Topics</b>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/tech">Tech</a>
+              <button className="nav-link" onClick={this.handleClick("tech")}>
+                Tech
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/business">Business</a>
+              <button className="nav-link" onClick={this.handleClick("business")}>
+                Business
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/world">World</a>
+              <button className="nav-link" onClick={this.handleClick("world")}>
+                World
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/science">Science</a>
+              <button className="nav-link" onClick={this.handleClick("science")}>
+                Science
+              </button>
             </li>
           </ul>
         );
