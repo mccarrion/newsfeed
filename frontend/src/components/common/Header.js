@@ -37,11 +37,12 @@ class Header extends Component {
 
   signOut(event) {
     event.preventDefault();
-    this.props.actions.signOut();
+    // this.props.actions.signOut();
   }
 
   handleClick(subject) {
     this.setState({subject: subject});
+    this.props.actions.setSubject(subject);
   }
 
   render() {
