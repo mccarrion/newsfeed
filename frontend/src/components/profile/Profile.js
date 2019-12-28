@@ -31,7 +31,7 @@ class Profile extends Component {
           <div className="profile">
             {/* <img src={user.image} alt="user" /> */}
             <h5>{user.username}</h5>
-            <Comments />
+            <Comments user={user}/>
             <Favorites />
           </div>
         </div>

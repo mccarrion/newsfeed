@@ -13,7 +13,7 @@ class Comments extends Component {
 
   componentDidMount() {
     // TODO: Need to make this filter by user who is logged in
-    return axios.get(`${API_URL}/users/${user.username}/comments/`)
+    return axios.get(`${API_URL}/users/${this.props.user.username}/comments/`)
       .then(res => {
         this.setState({ comments: res.data });
       })
