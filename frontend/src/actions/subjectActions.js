@@ -1,12 +1,11 @@
 import * as types from './actionTypes';
 
-export function setSubjectSuccess() {
-  return {type: types.SET_SUBJECT};
+export function setSubjectSuccess(subject) {
+  return {type: types.SET_SUBJECT, subject};
 }
 
 export function setSubject(subject) {
   return function(dispatch) {
-    localStorage.setItem('subject', subject);
-    dispatch(setSubjectSuccess());
+    dispatch(setSubjectSuccess(subject));
   };
 }
