@@ -6,6 +6,7 @@ export function setSubjectSuccess() {
 
 export function setSubject(subject) {
   return function(dispatch) {
+    localStorage.setItem('subject', subject);
     dispatch(setSubjectSuccess());
   };
 }

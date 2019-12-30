@@ -41,7 +41,7 @@ class Header extends Component {
   }
 
   handleClick(subject) {
-    this.setState({subject: subject});
+    //this.setState({subject: subject});
     this.props.actions.setSubject(subject);
   }
 
