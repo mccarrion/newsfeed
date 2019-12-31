@@ -15,6 +15,20 @@ class AuthApi {
         });
         return response;
     }
+
+    static getUser(token) {
+        const response = fetch(`${API_URL}/auth/users/me/`, {
+            method: 'GET',
+            headers: {
+                Authorization: `JWT ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            return res.json();
+        });
+        return response;
+    }
 }
 
 export default AuthApi;

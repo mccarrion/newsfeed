@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
 import AuthApi from './authApi';
 
-export function signInSuccess() {
-	return { type: types.SIGNIN_SUCCESS }
+export function signInSuccess(user) {
+	return { type: types.SIGNIN_SUCCESS, user }
 }
 
 export function signOutSuccess() {
@@ -12,8 +12,10 @@ export function signOutSuccess() {
 export function userSignIn(credentials) {
 	return async function(dispatch) {
 		const request = await AuthApi.login(credentials);
-		localStorage.setItem('id_token', request.access);
-		dispatch(signInSuccess());
+		let token = request.access;
+		const user = await AuthApi.getUser(token);
+		localStorage.setItem('id_token', token);
+		dispatch(signInSuccess(user));
 	};
 }
 

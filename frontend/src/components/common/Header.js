@@ -21,13 +21,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    return users.get(`/auth/users/me/`)
-      .then(res => {
-        this.setState({ user: res.data })
-      })
-      .catch(error => {
-        console.log('Error while fetching!', error);
-    });
+    // TODO: need to check auth and return user
   }
 
   // This removes the JWT token from localStorage, thus logging out the user
@@ -37,11 +31,11 @@ class Header extends Component {
 
   signOut(event) {
     event.preventDefault();
+    // TODO: add signOut functionality
     // this.props.actions.signOut();
   }
 
   handleClick(subject) {
-    //this.setState({subject: subject});
     this.props.actions.setSubject(subject);
   }
 
