@@ -34,7 +34,7 @@ class Profile extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    auth: state.auth,
+    auth: state.auth
   };
 }
 
