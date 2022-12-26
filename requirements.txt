@@ -1,6 +1,6 @@
 # Commented out requirements to be removed in near future
 # Need Wheel
-wheel==0.30.0
+wheel==0.38.1
 
 # Latest Django Package
 django>=2.1.9
