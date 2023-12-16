@@ -1,38 +1,12 @@
 Newsfeed Website
 ========================
 
-This is a newsfeed with a top articles app. The frontend is written in 
-JavaScript using React and Redux libraries. The backend is implemented with 
-Python and Django.  
+This is a newsfeed website with a fully decoupled frontend and backend. The frontend which is stored in **frontend**
+is a React app written in JavaScript. The backend which is stored in **newsfeed** is written in Python using the FastAPI
+library.
 
-### Core Features
+## Current state of the App
 
-The core features of this app is a scrollable list of articles descending by 
-time. This list of articles can be filtered by subject. User accounts can be 
-created allowing users to comment and favorite on articles. Users can also see
-all of their own comments and favorites in their user profile. There is a top 
-5-10 articles list on the sidebar.
-
-Some of these features are still a work in progress, but are close to being 
-taken to completion.
-
-### Goals for this application
-
-- [x] Comments
-- [x] Users
-- [x] Articles
-- [ ] Redux for saving global state -> specifically user and subjects
-- [ ] Favorites
-- [x] REST API's
-- [x] JWT
-- [ ] 50% minimum code coverage between unit and integration tests -> 70% or greater target
-
-A content management system would be ideal, but even integrating an open-source
-one increases scope too much.
-
-### Credit
-
-I want to specifically acknowledge Thinkster and their 
-[realworld.io](https://github.com/gothinkster/realworld) project. It provided 
-an excellent path on how to create and connect the components of a news or blog
-website.
+On the side I am working on a full rewrite of the fullstack app. A decent number of features will be dropped as we are 
+starting over from the beginning. Django is being replaced with FastAPI. Frontend will remain React but be developed in 
+a more straightforward way.
