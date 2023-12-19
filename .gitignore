@@ -1,3 +1,7 @@
+# Other
+/backend/venv
+/backend/*.sqlite
+
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 __pycache__

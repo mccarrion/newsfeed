@@ -2,7 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./newsfeed.db"
+# File is named .sqlite because some plugins that are available to read SQLite DBs can only detect ".sqlite" files
+SQLALCHEMY_DATABASE_URL = "sqlite:///./newsfeed.sqlite"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}

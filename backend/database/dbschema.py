@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 
 from .config import Base
 
+
 class Article(Base):
     __tablename__ = "articles"
 
