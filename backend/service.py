@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from newsfeed import models
-from newsfeed.database import dbschema
+from backend import models
+from backend.database import dbschema
 
 def get_articles(db: Session):
     return db.query(dbschema.Article).all()

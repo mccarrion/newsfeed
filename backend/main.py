@@ -1,9 +1,9 @@
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
-from newsfeed import service, models
-from newsfeed.database import dbschema
-from newsfeed.database.config import SessionLocal, engine
+from backend import service, models
+from backend.database import dbschema
+from backend.database.config import SessionLocal, engine
 
 dbschema.Base.metadata.create_all(bind=engine)
 
