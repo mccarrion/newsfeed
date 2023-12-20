@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.models import articles as models
-from backend.database import article_schema as dbschema
+from backend.schema import article as models
+from backend.db import db_article as dbschema
 
 
 def get_articles(db: Session):
@@ -8,7 +8,7 @@ def get_articles(db: Session):
 
 
 def create_article(db: Session, article: models.ArticleCreate):
-    db_article = dbschema.Article(title=article.title, body=article.body)
+    db_article = dbschema.Article(title=article.title, body=article.body, creator_id=article.creator_id)
     db.add(db_article)
     db.commit()
     db.refresh(db_article)

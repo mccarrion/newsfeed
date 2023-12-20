@@ -2,7 +2,14 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.endpoints.api import api_router
+from backend.db import db_user, db_article
+from backend.api.api import api_router
+from backend.db.config import engine
+
+
+db_user.Base.metadata.create_all(bind=engine)
+db_article.Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
 

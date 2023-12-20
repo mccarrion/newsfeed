@@ -1,14 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from ..models import articles as models
-from ..service import articles as service
-from backend.database.config import engine, get_db
-from backend.database import article_schema
+from ..schema import article as models
+from ..crud import crud_article as service
+from backend.db.config import engine, get_db
 
 router = APIRouter()
-
-article_schema.Base.metadata.create_all(bind=engine)
 
 
 @router.post("/articles/create/")
