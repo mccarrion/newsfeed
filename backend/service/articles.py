@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend import models
-from backend.database import dbschema
+from backend.models import articles as models
+from backend.database import article_schema as dbschema
 
 
 def get_articles(db: Session):
