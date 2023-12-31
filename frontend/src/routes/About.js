@@ -1,6 +1,7 @@
 import { Route } from '@tanstack/react-router'
+import { rootRoute } from './Index'
 
-const aboutRoute = new Route({
+export const aboutRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/about',
   component: function About() {
@@ -16,5 +17,3 @@ const aboutRoute = new Route({
     )
   },
 })
-
-export default aboutRoute;

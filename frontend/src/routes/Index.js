@@ -1,16 +1,24 @@
 import {
-  Outlet,
   Link,
-  RootRoute
+  Outlet,
+  RootRoute,
+  Route
 } from '@tanstack/react-router'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { GetArticleList } from '../components/Articles';
 
-const rootRoute = new RootRoute({
+const queryClient = new QueryClient();
+
+export const rootRoute = new RootRoute({
   component: () => (
     <>
       <div className="App">
         <nav class="navbar navbar-expand-lg bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Newsfeed</a>
+            <a class="navbar-brand" href="/#">Newsfeed</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +31,7 @@ const rootRoute = new RootRoute({
                   <Link to="/about" className="nav-link">About</Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Editor</a>
+                  <a class="nav-link" href="/#">Editor</a>
                 </li>
               </ul>
             </div>
@@ -35,4 +43,21 @@ const rootRoute = new RootRoute({
   ),
 })
 
-export default rootRoute;
+export const indexRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: () => {
+    return (
+      <div class="container">
+        <br></br>
+        <h2 class="border-bottom border-dark">
+          News for Today
+        </h2>
+        <br></br>
+        <QueryClientProvider client={queryClient}>
+          <GetArticleList />
+        </QueryClientProvider>
+      </div>
+    )
+  }
+})
