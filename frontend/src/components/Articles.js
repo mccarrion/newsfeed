@@ -9,7 +9,7 @@ function GetArticle() {
   const { isPending, error, data } = useQuery({
     queryKey: ['article'],
     queryFn: () =>
-      fetch('http://0.0.0.0:8000/articles/1/').then( // 1 needs to be changed to a varible value
+      fetch('http://0.0.0.0:8000/articles/3/').then( // 1 needs to be changed to a varible value
         (response) => response.json(),
       ),
   })
@@ -21,9 +21,11 @@ function GetArticle() {
   } else {
     return (
       <div>
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{data.title}</h5>
-        </div>
+        <br></br>
+        <h2 class="border-bottom border-dark">
+          {data.title}
+        </h2>
+        <br></br>
         <p lass="mb-1" c>{data.body}</p>
       </div>
     );
@@ -60,4 +62,4 @@ function GetArticleList() {
   }
 }
 
-export {GetArticle, GetArticleList};
+export { GetArticle, GetArticleList };

@@ -10,7 +10,7 @@ import {
 } from '@tanstack/react-query'
 import { GetArticleList } from '../components/Articles';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export const rootRoute = new RootRoute({
   component: () => (

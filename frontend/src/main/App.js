@@ -2,9 +2,9 @@ import './App.css';
 import {
   Router,
 } from '@tanstack/react-router'
-import { rootRoute, indexRoute } from '../routes/Index';
-import { articleRoute, articlesIndexRoute, articlesRoute } from '../routes/Articles';
-import { aboutRoute } from '../routes/About';
+import { rootRoute, indexRoute } from '../routes/IndexRoute';
+import { articleRoute, articlesIndexRoute, articlesRoute } from '../routes/ArticleRoutes';
+import { aboutRoute } from '../routes/AboutRoute';
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
