@@ -4,13 +4,7 @@ import {
   RootRoute,
   Route
 } from '@tanstack/react-router'
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
 import { GetArticleList } from '../components/Articles';
-
-export const queryClient = new QueryClient();
 
 export const rootRoute = new RootRoute({
   component: () => (
@@ -46,18 +40,5 @@ export const rootRoute = new RootRoute({
 export const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: () => {
-    return (
-      <div class="container">
-        <br></br>
-        <h2 class="border-bottom border-dark">
-          News for Today
-        </h2>
-        <br></br>
-        <QueryClientProvider client={queryClient}>
-          <GetArticleList />
-        </QueryClientProvider>
-      </div>
-    )
-  }
+  component: GetArticleList
 })

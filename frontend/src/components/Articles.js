@@ -4,12 +4,14 @@ import {
 import {
   useQuery,
 } from '@tanstack/react-query'
+import { articleRoute } from '../routes/ArticleRoutes';
 
 function GetArticle() {
+  const { articleId } = articleRoute.useParams();
   const { isPending, error, data } = useQuery({
     queryKey: ['article'],
     queryFn: () =>
-      fetch('http://0.0.0.0:8000/articles/3/').then( // 1 needs to be changed to a varible value
+      fetch('http://0.0.0.0:8000/articles/'+ articleId + "/").then( // 1 needs to be changed to a varible value
         (response) => response.json(),
       ),
   })
@@ -47,7 +49,7 @@ function GetArticleList() {
     return 'An error has occurred: ' + error.message
   } else {
     const listArticles = data.map(article =>
-      <Link to={"articles/" + article.id} class="list-group-item list-group-item-action flex-column align-items-start">
+      <Link to={"articles/" + article.id} params={{ articleId: article.id }} class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{article.title}</h5>
         </div>
@@ -55,8 +57,15 @@ function GetArticleList() {
       </Link>
     );
     return (
-      <div class="list-group">
-        {listArticles}
+      <div class="container">
+        <br></br>
+        <h2 class="border-bottom border-dark">
+          News for Today
+        </h2>
+        <br></br>
+        <div class="list-group">
+          {listArticles}
+        </div>
       </div>
     );
   }
