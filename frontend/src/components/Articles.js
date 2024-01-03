@@ -11,7 +11,7 @@ function GetArticle() {
   const { isPending, error, data } = useQuery({
     queryKey: ['article'],
     queryFn: () =>
-      fetch('http://0.0.0.0:8000/articles/'+ articleId + "/").then( // 1 needs to be changed to a varible value
+      fetch('http://0.0.0.0:8000/articles/'+ articleId + "/").then(
         (response) => response.json(),
       ),
   })

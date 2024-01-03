@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  /* 
+    Update when you want to override Bootstrap defaults for the whole frontend
+  */
 }
 
 .App-logo {

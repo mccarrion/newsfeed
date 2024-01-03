@@ -28,6 +28,7 @@ export const rootRoute = new RootRoute({
                   <a class="nav-link" href="/#">Editor</a>
                 </li>
               </ul>
+              <Link to="/users/login" className="btn btn-outline-primary" type="button">Login</Link>
             </div>
           </div>
         </nav>
