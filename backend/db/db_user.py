@@ -8,7 +8,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True) # TODO change this to UUID
-    username = Column(String)
     email = Column(String)
+    password = Column(String)
 
     articles = relationship("Article", back_populates="creator")

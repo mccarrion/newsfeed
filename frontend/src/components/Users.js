@@ -1,7 +1,8 @@
 import {
-  Link,
+  Link, Navigate, redirect,
 } from '@tanstack/react-router'
 import {
+  useMutation,
   useQuery,
 } from '@tanstack/react-query'
 
@@ -59,25 +60,23 @@ function Login() {
 }
 
 function SignUp() {
-  function CreateUser(formData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const { isPending, error, data } = useQuery({
-      queryKey: ['article'],
-      queryFn: () =>
-        fetch('http://0.0.0.0:8000/users/create').then(
-          (response) => response.json(),
-        ),
-    })
+  const createUser = useMutation({
+    mutationFn: (data) => fetch('http://0.0.0.0:8000/users/create', {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    }).then(
+      (response) => response.json(),
+    )
+  })
 
-    if (isPending) {
-      return 'Logging in...'
-    } else if (error) {
-      return 'An error has occurred: ' + error.message
-    } else {
-      // TODO: redirect to Home page
-    }
+  if (createUser.isSuccess) {
+    return <Navigate to="/" />
   }
+
   return (
     <div class="container">
       <br></br>
@@ -88,7 +87,13 @@ function SignUp() {
             Create New Account
           </h2>
           <p></p>
-          <form action={CreateUser}>
+          <form onSubmit={(event) => {
+            event.preventDefault()
+            const formData = new FormData(event.currentTarget);
+            var data = Object.fromEntries(formData.entries());
+            console.log(JSON.stringify(data))
+            createUser.mutate(data)
+          }}>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>

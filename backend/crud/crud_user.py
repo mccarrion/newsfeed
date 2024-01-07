@@ -1,14 +1,14 @@
 from sqlalchemy.orm import Session
-from backend.schema import user as models
-from backend.db import db_user as dbschema
+from backend.schema import user as schema
+from backend.db import db_user as model
 
 
 def get_users(db: Session):
-    return db.query(dbschema.User).all()
+    return db.query(model.User).all()
 
 
-def create_user(db: Session, user: models.UserCreate):
-    db_user = dbschema.User(username=user.username, email=user.email)
+def create_user(db: Session, user: schema.UserCreate):
+    db_user = model.User(email=user.email, password=user.password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
