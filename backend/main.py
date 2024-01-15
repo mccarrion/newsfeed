@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.api.api import api_router
+from backend.api.router import api_router
 from backend.db import db_user, db_article
 from backend.db.config import engine
 

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from ..schema import user as models
-from ..crud import crud_user as crud
+from ..logic import crud_user as crud
 from backend.db.config import engine, get_db
 
 router = APIRouter()

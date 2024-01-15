@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
-from backend.crud import crud_user
+from backend.logic import crud_user
 from backend.schema.user import User
 from backend.schema.token import TokenData
 

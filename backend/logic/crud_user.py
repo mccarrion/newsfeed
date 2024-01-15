@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from backend.crud.security_logic import get_password_hash
+from backend.logic.security_logic import get_password_hash
 from backend.schema import user as schema
 from backend.db import db_user as model
 
