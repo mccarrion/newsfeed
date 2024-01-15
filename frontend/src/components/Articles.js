@@ -24,7 +24,7 @@ function GetArticle() {
     return (
       <div>
         <br></br>
-        <h2 class="border-bottom border-dark">
+        <h2 className="border-bottom border-dark">
           {data.title}
         </h2>
         <br></br>
@@ -49,21 +49,21 @@ function GetArticleList() {
     return 'An error has occurred: ' + error.message
   } else {
     const listArticles = data.map(article =>
-      <Link to={"articles/" + article.id} params={{ articleId: article.id }} class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{article.title}</h5>
+      <Link to={"articles/" + article.id} params={{ articleId: article.id }} className="list-group-item list-group-item-action flex-column align-items-start">
+        <div className="d-flex w-100 justify-content-between">
+          <h5 className="mb-1">{article.title}</h5>
         </div>
         <p lass="mb-1" c>{article.body}</p>
       </Link>
     );
     return (
-      <div class="container">
+      <div className="container">
         <br></br>
-        <h2 class="border-bottom border-dark">
+        <h2 className="border-bottom border-dark">
           News for Today
         </h2>
         <br></br>
-        <div class="list-group">
+        <div className="list-group">
           {listArticles}
         </div>
       </div>

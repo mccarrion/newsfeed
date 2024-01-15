@@ -27,32 +27,32 @@ function Login() {
     }
   }
   return (
-    <div class="container">
+    <div className="container">
       <br></br>
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <h2 class="border-bottom border-dark">
+      <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-4">
+          <h2 className="border-bottom border-dark">
             Sign In
           </h2>
           <p></p>
           <form action={LoginUser}>
-            <div class="form-group">
-              <label for="exampleInputUsername1">Username</label>
-              <input name="username" type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
+            <div className="form-group">
+              <label htmlFor="exampleInputUsername1">Username</label>
+              <input name="username" type="username" className="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
             </div>
             <p></p>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
             </div>
             <p></p>
             <p>Not a user yet? Please <Link to="/users/signup"><b>sign up</b></Link></p>
             <p></p>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
         </div>
-        <div class="col-md-4"></div>
+        <div className="col-md-4"></div>
       </div>
     </div>
   );
@@ -77,12 +77,12 @@ function SignUp() {
   }
 
   return (
-    <div class="container">
+    <div className="container">
       <br></br>
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <h2 class="border-bottom border-dark">
+      <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-4">
+          <h2 className="border-bottom border-dark">
             Create New Account
           </h2>
           <p></p>
@@ -93,19 +93,19 @@ function SignUp() {
             console.log(JSON.stringify(data))
             createUser.mutate(data)
           }}>
-            <div class="form-group">
-              <label for="exampleInputUsername1">Username</label>
-              <input name="username" type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
+            <div className="form-group">
+              <label htmlFor="exampleInputUsername1">Username</label>
+              <input name="username" type="username" className="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
             </div>
             <p></p>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
             </div>
             <p></p>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form></div>
-        <div class="col-md-4"></div>
+        <div className="col-md-4"></div>
       </div>
     </div>
   )

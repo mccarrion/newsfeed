@@ -10,7 +10,7 @@ export const usersRoute = new Route({
   path: '/users',
   component: () => {
     return (
-      <div class="container">
+      <div className="container">
         <Outlet />
       </div>
     )
@@ -22,7 +22,7 @@ export const usersIndexRoute = new Route({
   path: '/',
   component: () => {
     return (
-      <div class="container">
+      <div className="container">
         <p>Hello there fellow User.</p>
       </div>
     )

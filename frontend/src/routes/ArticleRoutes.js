@@ -10,7 +10,7 @@ export const articlesRoute = new Route({
   path: '/articles',
   component: () => {
     return (
-      <div class="container">
+      <div className="container">
         <Outlet />
       </div>
     )

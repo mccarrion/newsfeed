@@ -6,9 +6,9 @@ export const aboutRoute = new Route({
   path: '/about',
   component: function About() {
     return (
-      <div class="container">
+      <div className="container">
         <br></br>
-        <h2 class="border-bottom border-dark">
+        <h2 className="border-bottom border-dark">
           About this Project
         </h2>
         <br></br>
