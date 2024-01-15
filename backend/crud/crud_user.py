@@ -1,4 +1,6 @@
 from sqlalchemy.orm import Session
+
+from backend.crud.security_logic import get_password_hash
 from backend.schema import user as schema
 from backend.db import db_user as model
 
@@ -7,8 +9,13 @@ def get_users(db: Session):
     return db.query(model.User).all()
 
 
+def get_user(db: Session, username: str):
+    return db.query(model.User).filter(model.User.username == username).first()
+
+
 def create_user(db: Session, user: schema.UserCreate):
-    db_user = model.User(email=user.email, password=user.password)
+    hashed_password = get_password_hash(user.password)
+    db_user = model.User(username=user.username, password=hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

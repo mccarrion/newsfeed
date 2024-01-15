@@ -4,7 +4,7 @@ from .article import Article
 
 
 class UserBase(BaseModel):
-    email: str
+    username: str
     password: str
 
 

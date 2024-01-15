@@ -11,7 +11,7 @@ function GetArticle() {
   const { isPending, error, data } = useQuery({
     queryKey: ['article'],
     queryFn: () =>
-      fetch('http://0.0.0.0:8000/articles/'+ articleId + "/").then(
+      fetch('http://localhost:8000/articles/'+ articleId + "/").then(
         (response) => response.json(),
       ),
   })
@@ -38,7 +38,7 @@ function GetArticleList() {
   const { isPending, error, data } = useQuery({
     queryKey: ['articles'],
     queryFn: () =>
-      fetch('http://0.0.0.0:8000/articles/').then(
+      fetch('http://localhost:8000/articles/').then(
         (response) => response.json(),
       ),
   })

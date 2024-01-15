@@ -8,12 +8,12 @@ import {
 
 function Login() {
   function LoginUser(formData) {
-    const email = formData.get("email");
+    const username = formData.get("username");
     const password = formData.get("password");
     const { isPending, error, data } = useQuery({
       queryKey: ['article'],
       queryFn: () =>
-        fetch('http://0.0.0.0:8000/users/login').then(
+        fetch('http://localhost:8000/users/login').then(
           (response) => response.json(),
         ),
     })
@@ -38,9 +38,8 @@ function Login() {
           <p></p>
           <form action={LoginUser}>
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="exampleInputUsername1">Username</label>
+              <input name="username" type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
             </div>
             <p></p>
             <div class="form-group">
@@ -61,7 +60,7 @@ function Login() {
 
 function SignUp() {
   const createUser = useMutation({
-    mutationFn: (data) => fetch('http://0.0.0.0:8000/users/create', {
+    mutationFn: (data) => fetch('http://localhost:8000/users/create', {
       method: "POST",
       mode: "cors",
       headers: {
@@ -95,9 +94,8 @@ function SignUp() {
             createUser.mutate(data)
           }}>
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="exampleInputUsername1">Username</label>
+              <input name="username" type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
             </div>
             <p></p>
             <div class="form-group">
