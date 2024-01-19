@@ -1,31 +1,28 @@
 import {
-  Link, Navigate, redirect,
+  Link, Navigate,
 } from '@tanstack/react-router'
 import {
   useMutation,
-  useQuery,
 } from '@tanstack/react-query'
 
 function Login() {
-  function LoginUser(formData) {
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const { isPending, error, data } = useQuery({
-      queryKey: ['article'],
-      queryFn: () =>
-        fetch('http://localhost:8000/users/login').then(
-          (response) => response.json(),
-        ),
-    })
+  const loginUser = useMutation({
+    mutationFn: (data) => fetch('http://localhost:8000/token', {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: data,
+    }).then(
+      (response) => response.json(),
+    )
+  })
 
-    if (isPending) {
-      return 'Logging in...'
-    } else if (error) {
-      return 'An error has occurred: ' + error.message
-    } else {
-      // TODO: redirect to Home page
-    }
+  if (loginUser.isSuccess) {
+    console.log(loginUser.data)
   }
+
   return (
     <div className="container">
       <br></br>
@@ -36,7 +33,18 @@ function Login() {
             Sign In
           </h2>
           <p></p>
-          <form action={LoginUser}>
+          <form onSubmit={(event) => {
+            event.preventDefault()
+            const formData = new FormData(event.currentTarget)
+            var data = []
+            for (const key of formData.keys()) {
+              var encodedKey = encodeURIComponent(key);
+              var encodedValue = encodeURIComponent(formData.get(key))
+              data.push(encodedKey + "=" + encodedValue)
+            }
+            data = data.join("&")
+            loginUser.mutate(data)
+          }}>
             <div className="form-group">
               <label htmlFor="exampleInputUsername1">Username</label>
               <input name="username" type="username" className="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username"></input>
@@ -88,8 +96,8 @@ function SignUp() {
           <p></p>
           <form onSubmit={(event) => {
             event.preventDefault()
-            const formData = new FormData(event.currentTarget);
-            var data = Object.fromEntries(formData.entries());
+            const formData = new FormData(event.currentTarget)
+            var data = Object.fromEntries(formData.entries())
             console.log(JSON.stringify(data))
             createUser.mutate(data)
           }}>

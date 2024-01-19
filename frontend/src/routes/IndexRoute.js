@@ -4,10 +4,23 @@ import {
   RootRoute,
   Route
 } from '@tanstack/react-router'
+import { useAtom } from "jotai";
 import { GetArticleList } from '../components/Articles';
+import { authTokenAtom } from '../main/atoms';
 
-export const rootRoute = new RootRoute({
-  component: () => (
+function CreateHeader() {
+  const [authToken] = useAtom(authTokenAtom);
+  function showEditorTab() {
+    if (authToken !== null) {
+      return (
+        <li className="nav-item">
+          <a className="nav-link" href="/#">Editor</a>
+        </li>
+      )
+    }
+  }
+
+  return (
     <>
       <div className="App">
         <nav className="navbar navbar-expand-lg bg-light">
@@ -24,9 +37,7 @@ export const rootRoute = new RootRoute({
                 <li className="nav-item">
                   <Link to="/about" className="nav-link">About</Link>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/#">Editor</a>
-                </li>
+                {showEditorTab()}
               </ul>
               <Link to="/users/login" className="btn btn-outline-primary" type="button">Login</Link>
             </div>
@@ -35,7 +46,11 @@ export const rootRoute = new RootRoute({
         <Outlet />
       </div>
     </>
-  ),
+  )
+}
+
+export const rootRoute = new RootRoute({
+  component: CreateHeader
 })
 
 export const indexRoute = new Route({
