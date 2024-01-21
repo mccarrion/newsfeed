@@ -1,11 +1,15 @@
 import {
-  Link, Navigate,
+  Link, Navigate, useNavigate,
 } from '@tanstack/react-router'
 import {
   useMutation,
 } from '@tanstack/react-query'
+import { useEffect } from 'react';
+import { useStore } from '../main/store';
 
 function Login() {
+  const navigate = useNavigate({ from: '/login' })
+  const updateToken = useStore((state) => state.setAuthToken)
   const loginUser = useMutation({
     mutationFn: (data) => fetch('http://localhost:8000/token', {
       method: "POST",
@@ -19,9 +23,13 @@ function Login() {
     )
   })
 
-  if (loginUser.isSuccess) {
-    console.log(loginUser.data)
-  }
+  useEffect(() => {
+    if (loginUser.isSuccess) {
+      console.log(loginUser.data)
+      updateToken(loginUser.data.access_token)
+      navigate({ to: '/' })
+    }  
+  })
 
   return (
     <div className="container">
@@ -64,6 +72,15 @@ function Login() {
       </div>
     </div>
   );
+}
+
+function Logout() {
+  const navigate = useNavigate({ from: '/logout' })
+  const removeAuthToken = useStore((state) => state.removeAuthToken)
+  useEffect(() => {
+    removeAuthToken()
+    navigate({ to: '/' })
+  })
 }
 
 function SignUp() {
@@ -119,4 +136,4 @@ function SignUp() {
   )
 }
 
-export { Login, SignUp };
+export { Login, Logout, SignUp };

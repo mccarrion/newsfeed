@@ -4,20 +4,21 @@ import {
   RootRoute,
   Route
 } from '@tanstack/react-router'
-import { useAtom } from "jotai";
 import { GetArticleList } from '../components/Articles';
-import { authTokenAtom } from '../main/atoms';
+import { useStore } from '../main/store';
 
 function CreateHeader() {
-  const [authToken] = useAtom(authTokenAtom);
-  function showEditorTab() {
-    if (authToken !== null) {
-      return (
-        <li className="nav-item">
-          <a className="nav-link" href="/#">Editor</a>
-        </li>
-      )
-    }
+  const authToken = useStore((state) => state.authToken)
+  console.log(authToken)
+  var editorTab
+  var navBarRight
+
+  if (authToken !== null) {
+    editorTab = <li className="nav-item"><a className="nav-link" href="/#">Editor</a></li>
+    navBarRight = <Link to="/users/logout" className="btn btn-outline-primary" type="button">Logout</Link>
+  } else {
+    editorTab = null
+    navBarRight = <Link to="/users/login" className="btn btn-outline-primary" type="button">Login</Link>
   }
 
   return (
@@ -37,9 +38,9 @@ function CreateHeader() {
                 <li className="nav-item">
                   <Link to="/about" className="nav-link">About</Link>
                 </li>
-                {showEditorTab()}
+                {editorTab}
               </ul>
-              <Link to="/users/login" className="btn btn-outline-primary" type="button">Login</Link>
+              {navBarRight}
             </div>
           </div>
         </nav>
