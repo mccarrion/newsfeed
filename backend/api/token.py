@@ -25,6 +25,6 @@ def login(
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"uname": user.username, "id": user.id}, expires_delta=access_token_expires
     )
     return Token(access_token=access_token, token_type="bearer")

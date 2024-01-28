@@ -6,16 +6,28 @@ import {
 } from '@tanstack/react-router'
 import { GetArticleList } from '../components/Articles';
 import { useStore } from '../main/store';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function CreateHeader() {
   const authToken = useStore((state) => state.authToken)
+  const userData = useStore((state) => state.userData)
   console.log(authToken)
+  console.log(userData)
   var editorTab
   var navBarRight
 
-  if (authToken !== null) {
+  if (authToken !== null && userData !== null) {
     editorTab = <li className="nav-item"><a className="nav-link" href="/#">Editor</a></li>
-    navBarRight = <Link to="/users/logout" className="btn btn-outline-primary" type="button">Logout</Link>
+    navBarRight =
+      <Dropdown>
+        <Dropdown.Toggle>
+          Hello! {userData.uname}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item><Link to="/users/profile">Profile</Link></Dropdown.Item>
+          <Dropdown.Item><Link to="/users/logout">Logout</Link></Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
   } else {
     editorTab = null
     navBarRight = <Link to="/users/login" className="btn btn-outline-primary" type="button">Login</Link>

@@ -1,12 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css';
 import App from './main/App';
 import { RouterProvider } from '@tanstack/react-router'
 import reportWebVitals from './main/reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const queryClient = new QueryClient();
 

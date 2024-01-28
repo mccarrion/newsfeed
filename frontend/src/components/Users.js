@@ -25,7 +25,6 @@ function Login() {
 
   useEffect(() => {
     if (loginUser.isSuccess) {
-      console.log(loginUser.data)
       updateToken(loginUser.data.access_token)
       navigate({ to: '/' })
     }  
