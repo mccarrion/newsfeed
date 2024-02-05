@@ -17,15 +17,15 @@ function CreateHeader() {
   var navBarRight
 
   if (authToken !== null && userData !== null) {
-    editorTab = <li className="nav-item"><a className="nav-link" href="/#">Editor</a></li>
+    editorTab = <li className="nav-item"><Link to="/editor" className="nav-link" aria-current="page">Editor</Link></li>
     navBarRight =
       <Dropdown>
         <Dropdown.Toggle>
           Hello! {userData.uname}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item><Link to="/users/profile">Profile</Link></Dropdown.Item>
-          <Dropdown.Item><Link to="/users/logout">Logout</Link></Dropdown.Item>
+          <Dropdown.Item as={Link} to="/users/profile">Profile</Dropdown.Item>
+          <Dropdown.Item as={Link} to="/users/logout">Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
   } else {

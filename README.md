@@ -25,4 +25,4 @@ Note #3: The logic for logins and authentication on the Python side mainly came 
 Note #4: Frontend is using Zustand for state management. Not particularly clear if having a store is necessary for this web app.
 Additionally, user auth token is beißng persisted in "localStorage" which is a security flaw. 
 
-Need to look into keeping access and refresh tokens in HttpOnly cookies to close come security holes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+Note #5: Need to look into keeping access and refresh tokens in HttpOnly cookies to close come security holes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies

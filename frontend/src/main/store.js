@@ -18,7 +18,7 @@ const useStore = create((set) => ({
     localStorage.setItem('userData', atob(data.split('.')[1]))
     return {
       authToken: data,
-      username: atob(data.split('.')[1])
+      userData: JSON.parse(atob(data.split('.')[1]))
     }
   }),
   removeAuthToken: () => set(() => {
@@ -26,7 +26,7 @@ const useStore = create((set) => ({
     localStorage.removeItem('userData')
     return {
       authToken: null,
-      username: null
+      userData: null
     }
   })
 }))
