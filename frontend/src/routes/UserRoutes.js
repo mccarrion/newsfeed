@@ -3,7 +3,7 @@ import {
   Route
 } from '@tanstack/react-router'
 import { rootRoute } from './IndexRoute';
-import { Login, Logout, SignUp } from '../components/Users';
+import { Login, Logout, Profile, SignUp } from '../components/Users';
 
 export const usersRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -45,4 +45,10 @@ export const signupRoute = new Route({
   getParentRoute: () => usersRoute,
   path: '/signup',
   component: SignUp
+})
+
+export const profileRoute = new Route({
+  getParentRoute: () => usersRoute,
+  path: '/profile',
+  component: Profile
 })

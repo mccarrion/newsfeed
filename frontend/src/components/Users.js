@@ -2,7 +2,7 @@ import {
   Link, Navigate, useNavigate,
 } from '@tanstack/react-router'
 import {
-  useMutation,
+  useMutation, useQuery,
 } from '@tanstack/react-query'
 import { useEffect } from 'react';
 import { useStore } from '../main/store';
@@ -27,7 +27,7 @@ function Login() {
     if (loginUser.isSuccess) {
       updateToken(loginUser.data.access_token)
       navigate({ to: '/' })
-    }  
+    }
   })
 
   return (
@@ -135,4 +135,33 @@ function SignUp() {
   )
 }
 
-export { Login, Logout, SignUp };
+function Profile() {
+  const authToken = useStore((state) => state.authToken)
+  const userData = useStore((state) => state.userData)
+  console.log(authToken)
+  console.log(userData)
+  const { isPending, error, data } = useQuery({
+    queryKey: ['article'],
+    queryFn: () =>
+      fetch('http://localhost:8000/users/me/', {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + authToken
+        }
+      }).then(
+        (response) => response.json(),
+      ),
+  })
+
+  if (isPending) {
+    return 'Loading...'
+  } else if (error) {
+    return 'An error has occurred: ' + error.message
+  } else {
+    console.log(data)
+  }
+}
+
+export { Login, Logout, SignUp, Profile };

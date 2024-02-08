@@ -27,7 +27,7 @@ def get_current_user(token: Annotated[str, Depends(security_logic.oauth2_scheme)
     )
     try:
         payload = jwt.decode(token, security_logic.SECRET_KEY, algorithms=[security_logic.ALGORITHM])
-        username: str = payload.get("sub")
+        username: str = payload.get("uname")
         if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)
@@ -42,8 +42,8 @@ def get_current_user(token: Annotated[str, Depends(security_logic.oauth2_scheme)
 def get_current_active_user(
         current_user: Annotated[schema.User, Depends(get_current_user)]
 ):
-    if current_user.disabled:
-        raise HTTPException(status_code=400, detail="Inactive user")
+    # if current_user.disabled:
+    #     raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 

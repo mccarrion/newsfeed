@@ -5,13 +5,13 @@ import {
 import { rootRoute, indexRoute } from '../routes/IndexRoute';
 import { articleRoute, articlesIndexRoute, articlesRoute } from '../routes/ArticleRoutes';
 import { aboutRoute } from '../routes/AboutRoute';
-import { loginRoute, logoutRoute, signupRoute, usersIndexRoute, usersRoute } from '../routes/UserRoutes';
+import { loginRoute, logoutRoute, profileRoute, signupRoute, usersIndexRoute, usersRoute } from '../routes/UserRoutes';
 import { editorCreateRoute, editorIndexRoute, editorRoute } from '../routes/EditorRoutes';
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
   articlesRoute.addChildren([articlesIndexRoute, articleRoute]),
-  usersRoute.addChildren([usersIndexRoute, loginRoute, logoutRoute, signupRoute]),
+  usersRoute.addChildren([usersIndexRoute, loginRoute, logoutRoute, signupRoute, profileRoute]),
   editorRoute.addChildren([editorIndexRoute, editorCreateRoute]),
   aboutRoute,
 ])
