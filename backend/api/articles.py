@@ -1,7 +1,11 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from ..logic.crud_user import get_current_active_user
 from ..schema import article as schemas
+from ..schema import user as user_schema
 from ..logic import crud_article as crud
 from backend.db.config import get_db
 
@@ -11,6 +15,11 @@ router = APIRouter()
 @router.post("/articles/create/")
 def create_article(article: schemas.ArticleCreate, db: Session = Depends(get_db)):
     return crud.create_article(db=db, article=article)
+
+
+@router.get("/articles/update/", response_model=list[schemas.Article])
+def get_articles_to_update(current_user: Annotated[user_schema.User, Depends(get_current_active_user)]):
+    return current_user.articles
 
 
 @router.get("/articles/", response_model=list[schemas.Article])

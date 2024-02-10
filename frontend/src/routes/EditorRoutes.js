@@ -3,7 +3,7 @@ import {
     Route
 } from '@tanstack/react-router'
 import { rootRoute } from './IndexRoute'
-import { EditorCreate, EditorIndex } from '../components/Editor'
+import { ArticlesToUpdate, EditorCreate, EditorIndex } from '../components/Editor'
 
 export const editorRoute = new Route({
     getParentRoute: () => rootRoute,
@@ -27,4 +27,10 @@ export const editorCreateRoute = new Route({
     getParentRoute: () => editorRoute,
     path: '/create',
     component: EditorCreate
+})
+
+export const editorUpdateRoute = new Route({
+    getParentRoute: () => editorRoute,
+    path: '/update',
+    component: ArticlesToUpdate
 })

@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import {
   Link
 } from '@tanstack/react-router'
@@ -18,7 +18,7 @@ function EditorIndex() {
         </Card.Body>
       </Card>
       <br />
-      <Card as={Link} to="/editor/edit" style={{ textDecoration: 'none' }}>
+      <Card as={Link} to="/editor/update" style={{ textDecoration: 'none' }}>
         <Card.Body>
           <Card.Title>Update an Existing Post</Card.Title>
           <Card.Text>Click on this Card to be taken to a list of article posts that you can update.</Card.Text>
@@ -70,4 +70,52 @@ function EditorCreate() {
   )
 }
 
-export { EditorIndex, EditorCreate }
+function ArticlesToUpdate() {
+  const authToken = useStore((state) => state.authToken)
+  console.log(authToken)
+  const { isPending, error, data } = useQuery({
+    queryKey: ['articles-to-update'],
+    queryFn: () =>
+    fetch('http://localhost:8000/articles/update/', {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + authToken
+      }
+    }).then(
+      (response) => response.json(),
+    ),
+  })
+
+  if (isPending) {
+    return 'Loading...'
+  } else if (error) {
+    return 'An error has occurred: ' + error.message
+  } else {
+    console.log(data);
+    const listArticles = data.map(article =>
+      <div key={article.id}>
+        <Card as={Link} to={"articles/" + article.id} params={{ articleId: article.id }} style={{ textDecoration: 'none' }}>
+          <Card.Body>
+            <Card.Title>{article.title}</Card.Title>
+            <Card.Text>{article.body.substring(0,250)}...</Card.Text>
+          </Card.Body>
+        </Card>
+        <p />
+      </div>
+    );
+    return (
+      <div className="container">
+        <br></br>
+        <h2 className="border-bottom border-dark">
+          Articles That You Can Update
+        </h2>
+        <p />
+        {listArticles}
+      </div>
+    );
+  }
+}
+
+export { EditorIndex, EditorCreate, ArticlesToUpdate }
