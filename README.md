@@ -7,9 +7,18 @@ library.
 
 ## Current state of the App
 
-On the side I am working on a full rewrite of the fullstack app. A decent number of features will be dropped as we are 
-starting over from the beginning. Django is being replaced with FastAPI. Frontend will remain React but be developed in 
-a more straightforward way.
+Here are the current features of the app:
+- User sign up and logins
+- Ability for user to create articles
+- Ability to see lists of posts and read individual articles
+
+Future TODO items:
+- Liking articles
+- Favoriting articles
+- Commenting on articles
+- Profile page to see likes and favorites
+- Ability to edit individual articles
+- Ability to delete articles
 
 ## Notes on Development
 
@@ -23,6 +32,6 @@ The database is located at `/backend/database/newsfeed.sqlite`
 Note #3: The logic for logins and authentication on the Python side mainly came from here: [OAuth2 with Password (and hashing), Bearer with JWT tokens](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/)
 
 Note #4: Frontend is using Zustand for state management. Not particularly clear if having a store is necessary for this web app.
-Additionally, user auth token is beißng persisted in "localStorage" which is a security flaw. 
+Additionally, user auth token is being persisted in "localStorage" which is a security flaw. 
 
 Note #5: Need to look into keeping access and refresh tokens in HttpOnly cookies to close come security holes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies

@@ -1,11 +1,10 @@
-import {
-  Link,
-} from '@tanstack/react-router'
-import {
-  useQuery,
-} from '@tanstack/react-query'
+import { Link } from '@tanstack/react-router'
+import { useQuery } from '@tanstack/react-query'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { articleRoute } from '../routes/ArticleRoutes';
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/esm/Button';
 
 function GetArticle() {
   const { articleId } = articleRoute.useParams();
@@ -43,6 +42,7 @@ function GetArticleList() {
         (response) => response.json(),
       ),
   })
+  const padding = <div style={{ width: '4px', height: 'auto', display: 'inline-block' }} />
 
   if (isPending) {
     return 'Loading...'
@@ -52,11 +52,16 @@ function GetArticleList() {
     console.log(data);
     const listArticles = data.map(article =>
       <div key={article.id}>
-        <Card as={Link} to={"articles/" + article.id} params={{ articleId: article.id }} style={{ textDecoration: 'none' }}>
-          <Card.Body>
+        <Card>
+          <Card.Body as={Link} to={"articles/" + article.id} params={{ articleId: article.id }} style={{ textDecoration: 'none' }}>
             <Card.Title>{article.title}</Card.Title>
-            <Card.Text>{article.body.substring(0,250)}...</Card.Text>
+            <Card.Text>{article.body.substring(0, 250)}...</Card.Text>
           </Card.Body>
+          <Card.Footer className="text-end" >
+            <Button variant="btn btn-outline-primary"><FontAwesomeIcon icon={faThumbsUp} />{padding} Like</Button>
+            {padding}{padding}
+            <Button variant="btn btn-outline-primary"><FontAwesomeIcon icon={faBookmark} />{padding} Save</Button>
+          </Card.Footer>
         </Card>
         <p />
       </div>
