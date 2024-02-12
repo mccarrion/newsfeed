@@ -1,38 +1,37 @@
 Newsfeed Website
 ========================
 
-This is a newsfeed with a top articles app. The frontend is written in 
-JavaScript using React and Redux libraries. The backend is implemented with 
-Python and Django.  
+This is a newsfeed website with a fully decoupled frontend and backend. The frontend which is stored in **frontend**
+is a React app written in JavaScript. The backend which is stored in **backend** is written in Python using the FastAPI
+library.
 
-### Core Features
+## Current state of the App
 
-The core features of this app is a scrollable list of articles descending by 
-time. This list of articles can be filtered by subject. User accounts can be 
-created allowing users to comment and favorite on articles. Users can also see
-all of their own comments and favorites in their user profile. There is a top 
-5-10 articles list on the sidebar.
+Here are the current features of the app:
+- User sign up and logins
+- Ability for user to create articles
+- Ability to see lists of posts and read individual articles
 
-Some of these features are still a work in progress, but are close to being 
-taken to completion.
+Future TODO items:
+- Liking articles
+- Favoriting articles
+- Commenting on articles
+- Profile page to see likes and favorites
+- Ability to edit individual articles
+- Ability to delete articles
 
-### Goals for this application
+## Notes on Development
 
-- [x] Comments
-- [x] Users
-- [x] Articles
-- [ ] Redux for saving global state -> specifically user and subjects
-- [ ] Favorites
-- [x] REST API's
-- [x] JWT
-- [ ] 50% minimum code coverage between unit and integration tests -> 70% or greater target
+Note #1: On my local environment there is a virtual environment located at `/newsfeed/backend/.venv`. This is where the
+various libraries are installed including: `pydantic`, `fastapi`, and `sqlalchemy`.
 
-A content management system would be ideal, but even integrating an open-source
-one increases scope too much.
+Note #2: This plugin is being used in VSCode to view and edit the database: [SQLite3 Editor](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor)
 
-### Credit
+The database is located at `/backend/database/newsfeed.sqlite`
 
-I want to specifically acknowledge Thinkster and their 
-[realworld.io](https://github.com/gothinkster/realworld) project. It provided 
-an excellent path on how to create and connect the components of a news or blog
-website.
+Note #3: The logic for logins and authentication on the Python side mainly came from here: [OAuth2 with Password (and hashing), Bearer with JWT tokens](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/)
+
+Note #4: Frontend is using Zustand for state management. Not particularly clear if having a store is necessary for this web app.
+Additionally, user auth token is being persisted in "localStorage" which is a security flaw. 
+
+Note #5: Need to look into keeping access and refresh tokens in HttpOnly cookies to close come security holes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
