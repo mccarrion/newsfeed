@@ -14,6 +14,7 @@ function Login() {
     mutationFn: (data) => fetch('http://localhost:8000/token', {
       method: "POST",
       mode: "cors",
+      credentials: "include",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
