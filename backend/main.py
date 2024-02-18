@@ -3,12 +3,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.api.router import api_router
-from backend.db import db_user, db_article
+from backend.db import db_user, db_article, db_favorite, db_like
 from backend.db.config import engine
 
 # This creates DB schema according to the models localed in the "db" folder:
 db_user.Base.metadata.create_all(bind=engine)
 db_article.Base.metadata.create_all(bind=engine)
+db_favorite.Base.metadata.create_all(bind=engine)
+db_like.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 

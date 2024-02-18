@@ -1,10 +1,11 @@
 import { Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { articleRoute } from '../routes/ArticleRoutes';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/esm/Button';
+import { useStore } from '../main/store';
 
 function GetArticle() {
   const { articleId } = articleRoute.useParams();
@@ -35,6 +36,27 @@ function GetArticle() {
 }
 
 function GetArticleList() {
+  const authToken = useStore((state) => state.authToken)
+  const saveArticle = useMutation({
+    mutationFn: (articleId) => fetch('http://localhost:8000/articles/' + articleId + '/favorite/', {
+      method: "POST",
+      mode: "cors",
+      credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + authToken
+      }
+    }).then(
+      (response) => {
+        response.json()
+      },
+    )
+  })
+
+  if (saveArticle.isSuccess) {
+    console.log("success")
+  }
+
   const { isPending, error, data } = useQuery({
     queryKey: ['articles'],
     queryFn: () =>
@@ -60,7 +82,13 @@ function GetArticleList() {
           <Card.Footer className="text-end" >
             <Button variant="btn btn-outline-primary"><FontAwesomeIcon icon={faThumbsUp} />{padding} Like</Button>
             {padding}{padding}
-            <Button variant="btn btn-outline-primary"><FontAwesomeIcon icon={faBookmark} />{padding} Save</Button>
+            <Button onClick={(event) => {
+              event.preventDefault()
+              saveArticle.mutate(article.id)
+            }}
+              variant="btn btn-outline-primary">
+              <FontAwesomeIcon icon={faBookmark} />{padding} Save
+            </Button>
           </Card.Footer>
         </Card>
         <p />

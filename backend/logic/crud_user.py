@@ -39,6 +39,26 @@ def get_current_user(token: Annotated[str, Depends(security_logic.oauth2_scheme)
     return user
 
 
+def get_current_user_new(token: str, db: Session):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, security_logic.SECRET_KEY, algorithms=[security_logic.ALGORITHM])
+        username: str = payload.get("uname")
+        if username is None:
+            raise credentials_exception
+        token_data = TokenData(username=username)
+    except JWTError:
+        raise credentials_exception
+    user = get_user(db, username=token_data.username)
+    if user is None:
+        raise credentials_exception
+    return user
+
+
 def get_current_active_user(
         current_user: Annotated[schema.User, Depends(get_current_user)]
 ):
