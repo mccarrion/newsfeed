@@ -137,9 +137,7 @@ function SignUp() {
 }
 
 function Profile() {
-  const authToken = useStore((state) => state.authToken)
   const userData = useStore((state) => state.userData)
-  console.log(authToken)
   console.log(userData)
   const { isPending, error, data } = useQuery({
     queryKey: ['article'],
@@ -147,9 +145,9 @@ function Profile() {
       fetch('http://localhost:8000/users/me/', {
         method: "GET",
         mode: "cors",
+        credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + authToken
         }
       }).then(
         (response) => response.json(),
