@@ -5,10 +5,10 @@ from .article import Article
 
 class UserBase(BaseModel):
     username: str
-    password: str
 
 
 class UserCreate(UserBase):
+    password: str
     pass
 
 

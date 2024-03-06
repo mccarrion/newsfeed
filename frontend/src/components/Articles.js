@@ -5,7 +5,6 @@ import { faBookmark, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { articleRoute } from '../routes/ArticleRoutes';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/esm/Button';
-import { useStore } from '../main/store';
 
 function GetArticle() {
   const { articleId } = articleRoute.useParams();
@@ -36,7 +35,6 @@ function GetArticle() {
 }
 
 function GetArticleList() {
-  const authToken = useStore((state) => state.authToken)
   const saveArticle = useMutation({
     mutationFn: (articleId) => fetch('http://localhost:8000/articles/' + articleId + '/favorite/', {
       method: "POST",
@@ -44,7 +42,6 @@ function GetArticleList() {
       credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + authToken
       }
     }).then(
       (response) => {
@@ -54,17 +51,74 @@ function GetArticleList() {
   })
 
   if (saveArticle.isSuccess) {
-    console.log("success")
+    console.log("success")   // TODO: need to dynamically update state of likes and favorites based on response from mutation call
+  }
+
+  const likeArticle = useMutation({
+    mutationFn: (articleId) => fetch('http://localhost:8000/articles/' + articleId + '/like/', {
+      method: "POST",
+      mode: "cors",
+      credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(
+      (response) => {
+        response.json()
+      },
+    )
+  })
+
+  if (likeArticle.isSuccess) {
+    console.log("success")   // TODO: need to dynamically update state of likes and favorites based on response from mutation call
   }
 
   const { isPending, error, data } = useQuery({
     queryKey: ['articles'],
     queryFn: () =>
-      fetch('http://localhost:8000/articles/').then(
+      fetch('http://localhost:8000/articles/', {
+        credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
+      }).then(
         (response) => response.json(),
       ),
   })
   const padding = <div style={{ width: '4px', height: 'auto', display: 'inline-block' }} />
+
+  function likeButton(article) {
+    if (article.likes.length > 0) {
+      return <Button onClick={(event) => {
+        event.preventDefault()
+        likeArticle.mutate(article.id)
+      }} variant="btn btn-outline-primary" active>
+        <FontAwesomeIcon icon={faThumbsUp} />{padding} Liked!
+      </Button>
+    } else {
+      return <Button onClick={(event) => {
+        event.preventDefault()
+        likeArticle.mutate(article.id)
+      }} variant="btn btn-outline-primary">
+        <FontAwesomeIcon icon={faThumbsUp} />{padding} Like
+      </Button>
+    }
+  }
+
+  function favoriteButton(article) {
+    if (article.favorites.length > 0) {
+      return <Button onClick={(event) => {
+        event.preventDefault()
+        saveArticle.mutate(article.id)
+      }} variant="btn btn-outline-primary" active>
+        <FontAwesomeIcon icon={faBookmark} />{padding} Saved!
+      </Button>
+    } else {
+      return <Button onClick={(event) => {
+        event.preventDefault()
+        saveArticle.mutate(article.id)
+      }} variant="btn btn-outline-primary">
+        <FontAwesomeIcon icon={faBookmark} />{padding} Save
+      </Button>
+    }
+  }
 
   if (isPending) {
     return 'Loading...'
@@ -80,15 +134,9 @@ function GetArticleList() {
             <Card.Text>{article.body.substring(0, 250)}...</Card.Text>
           </Card.Body>
           <Card.Footer className="text-end" >
-            <Button variant="btn btn-outline-primary"><FontAwesomeIcon icon={faThumbsUp} />{padding} Like</Button>
+            {likeButton(article)}
             {padding}{padding}
-            <Button onClick={(event) => {
-              event.preventDefault()
-              saveArticle.mutate(article.id)
-            }}
-              variant="btn btn-outline-primary">
-              <FontAwesomeIcon icon={faBookmark} />{padding} Save
-            </Button>
+            {favoriteButton(article)}
           </Card.Footer>
         </Card>
         <p />

@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from backend.db.config import Base
@@ -13,3 +13,5 @@ class Article(Base):
     creator_id = Column(Integer, ForeignKey("users.id"))
 
     creator = relationship("User", back_populates="articles")
+    favorites = relationship("Favorite", back_populates="article")
+    likes = relationship("Like", back_populates="article")

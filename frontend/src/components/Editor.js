@@ -71,17 +71,15 @@ function EditorCreate() {
 }
 
 function ArticlesToUpdate() {
-  const authToken = useStore((state) => state.authToken)
-  console.log(authToken)
   const { isPending, error, data } = useQuery({
     queryKey: ['articles-to-update'],
     queryFn: () =>
     fetch('http://localhost:8000/articles/update/', {
       method: "GET",
       mode: "cors",
+      credentials: "include", // TODO: should be same-origin, but needs to be 'include' for local testing
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + authToken
       }
     }).then(
       (response) => response.json(),

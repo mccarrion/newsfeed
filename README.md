@@ -11,11 +11,11 @@ Here are the current features of the app:
 - User sign up and logins
 - Ability for user to create articles
 - Ability to see lists of posts and read individual articles
+- Can like and favorite article if logged in
 
 Future TODO items:
-- Liking articles
-- Favoriting articles
 - Commenting on articles
+- Need to be able to see if article is liked or favorited if logged in
 - Profile page to see likes and favorites
 - Ability to edit individual articles
 - Ability to delete articles
@@ -35,3 +35,5 @@ Note #4: Frontend is using Zustand for state management. Not particularly clear 
 Additionally, user auth token is being persisted in "localStorage" which is a security flaw. 
 
 Note #5: Need to look into keeping access and refresh tokens in HttpOnly cookies to close come security holes here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+
+**Update: figured out HttpOnly cookies, slowly switching to that for using that as the access_token from logged in users
