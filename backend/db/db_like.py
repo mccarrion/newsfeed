@@ -10,3 +10,5 @@ class Like(Base):
     id = Column(Integer, primary_key=True, index=True)  # TODO change this to UUID
     user_id = Column(Integer, ForeignKey("users.id"))
     article_id = Column(Integer, ForeignKey("articles.id"))
+
+    article = relationship("Article", back_populates="likes")

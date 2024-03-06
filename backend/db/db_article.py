@@ -13,3 +13,5 @@ class Article(Base):
     creator_id = Column(Integer, ForeignKey("users.id"))
 
     creator = relationship("User", back_populates="articles")
+    favorites = relationship("Favorite", back_populates="article")
+    likes = relationship("Like", back_populates="article")
